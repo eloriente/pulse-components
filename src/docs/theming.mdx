@@ -1,0 +1,153 @@
+{/* docs/theming.mdx */}
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="Tokens/Theming" />
+
+# Theming
+
+Pulse Components was built with customisation in mind. Every visual decision lives
+in a `--pulse-*` CSS custom property, so you can restyle the entire library without
+touching a single component file.
+
+---
+
+## How it works
+
+Components reference tokens, not hard-coded values:
+
+```css
+/* Inside Button.module.css (simplified) */
+.button {
+  font-family: var(--pulse-font-family-base);
+  font-size: var(--pulse-font-size-md);
+  border-radius: var(--pulse-radius-md);
+  border: var(--pulse-border-width) solid transparent;
+}
+
+.primary {
+  background-color: var(--pulse-color-primary);
+  color: var(--pulse-color-neutral-0);
+}
+```
+
+Override the token and every component that references it updates automatically.
+
+---
+
+## Global theme override
+
+The simplest approach is to redefine variables on `:root` in your global CSS file,
+**after** importing the Pulse styles:
+
+```css
+/* global.css */
+@import 'pulse-components/styles';
+
+:root {
+  /* Brand color */
+  --pulse-color-primary: #e63946;
+  --pulse-color-primary-dark: #c1121f;
+  --pulse-color-primary-light: #f07178;
+
+  /* Typography */
+  --pulse-font-family-base: 'Inter', sans-serif;
+
+  /* Rounded corners */
+  --pulse-radius-md: 10px;
+  --pulse-radius-full: 9999px;
+}
+```
+
+Every `Button`, `Header` and `Page` component will now use your overrides automatically.
+
+---
+
+## Scoped theme override
+
+You can limit an override to a specific section of the page by targeting a parent
+element instead of `:root`:
+
+```css
+/* Only affects components inside .dark-section */
+.dark-section {
+  --pulse-color-background: #1a1a1a;
+  --pulse-color-text: #f0f0f0;
+  --pulse-color-border: rgba(255, 255, 255, 0.15);
+}
+```
+
+```tsx
+<div className="dark-section">
+  <Header user={{ name: 'Jane' }} onLogout={() => {}} />
+</div>
+```
+
+---
+
+## Inline override via `backgroundColor` prop
+
+The `Button` component exposes an escape hatch for one-off colour needs:
+
+```tsx
+<Button
+  primary
+  label="Custom colour"
+  backgroundColor="#ff6b6b"
+/>
+```
+
+This sets an inline `style` attribute directly on the `<button>` element, bypassing
+the CSS token system. Use it sparingly — token overrides are preferred for anything
+that should be consistent across your application.
+
+---
+
+## Dark mode
+
+A simple dark-mode approach using the `prefers-color-scheme` media query or a
+`.dark` class toggle:
+
+```css
+@import 'pulse-components/styles';
+
+/* System dark mode */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --pulse-color-background: #121212;
+    --pulse-color-text: #f0f0f0;
+    --pulse-color-text-subtle: #aaaaaa;
+    --pulse-color-border: rgba(255, 255, 255, 0.12);
+    --pulse-color-neutral-0: #1e1e1e;
+    --pulse-color-neutral-100: #2a2a2a;
+  }
+}
+
+/* Class-based toggle */
+.dark {
+  --pulse-color-background: #121212;
+  --pulse-color-text: #f0f0f0;
+  --pulse-color-text-subtle: #aaaaaa;
+  --pulse-color-border: rgba(255, 255, 255, 0.12);
+  --pulse-color-neutral-0: #1e1e1e;
+  --pulse-color-neutral-100: #2a2a2a;
+}
+```
+
+---
+
+## Full token reference
+
+See the **[Design Tokens](?path=/docs/design-tokens--docs)** page for a complete list
+of every `--pulse-*` variable, its default value and its intended usage.
+
+---
+
+## Best practices
+
+- Always override **semantic tokens** (`--pulse-color-text`, `--pulse-color-background`,
+  `--pulse-color-border`) rather than neutral scale tokens directly. Semantic tokens
+  are what components use internally.
+- Keep overrides in one place (a `theme.css` or your root CSS entry) to make future
+  updates predictable.
+- Avoid using the `backgroundColor` inline prop for theme-level changes — use CSS
+  custom properties instead so the change propagates everywhere.

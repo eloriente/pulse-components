@@ -1,0 +1,56 @@
+/**
+ * Button component styles
+ * Uses CSS custom properties from design tokens.
+ */
+
+.button {
+  display: inline-block;
+  cursor: pointer;
+  border: 0;
+  border-radius: var(--pulse-radius-full);
+  font-weight: var(--pulse-font-weight-bold);
+  line-height: var(--pulse-line-height-tight);
+  font-family: var(--pulse-font-family-base);
+  transition: background-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.button:focus-visible {
+  outline: 2px solid var(--pulse-color-primary);
+  outline-offset: 2px;
+}
+
+/* Variants */
+.primary {
+  background-color: var(--pulse-color-primary);
+  color: var(--pulse-color-neutral-0);
+}
+
+.primary:hover {
+  background-color: var(--pulse-color-primary-dark);
+}
+
+.secondary {
+  box-shadow: rgba(0, 0, 0, 0.15) 0px 0px 0px 1px inset;
+  background-color: transparent;
+  color: var(--pulse-color-text);
+}
+
+.secondary:hover {
+  box-shadow: rgba(0, 0, 0, 0.3) 0px 0px 0px 1px inset;
+}
+
+/* Sizes */
+.small {
+  padding: 10px var(--pulse-space-4);
+  font-size: var(--pulse-font-size-sm);
+}
+
+.medium {
+  padding: 11px var(--pulse-space-5);
+  font-size: var(--pulse-font-size-md);
+}
+
+.large {
+  padding: var(--pulse-space-3) var(--pulse-space-6);
+  font-size: var(--pulse-font-size-lg);
+}

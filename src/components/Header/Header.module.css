@@ -1,0 +1,44 @@
+/**
+ * Header component styles
+ */
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: var(--pulse-border-width) solid var(--pulse-color-border);
+  padding: 15px var(--pulse-space-5);
+  font-family: var(--pulse-font-family-base);
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: var(--pulse-space-2);
+}
+
+.logo svg {
+  display: inline-block;
+  vertical-align: top;
+  flex-shrink: 0;
+}
+
+.title {
+  display: inline-block;
+  vertical-align: top;
+  margin: 0;
+  font-weight: var(--pulse-font-weight-bold);
+  font-size: var(--pulse-font-size-xl);
+  line-height: var(--pulse-line-height-tight);
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+  gap: var(--pulse-space-2);
+}
+
+.welcome {
+  color: var(--pulse-color-text);
+  font-size: var(--pulse-font-size-md);
+}

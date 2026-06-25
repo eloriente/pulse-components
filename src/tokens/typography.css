@@ -1,0 +1,30 @@
+/**
+ * Pulse Components - Typography Tokens
+ *
+ * Font families, sizes, weights and line heights.
+ *
+ * Usage: var(--pulse-font-size-sm)
+ */
+:root {
+  /* Font families */
+  --pulse-font-family-base: 'Nunito Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  --pulse-font-family-mono: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
+
+  /* Font sizes */
+  --pulse-font-size-xs: 11px;
+  --pulse-font-size-sm: 12px;
+  --pulse-font-size-md: 14px;
+  --pulse-font-size-lg: 16px;
+  --pulse-font-size-xl: 20px;
+  --pulse-font-size-2xl: 24px;
+  --pulse-font-size-3xl: 32px;
+
+  /* Font weights */
+  --pulse-font-weight-regular: 400;
+  --pulse-font-weight-bold: 700;
+
+  /* Line heights */
+  --pulse-line-height-tight: 1;
+  --pulse-line-height-normal: 1.5;
+  --pulse-line-height-relaxed: 1.75;
+}

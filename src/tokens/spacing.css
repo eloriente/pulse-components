@@ -1,0 +1,27 @@
+/**
+ * Pulse Components - Spacing Tokens
+ *
+ * Spacing scale used for padding, margin and gap.
+ *
+ * Usage: var(--pulse-space-4)
+ */
+:root {
+  --pulse-space-1: 4px;
+  --pulse-space-2: 8px;
+  --pulse-space-3: 12px;
+  --pulse-space-4: 16px;
+  --pulse-space-5: 20px;
+  --pulse-space-6: 24px;
+  --pulse-space-8: 32px;
+  --pulse-space-10: 40px;
+  --pulse-space-12: 48px;
+
+  /* Border radius */
+  --pulse-radius-sm: 3px;
+  --pulse-radius-md: 6px;
+  --pulse-radius-lg: 12px;
+  --pulse-radius-full: 9999px;
+
+  /* Border width */
+  --pulse-border-width: 1px;
+}

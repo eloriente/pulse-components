@@ -1,0 +1,142 @@
+{/* docs/Welcome.mdx */}
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="Welcome" />
+
+<style>{`
+  .token-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 2rem;
+    font-size: 0.875rem;
+  }
+  .token-table thead tr {
+    border-bottom: 2px solid #e0e0e0;
+  }
+  .token-table thead th {
+    padding: 0.75rem;
+    text-align: left;
+    font-weight: 600;
+  }
+  .token-table tbody tr {
+    border-bottom: 1px solid #f0f0f0;
+  }
+  .token-table tbody td {
+    padding: 0.75rem;
+  }
+`}</style>
+
+# Pulse Components
+
+An open-source React component library built with **TypeScript** and **CSS Modules**.
+Designed to be used as-is, forked, or extended to match your own design system.
+
+---
+
+## What is Pulse Components?
+
+Pulse Components is a lightweight, accessible UI kit that gives you production-ready
+building blocks without locking you into a heavy framework. Every component:
+
+- Is fully typed with **TypeScript** interfaces
+- Uses **CSS Modules** — no class-name collisions, ever
+- Consumes **`--pulse-*` design tokens** that you can override globally
+- Accepts a `className` prop for **Tailwind CSS** or any utility-first workflow
+- Is tested in a real browser via **Vitest + Playwright**
+
+---
+
+## Tech stack
+
+<table className="token-table">
+  <thead>
+    <tr>
+      <th>Layer</th>
+      <th>Technology</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>UI Framework</td>
+      <td>React 19</td>
+    </tr>
+    <tr>
+      <td>Language</td>
+      <td>TypeScript</td>
+    </tr>
+    <tr>
+      <td>Styling</td>
+      <td>CSS Modules + CSS custom properties</td>
+    </tr>
+    <tr>
+      <td>Build</td>
+      <td>Vite 8 (ESM + CJS output)</td>
+    </tr>
+    <tr>
+      <td>Component explorer</td>
+      <td>Storybook 10</td>
+    </tr>
+    <tr>
+      <td>Testing</td>
+      <td>Vitest 4 + Playwright (headless Chromium)</td>
+    </tr>
+    <tr>
+      <td>Linting</td>
+      <td>Oxlint</td>
+    </tr>
+  </tbody>
+</table>
+
+---
+
+## Available components
+
+<table className="token-table">
+  <thead>
+    <tr>
+      <th>Component</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>Button</code></td>
+      <td>Primary action element. Supports <code>primary</code> / secondary variants and three sizes.</td>
+    </tr>
+    <tr>
+      <td><code>Header</code></td>
+      <td>Site header with branding, login/logout and sign-up actions.</td>
+    </tr>
+    <tr>
+      <td><code>Page</code></td>
+      <td>Full-page layout that composes <code>Header</code> with a content section.</td>
+    </tr>
+  </tbody>
+</table>
+
+---
+
+## Quick install
+
+```bash
+npm install pulse-components
+```
+
+```tsx
+import { Button } from 'pulse-components';
+import 'pulse-components/styles';
+
+export default function App() {
+  return <Button primary label="Get started" />;
+}
+```
+
+---
+
+## Where to go next
+
+- **[Getting Started](?path=/docs/getting-started--docs)** — Installation, imports and first usage examples.
+- **[Design Tokens](?path=/docs/design-tokens--docs)** — Full reference of every `--pulse-*` variable.
+- **[Theming](?path=/docs/theming--docs)** — Override tokens to make Pulse Components fit your brand.
+- **[Tailwind Compatibility](?path=/docs/tailwind-compatibility--docs)** — Using Pulse with utility classes.
+- **[Contributing](?path=/docs/contributing--docs)** — Add new components, run tests, submit a PR.

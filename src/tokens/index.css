@@ -1,0 +1,9 @@
+/**
+ * Pulse Components - Design Tokens
+ *
+ * Imports all token files. Include this in your project once
+ * to get access to all CSS custom properties.
+ */
+@import './colors.css';
+@import './typography.css';
+@import './spacing.css';

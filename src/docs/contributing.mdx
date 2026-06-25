@@ -1,0 +1,264 @@
+{/* docs/contributing.mdx */}
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="Guide/Contributing" />
+
+<style>{`
+  .token-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 2rem;
+    font-size: 0.875rem;
+  }
+  .token-table thead tr {
+    border-bottom: 2px solid #e0e0e0;
+  }
+  .token-table thead th {
+    padding: 0.75rem;
+    text-align: left;
+    font-weight: 600;
+  }
+  .token-table tbody tr {
+    border-bottom: 1px solid #f0f0f0;
+  }
+  .token-table tbody td {
+    padding: 0.75rem;
+  }
+`}</style>
+
+# Contributing
+
+Contributions are welcome — whether it's a bug fix, a new component, or an improvement
+to the documentation. This page walks you through the development workflow and the
+conventions the project follows.
+
+---
+
+## Development setup
+
+**Prerequisites:**
+- Node.js >= 18
+- npm >= 9
+
+**Clone and install:**
+
+```bash
+git clone https://github.com/your-org/pulse-components.git
+cd pulse-components
+npm install
+```
+
+**Start Storybook:**
+
+```bash
+npm run dev
+```
+
+Opens the interactive component explorer at [http://localhost:6006](http://localhost:6006).
+This is the primary development environment — build and preview your components here
+before running the test suite.
+
+---
+
+## Available scripts
+
+<table className="token-table">
+  <thead>
+    <tr>
+      <th>Script</th>
+      <th>Command</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>dev</code></td>
+      <td><code>npm run dev</code></td>
+      <td>Start Storybook at <code>localhost:6006</code></td>
+    </tr>
+    <tr>
+      <td><code>build</code></td>
+      <td><code>npm run build</code></td>
+      <td>Build the library to <code>dist/</code> (ESM + CJS)</td>
+    </tr>
+    <tr>
+      <td><code>build:storybook</code></td>
+      <td><code>npm run build:storybook</code></td>
+      <td>Generate a static Storybook site</td>
+    </tr>
+    <tr>
+      <td><code>test</code></td>
+      <td><code>npm test</code></td>
+      <td>Run all story-based tests in headless Chromium</td>
+    </tr>
+    <tr>
+      <td><code>lint</code></td>
+      <td><code>npm run lint</code></td>
+      <td>Run Oxlint (fast Rust-based linter)</td>
+    </tr>
+    <tr>
+      <td><code>typecheck</code></td>
+      <td><code>npm run typecheck</code></td>
+      <td>Type-check without emitting files</td>
+    </tr>
+  </tbody>
+</table>
+
+---
+
+## Adding a new component
+
+Follow these steps to add a component in a way that is consistent with the rest of
+the library.
+
+### 1. Create the component directory
+
+```
+src/components/MyComponent/
+├── MyComponent.tsx
+├── MyComponent.module.css
+├── MyComponent.stories.ts
+└── index.ts
+```
+
+### 2. Write the component (`MyComponent.tsx`)
+
+```tsx
+import React from 'react';
+import styles from './MyComponent.module.css';
+
+export interface MyComponentProps {
+  /** Description of each prop — shown in Storybook autodocs */
+  label: string;
+  /** Always include className for Tailwind / consumer overrides */
+  className?: string;
+}
+
+export const MyComponent = ({ label, className }: MyComponentProps) => {
+  return (
+    <div className={[styles.root, className].filter(Boolean).join(' ')}>
+      {label}
+    </div>
+  );
+};
+```
+
+Key rules:
+- Export a named `interface` for the props (not `type`) so Storybook can infer them.
+- Always include a `className?: string` prop.
+- Never hardcode colours or sizes — use `var(--pulse-*)` tokens in the CSS.
+
+### 3. Write the styles (`MyComponent.module.css`)
+
+```css
+.root {
+  font-family: var(--pulse-font-family-base);
+  font-size: var(--pulse-font-size-md);
+  color: var(--pulse-color-text);
+  padding: var(--pulse-space-3) var(--pulse-space-4);
+  border-radius: var(--pulse-radius-md);
+}
+```
+
+Always reference `--pulse-*` tokens. Never hardcode hex values or pixel sizes that
+duplicate something already in the token system.
+
+### 4. Write the stories (`MyComponent.stories.ts`)
+
+```ts
+import type { Meta, StoryObj } from '@storybook/react';
+import { MyComponent } from './MyComponent';
+
+const meta: Meta<typeof MyComponent> = {
+  title: 'Components/MyComponent',
+  component: MyComponent,
+  tags: ['autodocs'],
+};
+
+export default meta;
+type Story = StoryObj<typeof meta>;
+
+export const Default: Story = {
+  args: {
+    label: 'Hello world',
+  },
+};
+```
+
+- Set `title: 'Components/MyComponent'` to place it in the right sidebar section.
+- Add `tags: ['autodocs']` to auto-generate a props table from your TypeScript interface.
+- Write one story per meaningful variant.
+
+### 5. Create the barrel export (`index.ts`)
+
+```ts
+export { MyComponent } from './MyComponent';
+export type { MyComponentProps } from './MyComponent';
+```
+
+### 6. Register the component in the package exports
+
+Add the component to `src/components/index.ts`:
+
+```ts
+export { MyComponent } from './MyComponent';
+export type { MyComponentProps } from './MyComponent';
+```
+
+And to `src/index.ts` (re-exports everything in the package entry point):
+
+```ts
+export { MyComponent } from './components/MyComponent';
+export type { MyComponentProps } from './components/MyComponent';
+```
+
+---
+
+## Checklist before opening a pull request
+
+- [ ] **Component file** — named export + TypeScript props interface + `className` prop
+- [ ] **CSS Module** — all values use `--pulse-*` tokens, no hardcoded colours or sizes
+- [ ] **Stories** — at least one story per variant, `title: 'Components/...'`, `tags: ['autodocs']`
+- [ ] **Barrel export** — component and types exported from `index.ts`
+- [ ] **Package exports updated** — added to `src/components/index.ts` and `src/index.ts`
+- [ ] **Tests pass** — `npm test` exits clean
+- [ ] **Types pass** — `npm run typecheck` exits clean
+- [ ] **Lint passes** — `npm run lint` exits clean
+
+---
+
+## Code style
+
+- **TypeScript** — strict mode is enabled; no `any`, no unused variables.
+- **Linting** — Oxlint enforces `react/rules-of-hooks` (error) and
+  `react/only-export-components` (warning). Run `npm run lint` before committing.
+- **CSS** — CSS Modules only; no global class names except token overrides on `:root`.
+- **No default exports** for components — use named exports consistently.
+- **File naming** — `PascalCase` for component files, `camelCase` for utilities.
+
+---
+
+## Submitting a pull request
+
+1. Fork the repository and create a feature branch:
+   ```bash
+   git checkout -b feat/my-component
+   ```
+2. Make your changes following the guidelines above.
+3. Run the full validation suite:
+   ```bash
+   npm run typecheck && npm run lint && npm test
+   ```
+4. Push and open a pull request against `main`.
+5. Describe what the component does, which props it accepts and include a screenshot
+   or Storybook link if possible.
+
+---
+
+## Reporting issues
+
+Open an issue on GitHub with:
+- A clear title describing the problem.
+- Steps to reproduce (or a minimal code snippet).
+- Expected vs actual behaviour.
+- Your Node.js, npm and React versions.

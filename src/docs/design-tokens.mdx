@@ -1,0 +1,501 @@
+{/* ./design-tokens.mdx */}
+import { Meta, ColorPalette, ColorItem } from '@storybook/addon-docs/blocks';
+
+<Meta title="Tokens/Design Tokens" />
+
+<style>{`
+  .token-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 2rem;
+    font-size: 0.875rem;
+  }
+  .token-table thead tr {
+    border-bottom: 2px solid #e0e0e0;
+  }
+  .token-table thead th {
+    padding: 0.75rem;
+    text-align: left;
+    font-weight: 600;
+  }
+  .token-table tbody tr {
+    border-bottom: 1px solid #f0f0f0;
+  }
+  .token-table tbody td {
+    padding: 0.75rem;
+  }
+`}</style>
+
+# Design Tokens
+
+Pulse Components uses **CSS custom properties** (`--pulse-*`) as the single source of
+truth for design. All component styles reference these variables internally, making
+consistent theming and brand updates as simple as overriding a few values.
+
+## Quick Start
+
+Import the token stylesheet to use all available tokens:
+
+```css
+@import 'pulse-components/tokens';
+```
+
+Then use tokens in your CSS:
+
+```css
+.my-component {
+  color: var(--pulse-color-text);
+  background: var(--pulse-color-background);
+  padding: var(--pulse-space-4);
+  font-size: var(--pulse-font-size-md);
+}
+```
+
+---
+
+## Using Semantic Tokens
+
+**Always use semantic tokens**, not the raw neutral scales. Semantic tokens are contextual
+aliases that make your code intention-clear and make theming updates automatic.
+
+For example:
+- ✅ Use `var(--pulse-color-text)` for body copy
+- ❌ Avoid `var(--pulse-color-neutral-800)`
+
+When you override semantic tokens in `:root`, all components update automatically:
+
+```css
+:root {
+  --pulse-color-text: #1a1a1a;
+  --pulse-color-background: #f9f9f9;
+}
+```
+
+---
+
+## Colors
+
+Defined in `src/tokens/colors.css`.
+
+### Color Palette
+
+<ColorPalette>
+  <ColorItem
+    title="Brand"
+    subtitle="Primary brand colors — used in buttons, focus rings and accents"
+    colors={{
+      '--pulse-color-primary': '#555ab9',
+      '--pulse-color-primary-dark': '#3f4490',
+      '--pulse-color-primary-light': '#7a7ece',
+    }}
+  />
+  <ColorItem
+    title="Neutral"
+    subtitle="Grayscale scale from near-black to white — rarely use directly"
+    colors={{
+      '900 · #1a1a1a': '#1a1a1a',
+      '800 · #333333': '#333333',
+      '600 · #666666': '#666666',
+      '400 · #999999': '#999999',
+      '200 · #cccccc': '#cccccc',
+      '100 · #f0f0f0': '#f0f0f0',
+      '0 · #ffffff': '#ffffff',
+    }}
+  />
+  <ColorItem
+    title="Semantic"
+    subtitle="Use these tokens in your code — they map to neutral values by default"
+    colors={{
+      '--pulse-color-text': '#333333',
+      '--pulse-color-text-subtle': '#666666',
+      '--pulse-color-background': '#ffffff',
+      '--pulse-color-border': 'rgba(0, 0, 0, 0.1)',
+    }}
+  />
+  <ColorItem
+    title="Status"
+    subtitle="Contextual feedback — success, info, warning, error states"
+    colors={{
+      '--pulse-color-success': '#357a14',
+      '--pulse-color-success-bg': '#e7fdd8',
+      '--pulse-color-info': '#1ea7fd',
+      '--pulse-color-warning': '#f5a623',
+      '--pulse-color-error': '#d0312d',
+    }}
+  />
+</ColorPalette>
+
+### Semantic Colors Reference
+
+These are the tokens your components should use. Override in `:root` to theme your app.
+
+<table className="token-table">
+  <thead>
+    <tr>
+      <th>Token</th>
+      <th>Default</th>
+      <th>Purpose</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>--pulse-color-text</code></td>
+      <td><code>#333333</code></td>
+      <td>Primary body text and headings</td>
+    </tr>
+    <tr>
+      <td><code>--pulse-color-text-subtle</code></td>
+      <td><code>#666666</code></td>
+      <td>Secondary, muted, or disabled text</td>
+    </tr>
+    <tr>
+      <td><code>--pulse-color-background</code></td>
+      <td><code>#ffffff</code></td>
+      <td>Page and component backgrounds</td>
+    </tr>
+    <tr>
+      <td><code>--pulse-color-border</code></td>
+      <td><code>rgba(0, 0, 0, 0.1)</code></td>
+      <td>Subtle dividers and borders</td>
+    </tr>
+    <tr>
+      <td><code>--pulse-color-primary</code></td>
+      <td><code>#555ab9</code></td>
+      <td>Interactive elements, links, focus states</td>
+    </tr>
+    <tr>
+      <td><code>--pulse-color-success</code></td>
+      <td><code>#357a14</code></td>
+      <td>Success messages and check states</td>
+    </tr>
+    <tr>
+      <td><code>--pulse-color-success-bg</code></td>
+      <td><code>#e7fdd8</code></td>
+      <td>Success background tint</td>
+    </tr>
+    <tr>
+      <td><code>--pulse-color-warning</code></td>
+      <td><code>#f5a623</code></td>
+      <td>Warning states</td>
+    </tr>
+    <tr>
+      <td><code>--pulse-color-info</code></td>
+      <td><code>#1ea7fd</code></td>
+      <td>Informational content</td>
+    </tr>
+    <tr>
+      <td><code>--pulse-color-error</code></td>
+      <td><code>#d0312d</code></td>
+      <td>Error states and destructive actions</td>
+    </tr>
+  </tbody>
+</table>
+
+---
+
+## Typography
+
+Defined in `src/tokens/typography.css`.
+
+### Font Families
+
+<table className="token-table">
+  <thead>
+    <tr>
+      <th>Token</th>
+      <th>Font Stack</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>--pulse-font-family-base</code></td>
+      <td><code>'Nunito Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif</code></td>
+    </tr>
+    <tr>
+      <td><code>--pulse-font-family-mono</code></td>
+      <td><code>'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace</code></td>
+    </tr>
+  </tbody>
+</table>
+
+Use `font-family-base` for all UI text. Use `font-family-mono` for code snippets and
+technical content.
+
+### Font Sizes
+
+Choose a size based on the role of the text:
+
+<table className="token-table">
+  <thead>
+    <tr>
+      <th>Token</th>
+      <th>Size</th>
+      <th>Use Case</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>--pulse-font-size-xs</code></td>
+      <td><code>11px</code></td>
+      <td>Labels, badges, captions</td>
+    </tr>
+    <tr>
+      <td><code>--pulse-font-size-sm</code></td>
+      <td><code>12px</code></td>
+      <td>Small buttons, helper text</td>
+    </tr>
+    <tr>
+      <td><code>--pulse-font-size-md</code></td>
+      <td><code>14px</code></td>
+      <td><strong>Default</strong> — body text, buttons</td>
+    </tr>
+    <tr>
+      <td><code>--pulse-font-size-lg</code></td>
+      <td><code>16px</code></td>
+      <td>Larger buttons, subheadings</td>
+    </tr>
+    <tr>
+      <td><code>--pulse-font-size-xl</code></td>
+      <td><code>20px</code></td>
+      <td>Section headings</td>
+    </tr>
+    <tr>
+      <td><code>--pulse-font-size-2xl</code></td>
+      <td><code>24px</code></td>
+      <td>Page headings</td>
+    </tr>
+    <tr>
+      <td><code>--pulse-font-size-3xl</code></td>
+      <td><code>32px</code></td>
+      <td>Display headings, hero text</td>
+    </tr>
+  </tbody>
+</table>
+
+### Font Weights
+
+<table className="token-table">
+  <thead>
+    <tr>
+      <th>Token</th>
+      <th>Weight</th>
+      <th>Use</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>--pulse-font-weight-regular</code></td>
+      <td><code>400</code></td>
+      <td>Body copy, default text</td>
+    </tr>
+    <tr>
+      <td><code>--pulse-font-weight-bold</code></td>
+      <td><code>700</code></td>
+      <td>Headings, emphasis, labels</td>
+    </tr>
+  </tbody>
+</table>
+
+### Line Heights
+
+Pair with font sizes for readable, accessible text:
+
+<table className="token-table">
+  <thead>
+    <tr>
+      <th>Token</th>
+      <th>Value</th>
+      <th>Best For</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>--pulse-line-height-tight</code></td>
+      <td><code>1</code></td>
+      <td>Single-line elements like buttons and nav</td>
+    </tr>
+    <tr>
+      <td><code>--pulse-line-height-normal</code></td>
+      <td><code>1.5</code></td>
+      <td>Body copy and most UI text</td>
+    </tr>
+    <tr>
+      <td><code>--pulse-line-height-relaxed</code></td>
+      <td><code>1.75</code></td>
+      <td>Long-form readable text and articles</td>
+    </tr>
+  </tbody>
+</table>
+
+**Example:** Pair `--pulse-font-size-md` with `--pulse-line-height-normal` for standard
+body text.
+
+---
+
+## Spacing
+
+Defined in `src/tokens/spacing.css`.
+
+The spacing scale follows a **4px base unit**, making it easy to create consistent,
+proportional layouts.
+
+<table className="token-table">
+  <thead>
+    <tr>
+      <th>Token</th>
+      <th>Size</th>
+      <th>Common Uses</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>--pulse-space-1</code></td>
+      <td><code>4px</code></td>
+      <td>Micro spacing, icon gaps</td>
+    </tr>
+    <tr>
+      <td><code>--pulse-space-2</code></td>
+      <td><code>8px</code></td>
+      <td>Tight spacing, icon padding</td>
+    </tr>
+    <tr>
+      <td><code>--pulse-space-3</code></td>
+      <td><code>12px</code></td>
+      <td>Compact spacing, small components</td>
+    </tr>
+    <tr>
+      <td><code>--pulse-space-4</code></td>
+      <td><code>16px</code></td>
+      <td><strong>Default</strong> — padding, margins, gaps</td>
+    </tr>
+    <tr>
+      <td><code>--pulse-space-5</code></td>
+      <td><code>20px</code></td>
+      <td>Large padding, section gaps</td>
+    </tr>
+    <tr>
+      <td><code>--pulse-space-6</code></td>
+      <td><code>24px</code></td>
+      <td>Component spacing</td>
+    </tr>
+    <tr>
+      <td><code>--pulse-space-8</code></td>
+      <td><code>32px</code></td>
+      <td>Large section margins</td>
+    </tr>
+    <tr>
+      <td><code>--pulse-space-10</code></td>
+      <td><code>40px</code></td>
+      <td>Page-level spacing</td>
+    </tr>
+    <tr>
+      <td><code>--pulse-space-12</code></td>
+      <td><code>48px</code></td>
+      <td>Hero sections, large containers</td>
+    </tr>
+  </tbody>
+</table>
+
+### Border Radius
+
+<table className="token-table">
+  <thead>
+    <tr>
+      <th>Token</th>
+      <th>Radius</th>
+      <th>Shape & Use</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>--pulse-radius-sm</code></td>
+      <td><code>3px</code></td>
+      <td>Subtle rounding for inputs, small components</td>
+    </tr>
+    <tr>
+      <td><code>--pulse-radius-md</code></td>
+      <td><code>6px</code></td>
+      <td><strong>Default</strong> — buttons, cards, modals</td>
+    </tr>
+    <tr>
+      <td><code>--pulse-radius-lg</code></td>
+      <td><code>12px</code></td>
+      <td>Large cards, image frames</td>
+    </tr>
+    <tr>
+      <td><code>--pulse-radius-full</code></td>
+      <td><code>9999px</code></td>
+      <td>Pill buttons, circular elements</td>
+    </tr>
+  </tbody>
+</table>
+
+### Border Width
+
+<table className="token-table">
+  <thead>
+    <tr>
+      <th>Token</th>
+      <th>Width</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>--pulse-border-width</code></td>
+      <td><code>1px</code></td>
+    </tr>
+  </tbody>
+</table>
+
+---
+
+## Complete Example
+
+Here's how to compose semantic tokens into a real component:
+
+```css
+.card {
+  background-color: var(--pulse-color-background);
+  border: var(--pulse-border-width) solid var(--pulse-color-border);
+  border-radius: var(--pulse-radius-md);
+  padding: var(--pulse-space-6);
+  font-family: var(--pulse-font-family-base);
+  font-size: var(--pulse-font-size-md);
+  line-height: var(--pulse-line-height-normal);
+  color: var(--pulse-color-text);
+}
+
+.card-title {
+  font-size: var(--pulse-font-size-lg);
+  font-weight: var(--pulse-font-weight-bold);
+  margin-bottom: var(--pulse-space-4);
+}
+
+.card-subtitle {
+  font-size: var(--pulse-font-size-sm);
+  color: var(--pulse-color-text-subtle);
+}
+```
+
+---
+
+## Theming
+
+Override semantic tokens in `:root` to change your app's appearance globally:
+
+```css
+:root {
+  /* Dark mode */
+  --pulse-color-text: #f5f5f5;
+  --pulse-color-text-subtle: #b0b0b0;
+  --pulse-color-background: #1a1a1a;
+  --pulse-color-border: rgba(255, 255, 255, 0.1);
+
+  /* Brand colors */
+  --pulse-color-primary: #7c3aed;
+  --pulse-color-primary-dark: #6d28d9;
+  --pulse-color-primary-light: #a78bfa;
+}
+```
+
+All components using semantic tokens will automatically reflect these changes.

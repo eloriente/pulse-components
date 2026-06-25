@@ -1,0 +1,72 @@
+/**
+ * Page component styles
+ */
+
+.page {
+  margin: 0 auto;
+  padding: var(--pulse-space-12) var(--pulse-space-5);
+  max-width: 600px;
+  color: var(--pulse-color-text);
+  font-size: var(--pulse-font-size-md);
+  line-height: var(--pulse-line-height-relaxed);
+  font-family: var(--pulse-font-family-base);
+}
+
+.page h2 {
+  display: inline-block;
+  vertical-align: top;
+  margin: 0 0 var(--pulse-space-1);
+  font-weight: var(--pulse-font-weight-bold);
+  font-size: var(--pulse-font-size-3xl);
+  line-height: var(--pulse-line-height-tight);
+}
+
+.page p {
+  margin: 1em 0;
+}
+
+.page a {
+  color: inherit;
+}
+
+.page ul {
+  margin: 1em 0;
+  padding-left: 30px;
+}
+
+.page li {
+  margin-bottom: var(--pulse-space-2);
+}
+
+.tip {
+  display: inline-block;
+  vertical-align: top;
+  margin-right: var(--pulse-space-2);
+  border-radius: var(--pulse-radius-full);
+  background: var(--pulse-color-success-bg);
+  padding: var(--pulse-space-1) var(--pulse-space-3);
+  color: var(--pulse-color-success);
+  font-weight: var(--pulse-font-weight-bold);
+  font-size: var(--pulse-font-size-xs);
+  line-height: 12px;
+}
+
+.tipWrapper {
+  margin-top: var(--pulse-space-10);
+  margin-bottom: var(--pulse-space-10);
+  font-size: 13px;
+  line-height: var(--pulse-line-height-relaxed);
+}
+
+.tipWrapper svg {
+  display: inline-block;
+  vertical-align: top;
+  margin-top: 3px;
+  margin-right: var(--pulse-space-1);
+  width: 12px;
+  height: 12px;
+}
+
+.tipWrapper svg path {
+  fill: var(--pulse-color-info);
+}

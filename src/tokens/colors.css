@@ -1,0 +1,36 @@
+/**
+ * Pulse Components - Color Tokens
+ *
+ * All color values for the design system. Override these variables
+ * in your project to customize the color palette.
+ *
+ * Usage: var(--pulse-color-primary)
+ */
+:root {
+  /* Brand */
+  --pulse-color-primary: #555ab9;
+  --pulse-color-primary-dark: #3f4490;
+  --pulse-color-primary-light: #7a7ece;
+
+  /* Neutral */
+  --pulse-color-neutral-900: #1a1a1a;
+  --pulse-color-neutral-800: #333333;
+  --pulse-color-neutral-600: #666666;
+  --pulse-color-neutral-400: #999999;
+  --pulse-color-neutral-200: #cccccc;
+  --pulse-color-neutral-100: #f0f0f0;
+  --pulse-color-neutral-0: #ffffff;
+
+  /* Semantic */
+  --pulse-color-text: var(--pulse-color-neutral-800);
+  --pulse-color-text-subtle: var(--pulse-color-neutral-600);
+  --pulse-color-background: var(--pulse-color-neutral-0);
+  --pulse-color-border: rgba(0, 0, 0, 0.1);
+
+  /* Status */
+  --pulse-color-success: #357a14;
+  --pulse-color-success-bg: #e7fdd8;
+  --pulse-color-info: #1ea7fd;
+  --pulse-color-warning: #f5a623;
+  --pulse-color-error: #d0312d;
+}

@@ -1,0 +1,216 @@
+{/* docs/getting-started.mdx */}
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="Guide/Getting Started" />
+
+<style>{`
+  .token-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 2rem;
+    font-size: 0.875rem;
+  }
+  .token-table thead tr {
+    border-bottom: 2px solid #e0e0e0;
+  }
+  .token-table thead th {
+    padding: 0.75rem;
+    text-align: left;
+    font-weight: 600;
+  }
+  .token-table tbody tr {
+    border-bottom: 1px solid #f0f0f0;
+  }
+  .token-table tbody td {
+    padding: 0.75rem;
+  }
+`}</style>
+
+# Getting Started
+
+Everything you need to install Pulse Components and render your first component.
+
+---
+
+## Prerequisites
+
+- **Node.js** >= 18
+- **npm** >= 9
+- **React** >= 18 (peer dependency)
+
+---
+
+## Installation
+
+```bash
+npm install pulse-components
+```
+
+---
+
+## Importing styles
+
+Pulse Components ships its own CSS. Import it **once** in your application entry point
+(e.g. `main.tsx`, `_app.tsx`, `layout.tsx`):
+
+```tsx
+import 'pulse-components/styles';
+```
+
+If you also want access to the raw `--pulse-*` CSS custom properties in your own
+stylesheets, import the tokens separately:
+
+```css
+@import 'pulse-components/tokens';
+```
+
+> You do **not** need both. `pulse-components/styles` already includes the component
+> styles. Use `pulse-components/tokens` only when you want to reference the variables
+> directly in your own CSS files.
+
+---
+
+## Your first component
+
+### Button
+
+```tsx
+import { Button } from 'pulse-components';
+import 'pulse-components/styles';
+
+export default function App() {
+  return (
+    <div>
+      <Button label="Log in" onClick={() => console.log('login')} />
+      <Button primary label="Sign up" onClick={() => console.log('signup')} />
+    </div>
+  );
+}
+```
+
+**Button props**
+
+<table className="token-table">
+  <thead>
+    <tr>
+      <th>Prop</th>
+      <th>Type</th>
+      <th>Default</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>label</code></td>
+      <td><code>string</code></td>
+      <td>—</td>
+      <td>Button text <strong>(required)</strong></td>
+    </tr>
+    <tr>
+      <td><code>primary</code></td>
+      <td><code>boolean</code></td>
+      <td><code>false</code></td>
+      <td>Uses the brand colour instead of the outline style</td>
+    </tr>
+    <tr>
+      <td><code>size</code></td>
+      <td><code>'small' | 'medium' | 'large'</code></td>
+      <td><code>'medium'</code></td>
+      <td>Controls font size and padding</td>
+    </tr>
+    <tr>
+      <td><code>backgroundColor</code></td>
+      <td><code>string</code></td>
+      <td>—</td>
+      <td>Inline colour override (overrides variant)</td>
+    </tr>
+    <tr>
+      <td><code>onClick</code></td>
+      <td><code>() =&gt; void</code></td>
+      <td>—</td>
+      <td>Click handler</td>
+    </tr>
+    <tr>
+      <td><code>className</code></td>
+      <td><code>string</code></td>
+      <td>—</td>
+      <td>Extra CSS classes (e.g. Tailwind utilities)</td>
+    </tr>
+  </tbody>
+</table>
+
+---
+
+### Header
+
+```tsx
+import { Header } from 'pulse-components';
+import 'pulse-components/styles';
+
+export default function App() {
+  const [user, setUser] = React.useState<{ name: string }>();
+
+  return (
+    <Header
+      user={user}
+      onLogin={() => setUser({ name: 'Jane Doe' })}
+      onLogout={() => setUser(undefined)}
+      onCreateAccount={() => setUser({ name: 'Jane Doe' })}
+    />
+  );
+}
+```
+
+**Header props**
+
+| Prop | Type | Description |
+|---|---|---|
+| `user` | `{ name: string }` | When provided, shows a welcome message and a Log out button |
+| `onLogin` | `() => void` | Called when the user clicks "Log in" |
+| `onLogout` | `() => void` | Called when the user clicks "Log out" |
+| `onCreateAccount` | `() => void` | Called when the user clicks "Sign up" |
+| `className` | `string` | Extra CSS classes applied to the root `<header>` element |
+
+---
+
+### Page
+
+`Page` is a full-page composition demo that combines `Header` with a content section.
+It manages its own internal `user` state.
+
+```tsx
+import { Page } from 'pulse-components';
+import 'pulse-components/styles';
+
+export default function App() {
+  return <Page />;
+}
+```
+
+**Page props**
+
+| Prop | Type | Description |
+|---|---|---|
+| `className` | `string` | Extra CSS classes applied to the content `<section>` |
+
+---
+
+## Package exports
+
+The package exposes three entry points:
+
+| Import path | What it provides |
+|---|---|
+| `pulse-components` | All components and TypeScript types |
+| `pulse-components/styles` | Bundled component CSS (`dist/style.css`) |
+| `pulse-components/tokens` | Design token CSS variables only (`dist/tokens/index.css`) |
+
+---
+
+## TypeScript
+
+All prop interfaces are exported and can be imported for use in your own code:
+
+```tsx
+import type { ButtonProps, HeaderProps, PageProps } from 'pulse-components';
+```

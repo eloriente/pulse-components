@@ -1,0 +1,197 @@
+{/* docs/tailwind.mdx */}
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="Tokens/Tailwind Compatibility" />
+
+<style>{`
+  .token-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 2rem;
+    font-size: 0.875rem;
+  }
+  .token-table thead tr {
+    border-bottom: 2px solid #e0e0e0;
+  }
+  .token-table thead th {
+    padding: 0.75rem;
+    text-align: left;
+    font-weight: 600;
+  }
+  .token-table tbody tr {
+    border-bottom: 1px solid #f0f0f0;
+  }
+  .token-table tbody td {
+    padding: 0.75rem;
+  }
+`}</style>
+
+# Tailwind CSS Compatibility
+
+Pulse Components is fully compatible with Tailwind CSS. Every component accepts a
+`className` prop so you can layer Tailwind utility classes on top of the default styles
+without modifying any component source files.
+
+---
+
+## How it works
+
+Each component merges your `className` with its own internal CSS Modules classes:
+
+```tsx
+// Inside Button.tsx (simplified)
+const classes = [
+  styles.button,       // CSS Module class — always applied
+  styles[size],        // size variant class
+  primary ? styles.primary : styles.secondary,
+  className,           // your custom classes — appended last
+].filter(Boolean).join(' ');
+```
+
+Your Tailwind utilities are appended after the component classes in the DOM, which
+means the normal CSS specificity and source-order rules apply.
+
+---
+
+## Basic usage
+
+```tsx
+import { Button } from 'pulse-components';
+import 'pulse-components/styles';
+
+// Adding a drop shadow and letter spacing
+<Button label="Submit" className="shadow-lg tracking-wide" />
+
+// Full-width button
+<Button primary label="Continue" className="w-full" />
+
+// Custom margin
+<Header className="mb-8" user={user} onLogout={handleLogout} />
+```
+
+---
+
+## Specificity and the `!` modifier
+
+CSS Modules generates scoped class names with the same specificity as any single
+class selector. If a Tailwind utility targets the same property, the **last rule
+in the stylesheet** wins — and that is usually the Tailwind utility, since Tailwind's
+generated CSS is typically loaded after component styles.
+
+However, in some build setups the order may be unpredictable. When you need a
+utility to **reliably win**, use Tailwind's `!` (important) modifier:
+
+```tsx
+{/* Force a red background regardless of component styles */}
+<Button primary label="Danger" className="!bg-red-600 !hover:bg-red-700" />
+
+{/* Force a custom font size */}
+<Button label="Small text" className="!text-xs" />
+```
+
+The `!` modifier turns the generated utility into an `!important` declaration,
+guaranteeing it takes precedence.
+
+---
+
+## Extending vs overriding
+
+<table className="token-table">
+  <thead>
+    <tr>
+      <th>Goal</th>
+      <th>Approach</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Add properties the component doesn't set (shadow, ring, opacity…)</td>
+      <td>Just add the utility class — no conflict possible</td>
+    </tr>
+    <tr>
+      <td>Override a property already set by the component</td>
+      <td>Use the <code>!</code> modifier on the utility</td>
+    </tr>
+    <tr>
+      <td>Change a value that's driven by a <code>--pulse-*</code> token</td>
+      <td>Override the CSS variable instead (see <a href="?path=/docs/theming--docs">Theming</a>)</td>
+    </tr>
+  </tbody>
+</table>
+
+---
+
+## Tailwind v4 note
+
+Tailwind v4 switched to a CSS-first approach with `@import "tailwindcss"`. The
+important modifier syntax (`!`) remains the same. If you are using the new
+`@layer` cascade layers in v4, component styles injected without a layer declaration
+will sit **above** all layered rules — you may need to wrap your overrides in
+`@layer utilities { ... }` or use `!` modifiers.
+
+---
+
+## Practical example
+
+```tsx
+import { Button, Header } from 'pulse-components';
+import 'pulse-components/styles';
+
+export default function HeroSection() {
+  return (
+    <section className="min-h-screen bg-gray-50 flex flex-col">
+      <Header
+        className="sticky top-0 z-50 backdrop-blur-sm !bg-white/80"
+        user={undefined}
+        onLogin={() => {}}
+        onCreateAccount={() => {}}
+      />
+
+      <div className="flex-1 flex items-center justify-center gap-4 p-8">
+        <Button label="Learn more" className="shadow-md" />
+        <Button primary label="Get started" className="shadow-xl !px-8" />
+      </div>
+    </section>
+  );
+}
+```
+
+---
+
+## CSS custom properties with Tailwind
+
+You can also bridge Pulse tokens and Tailwind by registering the custom properties
+in your Tailwind config (v3) or CSS theme (v4):
+
+**Tailwind v3 — `tailwind.config.js`**
+```js
+module.exports = {
+  theme: {
+    extend: {
+      colors: {
+        'pulse-primary': 'var(--pulse-color-primary)',
+        'pulse-text': 'var(--pulse-color-text)',
+      },
+      fontFamily: {
+        pulse: 'var(--pulse-font-family-base)',
+      },
+    },
+  },
+};
+```
+
+```tsx
+{/* Use Pulse brand colour as a Tailwind class */}
+<div className="bg-pulse-primary text-white font-pulse">Hello</div>
+```
+
+**Tailwind v4 — `globals.css`**
+```css
+@import "tailwindcss";
+
+@theme {
+  --color-pulse-primary: var(--pulse-color-primary);
+  --color-pulse-text: var(--pulse-color-text);
+  --font-pulse: var(--pulse-font-family-base);
+}
+```
