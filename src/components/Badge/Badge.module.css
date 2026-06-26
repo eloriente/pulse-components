@@ -1,0 +1,59 @@
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  border-radius: var(--pulse-radius-full, 9999px);
+  font-family: var(--pulse-font-family-base);
+  font-weight: var(--pulse-font-weight-medium, 500);
+  white-space: nowrap;
+  line-height: 1;
+}
+
+/* Sizes */
+.sm {
+  padding: 2px 6px;
+  font-size: var(--pulse-font-size-xs, 0.75rem);
+}
+
+.md {
+  padding: 3px 8px;
+  font-size: var(--pulse-font-size-sm, 0.875rem);
+}
+
+.lg {
+  padding: 4px 10px;
+  font-size: var(--pulse-font-size-md, 1rem);
+}
+
+/* Dot indicator */
+.dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: currentColor;
+  flex-shrink: 0;
+}
+
+/* === Solid variant === */
+.solid.color-default  { background-color: var(--pulse-color-text, #111827); color: var(--pulse-color-neutral-0, #fff); }
+.solid.color-primary  { background-color: var(--pulse-color-primary); color: var(--pulse-color-neutral-0, #fff); }
+.solid.color-success  { background-color: var(--pulse-color-success, #38a169); color: #fff; }
+.solid.color-warning  { background-color: var(--pulse-color-warning, #d69e2e); color: #fff; }
+.solid.color-error    { background-color: var(--pulse-color-error, #e53e3e); color: #fff; }
+.solid.color-info     { background-color: #3b82f6; color: #fff; }
+
+/* === Subtle variant === */
+.subtle.color-default { background-color: var(--pulse-color-surface-subtle, #f3f4f6); color: var(--pulse-color-text, #111827); }
+.subtle.color-primary { background-color: color-mix(in srgb, var(--pulse-color-primary) 12%, transparent); color: var(--pulse-color-primary); }
+.subtle.color-success { background-color: #dcfce7; color: #16a34a; }
+.subtle.color-warning { background-color: #fef9c3; color: #a16207; }
+.subtle.color-error   { background-color: #fee2e2; color: #dc2626; }
+.subtle.color-info    { background-color: #dbeafe; color: #1d4ed8; }
+
+/* === Outline variant === */
+.outline.color-default { border: 1px solid var(--pulse-color-border, #d1d5db); color: var(--pulse-color-text, #111827); background: transparent; }
+.outline.color-primary { border: 1px solid var(--pulse-color-primary); color: var(--pulse-color-primary); background: transparent; }
+.outline.color-success { border: 1px solid #16a34a; color: #16a34a; background: transparent; }
+.outline.color-warning { border: 1px solid #a16207; color: #a16207; background: transparent; }
+.outline.color-error   { border: 1px solid #dc2626; color: #dc2626; background: transparent; }
+.outline.color-info    { border: 1px solid #1d4ed8; color: #1d4ed8; background: transparent; }

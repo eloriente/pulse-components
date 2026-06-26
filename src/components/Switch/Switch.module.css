@@ -1,0 +1,106 @@
+.wrapper {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--pulse-space-2, 8px);
+  cursor: pointer;
+  user-select: none;
+}
+
+.wrapper.disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+.track {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  border-radius: 9999px;
+  background-color: var(--pulse-color-border, #d1d5db);
+  transition: background-color 0.2s ease;
+  flex-shrink: 0;
+}
+
+/* Sizes */
+.sm {
+  width: 28px;
+  height: 16px;
+}
+
+.md {
+  width: 36px;
+  height: 20px;
+}
+
+.lg {
+  width: 44px;
+  height: 24px;
+}
+
+.input {
+  position: absolute;
+  opacity: 0;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  cursor: inherit;
+}
+
+.thumb {
+  position: absolute;
+  border-radius: 50%;
+  background-color: var(--pulse-color-neutral-0, #ffffff);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+  transition: transform 0.2s ease;
+  pointer-events: none;
+}
+
+/* Thumb sizes */
+.sm .thumb {
+  width: 12px;
+  height: 12px;
+  left: 2px;
+}
+
+.md .thumb {
+  width: 16px;
+  height: 16px;
+  left: 2px;
+}
+
+.lg .thumb {
+  width: 20px;
+  height: 20px;
+  left: 2px;
+}
+
+/* Checked state */
+.input:checked ~ .thumb {
+  background-color: var(--pulse-color-neutral-0, #ffffff);
+}
+
+.sm .input:checked ~ .thumb { transform: translateX(12px); }
+.md .input:checked ~ .thumb { transform: translateX(16px); }
+.lg .input:checked ~ .thumb { transform: translateX(20px); }
+
+.input:checked + .thumb,
+.track:has(.input:checked) {
+  background-color: var(--pulse-color-primary);
+}
+
+/* Redefine track background when checked using :has */
+.track:has(.input:checked) {
+  background-color: var(--pulse-color-primary);
+}
+
+.input:focus-visible ~ .thumb {
+  outline: 2px solid var(--pulse-color-primary);
+  outline-offset: 2px;
+}
+
+.label {
+  font-family: var(--pulse-font-family-base);
+  font-size: var(--pulse-font-size-md, 1rem);
+  color: var(--pulse-color-text);
+}

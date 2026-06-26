@@ -1,0 +1,75 @@
+.divider {
+  border: none;
+  background-color: var(--pulse-color-border, #e5e7eb);
+  flex-shrink: 0;
+}
+
+/* Horizontal (default <hr>) */
+.horizontal {
+  display: block;
+  width: 100%;
+  height: 1px;
+  margin: 0;
+}
+
+/* Vertical */
+.vertical {
+  display: inline-block;
+  width: 1px;
+  height: 1em;
+  align-self: stretch;
+}
+
+/* Style variants */
+.solid   { background-color: var(--pulse-color-border, #e5e7eb); }
+
+.dashed {
+  background-color: transparent;
+  border-top: 1px dashed var(--pulse-color-border, #e5e7eb);
+}
+
+.dotted {
+  background-color: transparent;
+  border-top: 1px dotted var(--pulse-color-border, #e5e7eb);
+}
+
+.vertical.dashed {
+  border-top: none;
+  border-left: 1px dashed var(--pulse-color-border, #e5e7eb);
+}
+
+.vertical.dotted {
+  border-top: none;
+  border-left: 1px dotted var(--pulse-color-border, #e5e7eb);
+}
+
+/* With label */
+.withLabel {
+  display: flex;
+  align-items: center;
+  gap: var(--pulse-space-3, 12px);
+  width: 100%;
+}
+
+.line {
+  flex: 1;
+  height: 1px;
+  background-color: var(--pulse-color-border, #e5e7eb);
+}
+
+.withLabel.dashed .line {
+  background: none;
+  border-top: 1px dashed var(--pulse-color-border, #e5e7eb);
+}
+
+.withLabel.dotted .line {
+  background: none;
+  border-top: 1px dotted var(--pulse-color-border, #e5e7eb);
+}
+
+.labelText {
+  font-family: var(--pulse-font-family-base);
+  font-size: var(--pulse-font-size-sm, 0.875rem);
+  color: var(--pulse-color-text-muted, #6b7280);
+  white-space: nowrap;
+}

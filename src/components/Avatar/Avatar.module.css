@@ -1,0 +1,53 @@
+/* Base */
+.avatar {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  background-color: var(--pulse-color-primary);
+  color: var(--pulse-color-neutral-0, #ffffff);
+  font-family: var(--pulse-font-family-base);
+  font-weight: var(--pulse-font-weight-medium, 500);
+  overflow: hidden;
+  object-fit: cover;
+}
+
+/* Shapes */
+.circle { border-radius: 50%; }
+.square { border-radius: var(--pulse-radius-md, 6px); }
+
+/* Sizes */
+.xs {
+  width: 24px;
+  height: 24px;
+  font-size: 10px;
+}
+
+.sm {
+  width: 32px;
+  height: 32px;
+  font-size: var(--pulse-font-size-xs, 0.75rem);
+}
+
+.md {
+  width: 40px;
+  height: 40px;
+  font-size: var(--pulse-font-size-sm, 0.875rem);
+}
+
+.lg {
+  width: 56px;
+  height: 56px;
+  font-size: var(--pulse-font-size-md, 1rem);
+}
+
+.xl {
+  width: 80px;
+  height: 80px;
+  font-size: var(--pulse-font-size-xl, 1.25rem);
+}
+
+.initials {
+  pointer-events: none;
+  line-height: 1;
+}

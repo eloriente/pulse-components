@@ -1,0 +1,21 @@
+.label {
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+  font-family: var(--pulse-font-family-base);
+  font-size: var(--pulse-font-size-sm, 0.875rem);
+  font-weight: var(--pulse-font-weight-medium, 500);
+  color: var(--pulse-color-text);
+  line-height: var(--pulse-line-height-tight, 1.25);
+  cursor: pointer;
+}
+
+.disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.required {
+  color: var(--pulse-color-error, #e53e3e);
+  font-weight: var(--pulse-font-weight-bold, 700);
+}
