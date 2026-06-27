@@ -45,15 +45,15 @@
 /* === Subtle variant === */
 .subtle.color-default { background-color: var(--pulse-color-surface-subtle, #f3f4f6); color: var(--pulse-color-text, #111827); }
 .subtle.color-primary { background-color: color-mix(in srgb, var(--pulse-color-primary) 12%, transparent); color: var(--pulse-color-primary); }
-.subtle.color-success { background-color: #dcfce7; color: #16a34a; }
+.subtle.color-success { background-color: #dcfce7; color: #166534; }
 .subtle.color-warning { background-color: #fef9c3; color: #a16207; }
-.subtle.color-error   { background-color: #fee2e2; color: #dc2626; }
+.subtle.color-error   { background-color: #fee2e2; color: #991b1b; }
 .subtle.color-info    { background-color: #dbeafe; color: #1d4ed8; }
 
 /* === Outline variant === */
 .outline.color-default { border: 1px solid var(--pulse-color-border, #d1d5db); color: var(--pulse-color-text, #111827); background: transparent; }
 .outline.color-primary { border: 1px solid var(--pulse-color-primary); color: var(--pulse-color-primary); background: transparent; }
-.outline.color-success { border: 1px solid #16a34a; color: #16a34a; background: transparent; }
+.outline.color-success { border: 1px solid #166534; color: #166534; background: transparent; }
 .outline.color-warning { border: 1px solid #a16207; color: #a16207; background: transparent; }
-.outline.color-error   { border: 1px solid #dc2626; color: #dc2626; background: transparent; }
+.outline.color-error   { border: 1px solid #991b1b; color: #991b1b; background: transparent; }
 .outline.color-info    { border: 1px solid #1d4ed8; color: #1d4ed8; background: transparent; }

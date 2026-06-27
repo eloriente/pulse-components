@@ -70,6 +70,6 @@
 .labelText {
   font-family: var(--pulse-font-family-base);
   font-size: var(--pulse-font-size-sm, 0.875rem);
-  color: var(--pulse-color-text-muted, #6b7280);
+  color: var(--pulse-color-text, #374151);
   white-space: nowrap;
 }

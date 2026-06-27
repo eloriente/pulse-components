@@ -56,10 +56,12 @@ export function Button({
   type = 'button',
   backgroundColor,
   className,
+  'aria-label': ariaLabel,
   ...props
 }: ButtonProps) {
   const iconSize = ICON_SIZE_MAP[size];
   const isDisabled = disabled || loading;
+  const computedAriaLabel = ariaLabel ?? (loading ? label : undefined);
 
   const classes = [
     styles.button,
@@ -79,6 +81,7 @@ export function Button({
       style={backgroundColor ? { backgroundColor } : undefined}
       disabled={isDisabled}
       aria-busy={loading || undefined}
+      aria-label={computedAriaLabel}
       {...props}
     >
       {loading && (

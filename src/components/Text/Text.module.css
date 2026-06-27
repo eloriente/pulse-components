@@ -89,7 +89,7 @@
 .text-color-inverse  { color: var(--pulse-color-neutral-0, #ffffff); }
 .text-color-error    { color: var(--pulse-color-error, #e53e3e); }
 .text-color-success  { color: var(--pulse-color-success, #38a169); }
-.text-color-warning  { color: var(--pulse-color-warning, #d69e2e); }
+.text-color-warning  { color: var(--pulse-color-warning, #92400e); }
 
 /* Truncation */
 .text-truncate {

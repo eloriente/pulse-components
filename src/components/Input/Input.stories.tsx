@@ -49,6 +49,7 @@ export const Underline: Story = {
 export const WithError: Story = {
   args: {
     id: 'email',
+    'aria-label': 'Email',
     placeholder: 'you@example.com',
     error: true,
     errorMessage: 'This email is already in use',

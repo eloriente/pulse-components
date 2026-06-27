@@ -22,7 +22,7 @@ const options = (
 );
 
 export const Default: Story = {
-  args: { placeholder: 'Select a plan', id: 'plan' },
+  args: { placeholder: 'Select a plan', id: 'plan', 'aria-label': 'Plan' },
   render: (args) => <Select {...args}>{options}</Select>,
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
@@ -34,7 +34,12 @@ export const Default: Story = {
 };
 
 export const WithError: Story = {
-  args: { id: 'plan-err', error: true, errorMessage: 'Please select a plan' },
+  args: {
+    id: 'plan-err',
+    'aria-label': 'Plan',
+    error: true,
+    errorMessage: 'Please select a plan',
+  },
   render: (args) => <Select {...args}>{options}</Select>,
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
@@ -43,7 +48,7 @@ export const WithError: Story = {
 };
 
 export const Disabled: Story = {
-  args: { disabled: true },
+  args: { disabled: true, 'aria-label': 'Plan' },
   render: (args) => <Select {...args}>{options}</Select>,
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
@@ -52,6 +57,6 @@ export const Disabled: Story = {
 };
 
 export const Filled: Story = {
-  args: { variant: 'filled' },
+  args: { variant: 'filled', 'aria-label': 'Plan' },
   render: (args) => <Select {...args}>{options}</Select>,
 };

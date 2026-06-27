@@ -53,7 +53,7 @@ export const CustomColor: Story = {
   render: () => (
     <div style={{ display: 'flex', gap: '12px' }}>
       <Avatar alt="Alice B" color="#7c3aed" />
-      <Avatar alt="Carlos M" color="#059669" />
+      <Avatar alt="Carlos M" color="#065f46" />
       <Avatar alt="Diana P" color="#dc2626" />
     </div>
   ),

@@ -30,6 +30,7 @@ export const Filled: Story = {
 export const WithError: Story = {
   args: {
     id: 'bio',
+    'aria-label': 'Biography',
     placeholder: 'Your bio',
     error: true,
     errorMessage: 'Bio cannot exceed 500 characters',
