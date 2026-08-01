@@ -1,0 +1,1393 @@
+[
+  {
+    "name": "Avatar",
+    "category": "Display",
+    "description": "User avatar — shows an image or falls back to initials.",
+    "importPath": "pulse-components",
+    "props": [
+      {
+        "name": "src",
+        "type": "string",
+        "required": false,
+        "description": "Image URL"
+      },
+      {
+        "name": "alt",
+        "type": "string",
+        "required": true,
+        "description": "Alt text — also used to generate initials fallback"
+      },
+      {
+        "name": "size",
+        "type": "AvatarSize",
+        "required": false,
+        "defaultValue": "'md'"
+      },
+      {
+        "name": "shape",
+        "type": "AvatarShape",
+        "required": false,
+        "defaultValue": "'circle'"
+      },
+      {
+        "name": "color",
+        "type": "string",
+        "required": false,
+        "description": "Background color for the initials fallback"
+      },
+      {
+        "name": "className",
+        "type": "string",
+        "required": false
+      }
+    ],
+    "variants": [],
+    "sizes": [
+      "xs",
+      "sm",
+      "md",
+      "lg",
+      "xl"
+    ],
+    "accessibility": [
+      "aria-label",
+      "aria-hidden",
+      "role"
+    ],
+    "examples": [
+      {
+        "name": "WithInitials",
+        "args": {
+          "alt": "Ana García"
+        }
+      },
+      {
+        "name": "WithImage",
+        "args": {
+          "src": "https://i.pravatar.cc/80",
+          "alt": "User profile picture"
+        }
+      },
+      {
+        "name": "Sizes",
+        "args": {}
+      },
+      {
+        "name": "Shapes",
+        "args": {}
+      },
+      {
+        "name": "CustomColor",
+        "args": {}
+      }
+    ]
+  },
+  {
+    "name": "Badge",
+    "category": "Display",
+    "description": "Status badge / label chip for counts, states, and categories.",
+    "importPath": "pulse-components",
+    "props": [
+      {
+        "name": "variant",
+        "type": "BadgeVariant",
+        "required": false,
+        "defaultValue": "'subtle'"
+      },
+      {
+        "name": "color",
+        "type": "BadgeColor",
+        "required": false,
+        "defaultValue": "'default'"
+      },
+      {
+        "name": "size",
+        "type": "BadgeSize",
+        "required": false,
+        "defaultValue": "'md'"
+      },
+      {
+        "name": "dot",
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "false",
+        "description": "Optional dot indicator"
+      },
+      {
+        "name": "children",
+        "type": "ReactNode",
+        "required": true
+      },
+      {
+        "name": "className",
+        "type": "string",
+        "required": false
+      }
+    ],
+    "variants": [
+      "solid",
+      "subtle",
+      "outline"
+    ],
+    "sizes": [
+      "sm",
+      "md",
+      "lg"
+    ],
+    "accessibility": [
+      "aria-hidden"
+    ],
+    "examples": [
+      {
+        "name": "Default",
+        "args": {
+          "children": "Default"
+        }
+      },
+      {
+        "name": "Colors",
+        "args": {}
+      },
+      {
+        "name": "Variants",
+        "args": {}
+      },
+      {
+        "name": "WithDot",
+        "args": {}
+      },
+      {
+        "name": "Sizes",
+        "args": {}
+      }
+    ]
+  },
+  {
+    "name": "Button",
+    "category": "Primitives",
+    "description": "Primary UI component for user interaction",
+    "importPath": "pulse-components",
+    "props": [
+      {
+        "name": "primary",
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "false",
+        "description": "Primary call to action variant"
+      },
+      {
+        "name": "size",
+        "type": "'small' | 'medium' | 'large'",
+        "required": false,
+        "defaultValue": "'medium'",
+        "description": "How large should the button be?"
+      },
+      {
+        "name": "label",
+        "type": "string",
+        "required": false,
+        "description": "Button label text"
+      },
+      {
+        "name": "iconLeft",
+        "type": "ComponentType<LucideProps>",
+        "required": false,
+        "description": "Lucide icon rendered to the left of the label"
+      },
+      {
+        "name": "iconRight",
+        "type": "ComponentType<LucideProps>",
+        "required": false,
+        "description": "Lucide icon rendered to the right of the label"
+      },
+      {
+        "name": "iconOnly",
+        "type": "ComponentType<LucideProps>",
+        "required": false,
+        "description": "Renders only an icon (no label). Requires `aria-label` for accessibility"
+      },
+      {
+        "name": "loading",
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "false",
+        "description": "Shows a loading spinner and disables interaction"
+      },
+      {
+        "name": "disabled",
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "false",
+        "description": "Disables the button"
+      },
+      {
+        "name": "type",
+        "type": "'button' | 'submit' | 'reset'",
+        "required": false,
+        "defaultValue": "'button'",
+        "description": "HTML button type"
+      },
+      {
+        "name": "backgroundColor",
+        "type": "string",
+        "required": false,
+        "description": "Background color override"
+      },
+      {
+        "name": "onClick",
+        "type": "() => void",
+        "required": false,
+        "description": "Optional click handler"
+      },
+      {
+        "name": "aria-label",
+        "type": "string",
+        "required": false,
+        "description": "Accessible label — required when using `iconOnly` or when label\nalone is not descriptive enough."
+      },
+      {
+        "name": "className",
+        "type": "string",
+        "required": false,
+        "description": "Additional CSS classes (e.g. Tailwind utilities)."
+      }
+    ],
+    "variants": [],
+    "sizes": [],
+    "accessibility": [
+      "aria-busy",
+      "aria-label",
+      "aria-hidden"
+    ],
+    "examples": [
+      {
+        "name": "Primary",
+        "args": {
+          "primary": true,
+          "label": "Button"
+        }
+      },
+      {
+        "name": "Secondary",
+        "args": {
+          "label": "Button"
+        }
+      },
+      {
+        "name": "Large",
+        "args": {
+          "size": "large",
+          "label": "Button"
+        }
+      },
+      {
+        "name": "Small",
+        "args": {
+          "size": "small",
+          "label": "Button"
+        }
+      },
+      {
+        "name": "WithIconLeft",
+        "args": {
+          "primary": true,
+          "label": "Search",
+          "iconLeft": "Search"
+        }
+      },
+      {
+        "name": "WithIconRight",
+        "args": {
+          "label": "Next",
+          "iconRight": "ChevronRight"
+        }
+      },
+      {
+        "name": "IconOnly",
+        "args": {
+          "primary": true,
+          "iconOnly": "Plus",
+          "aria-label": "Add item"
+        }
+      },
+      {
+        "name": "Disabled",
+        "args": {
+          "primary": true,
+          "label": "Disabled",
+          "disabled": true
+        }
+      },
+      {
+        "name": "Loading",
+        "args": {
+          "primary": true,
+          "label": "Saving...",
+          "loading": true
+        }
+      },
+      {
+        "name": "Destructive",
+        "args": {
+          "label": "Delete",
+          "iconLeft": "Trash2",
+          "backgroundColor": "var(--pulse-color-error, #e53e3e)",
+          "primary": true,
+          "aria-label": "Delete item"
+        }
+      }
+    ]
+  },
+  {
+    "name": "Checkbox",
+    "category": "Form",
+    "description": "Checkbox with indeterminate support and accessible label.",
+    "importPath": "pulse-components",
+    "props": [
+      {
+        "name": "label",
+        "type": "ReactNode",
+        "required": false,
+        "description": "Label text rendered adjacent to the checkbox"
+      },
+      {
+        "name": "indeterminate",
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "false",
+        "description": "Indeterminate state (partially checked)"
+      },
+      {
+        "name": "error",
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "false",
+        "description": "Error state"
+      },
+      {
+        "name": "className",
+        "type": "string",
+        "required": false,
+        "description": "Additional CSS classes"
+      }
+    ],
+    "variants": [],
+    "sizes": [],
+    "accessibility": [
+      "aria-invalid",
+      "aria-hidden"
+    ],
+    "examples": [
+      {
+        "name": "Default",
+        "args": {
+          "id": "cb-default",
+          "label": "Accept terms and conditions"
+        }
+      },
+      {
+        "name": "Checked",
+        "args": {
+          "id": "cb-checked",
+          "label": "Checked state",
+          "checked": true,
+          "readOnly": true
+        }
+      },
+      {
+        "name": "Indeterminate",
+        "args": {
+          "id": "cb-indeterminate",
+          "label": "Indeterminate state",
+          "indeterminate": true,
+          "readOnly": true
+        }
+      },
+      {
+        "name": "Disabled",
+        "args": {
+          "id": "cb-disabled",
+          "label": "Disabled checkbox",
+          "disabled": true
+        }
+      },
+      {
+        "name": "WithError",
+        "args": {
+          "id": "cb-error",
+          "label": "I agree to the terms",
+          "error": true
+        }
+      }
+    ]
+  },
+  {
+    "name": "Divider",
+    "category": "Display",
+    "description": "Visual separator — horizontal or vertical.",
+    "importPath": "pulse-components",
+    "props": [
+      {
+        "name": "orientation",
+        "type": "DividerOrientation",
+        "required": false,
+        "defaultValue": "'horizontal'"
+      },
+      {
+        "name": "variant",
+        "type": "DividerVariant",
+        "required": false,
+        "defaultValue": "'solid'"
+      },
+      {
+        "name": "label",
+        "type": "string",
+        "required": false,
+        "description": "Optional label centered within the divider"
+      },
+      {
+        "name": "className",
+        "type": "string",
+        "required": false
+      }
+    ],
+    "variants": [
+      "solid",
+      "dashed",
+      "dotted"
+    ],
+    "sizes": [],
+    "accessibility": [
+      "aria-orientation",
+      "aria-hidden",
+      "role"
+    ],
+    "examples": [
+      {
+        "name": "Horizontal",
+        "args": {}
+      },
+      {
+        "name": "WithLabel",
+        "args": {
+          "label": "OR"
+        }
+      },
+      {
+        "name": "Vertical",
+        "args": {}
+      },
+      {
+        "name": "Variants",
+        "args": {}
+      }
+    ]
+  },
+  {
+    "name": "Header",
+    "category": "Legacy demo components",
+    "description": "Site header with branding and authentication actions",
+    "importPath": "pulse-components",
+    "props": [
+      {
+        "name": "user",
+        "type": "User",
+        "required": false,
+        "description": "Currently logged-in user. When provided, shows welcome message and logout button."
+      },
+      {
+        "name": "onLogin",
+        "type": "() => void",
+        "required": false,
+        "description": "Called when the user clicks \"Log in\""
+      },
+      {
+        "name": "onLogout",
+        "type": "() => void",
+        "required": false,
+        "description": "Called when the user clicks \"Log out\""
+      },
+      {
+        "name": "onCreateAccount",
+        "type": "() => void",
+        "required": false,
+        "description": "Called when the user clicks \"Sign up\""
+      },
+      {
+        "name": "className",
+        "type": "string",
+        "required": false,
+        "description": "Additional CSS classes to apply to the root element.\nUse this to extend or override styles (e.g. with Tailwind utilities)."
+      }
+    ],
+    "variants": [],
+    "sizes": [],
+    "accessibility": [
+      "aria-hidden"
+    ],
+    "examples": []
+  },
+  {
+    "name": "Heading",
+    "category": "Primitives",
+    "description": "Semantic heading (h1–h6) with independent visual sizing.",
+    "importPath": "pulse-components",
+    "props": [
+      {
+        "name": "level",
+        "type": "HeadingLevel",
+        "required": false,
+        "defaultValue": "1",
+        "description": "Semantic heading level (h1–h6)"
+      },
+      {
+        "name": "size",
+        "type": "HeadingSize",
+        "required": false,
+        "description": "Visual size — independent from semantic level.\nDefaults to matching the level (h1 → xl, h2 → lg, …)."
+      },
+      {
+        "name": "children",
+        "type": "ReactNode",
+        "required": true
+      },
+      {
+        "name": "className",
+        "type": "string",
+        "required": false,
+        "description": "Additional CSS classes"
+      },
+      {
+        "name": "id",
+        "type": "string",
+        "required": false
+      }
+    ],
+    "variants": [],
+    "sizes": [
+      "xl",
+      "lg",
+      "md",
+      "sm",
+      "xs",
+      "2xs"
+    ],
+    "accessibility": [],
+    "examples": []
+  },
+  {
+    "name": "Icon",
+    "category": "Primitives",
+    "description": "Icon component — renders Lucide icons or custom SVG components\nwith consistent sizing, color, and accessibility support.",
+    "importPath": "pulse-components",
+    "props": [
+      {
+        "name": "as",
+        "type": "ComponentType<LucideProps>",
+        "required": false,
+        "description": "Lucide icon component to render"
+      },
+      {
+        "name": "children",
+        "type": "React.ReactElement<SVGProps<SVGSVGElement>>",
+        "required": false,
+        "description": "Custom SVG component — alternative to `as`"
+      },
+      {
+        "name": "size",
+        "type": "IconSize",
+        "required": false,
+        "defaultValue": "'md'",
+        "description": "Predefined size token"
+      },
+      {
+        "name": "pixelSize",
+        "type": "number",
+        "required": false,
+        "description": "Explicit pixel size — overrides `size`"
+      },
+      {
+        "name": "color",
+        "type": "string",
+        "required": false,
+        "defaultValue": "'currentColor'",
+        "description": "Icon color — defaults to currentColor (inherits from text)"
+      },
+      {
+        "name": "strokeWidth",
+        "type": "number",
+        "required": false,
+        "defaultValue": "2",
+        "description": "Stroke width for Lucide icons"
+      },
+      {
+        "name": "label",
+        "type": "string",
+        "required": false,
+        "description": "Accessible label. Required when the icon is standalone (no adjacent text)"
+      },
+      {
+        "name": "className",
+        "type": "string",
+        "required": false,
+        "description": "Additional CSS classes"
+      }
+    ],
+    "variants": [],
+    "sizes": [
+      "xs",
+      "sm",
+      "md",
+      "lg",
+      "xl"
+    ],
+    "accessibility": [
+      "aria-label",
+      "aria-hidden"
+    ],
+    "examples": [
+      {
+        "name": "Default",
+        "args": {
+          "as": "Search",
+          "size": "md",
+          "label": "Search"
+        }
+      },
+      {
+        "name": "Sizes",
+        "args": {}
+      },
+      {
+        "name": "Colors",
+        "args": {}
+      },
+      {
+        "name": "CommonIcons",
+        "args": {}
+      },
+      {
+        "name": "CustomSvg",
+        "args": {}
+      },
+      {
+        "name": "HiddenFromScreenReaders",
+        "args": {}
+      }
+    ]
+  },
+  {
+    "name": "Input",
+    "category": "Form",
+    "description": "Text input with variants, sizes, icons, and error state.",
+    "importPath": "pulse-components",
+    "props": [
+      {
+        "name": "variant",
+        "type": "InputVariant",
+        "required": false,
+        "defaultValue": "'outline'",
+        "description": "Visual variant"
+      },
+      {
+        "name": "size",
+        "type": "InputSize",
+        "required": false,
+        "defaultValue": "'md'"
+      },
+      {
+        "name": "error",
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "false",
+        "description": "Error state — renders error styling"
+      },
+      {
+        "name": "errorMessage",
+        "type": "string",
+        "required": false,
+        "description": "Error message displayed below the input"
+      },
+      {
+        "name": "iconLeft",
+        "type": "ComponentType<LucideProps>",
+        "required": false,
+        "description": "Icon shown on the left side"
+      },
+      {
+        "name": "iconRight",
+        "type": "ComponentType<LucideProps>",
+        "required": false,
+        "description": "Icon shown on the right side"
+      },
+      {
+        "name": "fullWidth",
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "false",
+        "description": "Full width"
+      },
+      {
+        "name": "className",
+        "type": "string",
+        "required": false,
+        "description": "Additional CSS classes"
+      }
+    ],
+    "variants": [
+      "outline",
+      "filled",
+      "underline"
+    ],
+    "sizes": [
+      "sm",
+      "md",
+      "lg"
+    ],
+    "accessibility": [
+      "aria-hidden",
+      "aria-invalid",
+      "aria-describedby",
+      "role"
+    ],
+    "examples": [
+      {
+        "name": "Default",
+        "args": {
+          "placeholder": "Enter text..."
+        }
+      },
+      {
+        "name": "WithIconLeft",
+        "args": {
+          "placeholder": "Search...",
+          "iconLeft": "Search"
+        }
+      },
+      {
+        "name": "WithIconRight",
+        "args": {
+          "placeholder": "Password",
+          "type": "password",
+          "iconRight": "Eye"
+        }
+      },
+      {
+        "name": "Filled",
+        "args": {
+          "variant": "filled",
+          "placeholder": "Filled variant"
+        }
+      },
+      {
+        "name": "Underline",
+        "args": {
+          "variant": "underline",
+          "placeholder": "Underline variant"
+        }
+      },
+      {
+        "name": "WithError",
+        "args": {
+          "id": "email",
+          "aria-label": "Email",
+          "placeholder": "you@example.com",
+          "error": true,
+          "errorMessage": "This email is already in use",
+          "defaultValue": "test@test"
+        }
+      },
+      {
+        "name": "Disabled",
+        "args": {
+          "placeholder": "Disabled input",
+          "disabled": true
+        }
+      },
+      {
+        "name": "Sizes",
+        "args": {}
+      }
+    ]
+  },
+  {
+    "name": "Label",
+    "category": "Form",
+    "description": "Semantic label for form fields.",
+    "importPath": "pulse-components",
+    "props": [
+      {
+        "name": "children",
+        "type": "ReactNode",
+        "required": true
+      },
+      {
+        "name": "required",
+        "type": "boolean",
+        "required": false,
+        "description": "Marks the associated field as required with a visual indicator"
+      },
+      {
+        "name": "disabled",
+        "type": "boolean",
+        "required": false,
+        "description": "Visually mutes the label (e.g. for disabled fields)"
+      },
+      {
+        "name": "className",
+        "type": "string",
+        "required": false,
+        "description": "Additional CSS classes"
+      }
+    ],
+    "variants": [],
+    "sizes": [],
+    "accessibility": [
+      "aria-hidden"
+    ],
+    "examples": [
+      {
+        "name": "Default",
+        "args": {
+          "children": "Email address",
+          "htmlFor": "email"
+        }
+      },
+      {
+        "name": "Required",
+        "args": {
+          "children": "Full name",
+          "htmlFor": "name",
+          "required": true
+        }
+      },
+      {
+        "name": "Disabled",
+        "args": {
+          "children": "Disabled field",
+          "disabled": true
+        }
+      },
+      {
+        "name": "WithInput",
+        "args": {}
+      }
+    ]
+  },
+  {
+    "name": "Page",
+    "category": "Legacy demo components",
+    "description": "Full-page layout example combining Header and content",
+    "importPath": "pulse-components",
+    "props": [
+      {
+        "name": "className",
+        "type": "string",
+        "required": false,
+        "description": "Additional CSS classes to apply to the content section.\nUse this to extend or override styles (e.g. with Tailwind utilities)."
+      }
+    ],
+    "variants": [],
+    "sizes": [],
+    "accessibility": [
+      "aria-hidden"
+    ],
+    "examples": []
+  },
+  {
+    "name": "Radio",
+    "category": "Form",
+    "description": "Radio button with accessible label.",
+    "importPath": "pulse-components",
+    "props": [
+      {
+        "name": "label",
+        "type": "ReactNode",
+        "required": false,
+        "description": "Label text rendered adjacent to the radio"
+      },
+      {
+        "name": "error",
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "false",
+        "description": "Error state"
+      },
+      {
+        "name": "className",
+        "type": "string",
+        "required": false,
+        "description": "Additional CSS classes"
+      }
+    ],
+    "variants": [],
+    "sizes": [],
+    "accessibility": [
+      "aria-invalid",
+      "aria-hidden"
+    ],
+    "examples": [
+      {
+        "name": "Default",
+        "args": {
+          "id": "radio-default",
+          "name": "plan",
+          "value": "free",
+          "label": "Free plan"
+        }
+      },
+      {
+        "name": "Checked",
+        "args": {
+          "id": "radio-checked",
+          "name": "plan",
+          "value": "pro",
+          "label": "Pro plan",
+          "checked": true,
+          "readOnly": true
+        }
+      },
+      {
+        "name": "Group",
+        "args": {}
+      },
+      {
+        "name": "Disabled",
+        "args": {
+          "id": "radio-disabled",
+          "name": "plan",
+          "label": "Disabled option",
+          "disabled": true
+        }
+      }
+    ]
+  },
+  {
+    "name": "Select",
+    "category": "Form",
+    "description": "Styled native select dropdown.",
+    "importPath": "pulse-components",
+    "props": [
+      {
+        "name": "variant",
+        "type": "SelectVariant",
+        "required": false,
+        "defaultValue": "'outline'"
+      },
+      {
+        "name": "size",
+        "type": "SelectSize",
+        "required": false,
+        "defaultValue": "'md'"
+      },
+      {
+        "name": "error",
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "false"
+      },
+      {
+        "name": "errorMessage",
+        "type": "string",
+        "required": false
+      },
+      {
+        "name": "fullWidth",
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "false"
+      },
+      {
+        "name": "placeholder",
+        "type": "string",
+        "required": false,
+        "description": "Placeholder option (disabled, empty value)"
+      },
+      {
+        "name": "children",
+        "type": "ReactNode",
+        "required": true
+      },
+      {
+        "name": "className",
+        "type": "string",
+        "required": false
+      }
+    ],
+    "variants": [
+      "outline",
+      "filled"
+    ],
+    "sizes": [
+      "sm",
+      "md",
+      "lg"
+    ],
+    "accessibility": [
+      "aria-invalid",
+      "aria-describedby",
+      "aria-hidden",
+      "role"
+    ],
+    "examples": [
+      {
+        "name": "Default",
+        "args": {
+          "placeholder": "Select a plan",
+          "id": "plan",
+          "aria-label": "Plan"
+        }
+      },
+      {
+        "name": "WithError",
+        "args": {
+          "id": "plan-err",
+          "aria-label": "Plan",
+          "error": true,
+          "errorMessage": "Please select a plan"
+        }
+      },
+      {
+        "name": "Disabled",
+        "args": {
+          "disabled": true,
+          "aria-label": "Plan"
+        }
+      },
+      {
+        "name": "Filled",
+        "args": {
+          "variant": "filled",
+          "aria-label": "Plan"
+        }
+      }
+    ]
+  },
+  {
+    "name": "Spinner",
+    "category": "Display",
+    "description": "Loading spinner indicator.",
+    "importPath": "pulse-components",
+    "props": [
+      {
+        "name": "size",
+        "type": "SpinnerSize",
+        "required": false,
+        "defaultValue": "'md'"
+      },
+      {
+        "name": "variant",
+        "type": "SpinnerVariant",
+        "required": false,
+        "defaultValue": "'ring'"
+      },
+      {
+        "name": "color",
+        "type": "string",
+        "required": false
+      },
+      {
+        "name": "label",
+        "type": "string",
+        "required": false,
+        "defaultValue": "'Loading...'",
+        "description": "Accessible label for screen readers"
+      },
+      {
+        "name": "className",
+        "type": "string",
+        "required": false
+      }
+    ],
+    "variants": [
+      "ring",
+      "dots"
+    ],
+    "sizes": [
+      "xs",
+      "sm",
+      "md",
+      "lg",
+      "xl"
+    ],
+    "accessibility": [
+      "aria-label",
+      "role"
+    ],
+    "examples": [
+      {
+        "name": "Default",
+        "args": {
+          "label": "Loading..."
+        }
+      },
+      {
+        "name": "Sizes",
+        "args": {}
+      },
+      {
+        "name": "Dots",
+        "args": {
+          "variant": "dots",
+          "label": "Loading dots"
+        }
+      },
+      {
+        "name": "CustomColor",
+        "args": {
+          "color": "var(--pulse-color-error, #e53e3e)",
+          "label": "Loading..."
+        }
+      }
+    ]
+  },
+  {
+    "name": "Switch",
+    "category": "Form",
+    "description": "Toggle switch — a styled checkbox rendered as an on/off switch.",
+    "importPath": "pulse-components",
+    "props": [
+      {
+        "name": "label",
+        "type": "string",
+        "required": false,
+        "description": "Accessible label — required for screen readers"
+      },
+      {
+        "name": "size",
+        "type": "SwitchSize",
+        "required": false,
+        "defaultValue": "'md'"
+      },
+      {
+        "name": "className",
+        "type": "string",
+        "required": false,
+        "description": "Additional CSS classes"
+      }
+    ],
+    "variants": [],
+    "sizes": [
+      "sm",
+      "md",
+      "lg"
+    ],
+    "accessibility": [
+      "aria-hidden",
+      "role"
+    ],
+    "examples": [
+      {
+        "name": "Default",
+        "args": {
+          "id": "sw-default",
+          "label": "Enable notifications"
+        }
+      },
+      {
+        "name": "Checked",
+        "args": {
+          "id": "sw-checked",
+          "label": "Dark mode",
+          "checked": true,
+          "readOnly": true
+        }
+      },
+      {
+        "name": "Sizes",
+        "args": {}
+      },
+      {
+        "name": "Disabled",
+        "args": {
+          "id": "sw-disabled",
+          "label": "Disabled switch",
+          "disabled": true
+        }
+      }
+    ]
+  },
+  {
+    "name": "Text",
+    "category": "Primitives",
+    "description": "Polymorphic text primitive for body copy, captions, code, and labels.",
+    "importPath": "pulse-components",
+    "props": [
+      {
+        "name": "as",
+        "type": "'p' | 'span' | 'label' | 'div' | 'strong' | 'em' | 'small'",
+        "required": false,
+        "defaultValue": "'p'",
+        "description": "Semantic HTML element to render"
+      },
+      {
+        "name": "variant",
+        "type": "TextVariant",
+        "required": false,
+        "defaultValue": "'body'"
+      },
+      {
+        "name": "size",
+        "type": "TextSize",
+        "required": false,
+        "defaultValue": "'md'"
+      },
+      {
+        "name": "weight",
+        "type": "TextWeight",
+        "required": false,
+        "defaultValue": "'regular'"
+      },
+      {
+        "name": "align",
+        "type": "TextAlign",
+        "required": false,
+        "defaultValue": "'left'"
+      },
+      {
+        "name": "color",
+        "type": "TextColor",
+        "required": false,
+        "defaultValue": "'default'"
+      },
+      {
+        "name": "truncate",
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "false",
+        "description": "Truncate text with ellipsis when overflowing"
+      },
+      {
+        "name": "children",
+        "type": "ReactNode",
+        "required": true
+      },
+      {
+        "name": "className",
+        "type": "string",
+        "required": false
+      },
+      {
+        "name": "htmlFor",
+        "type": "string",
+        "required": false,
+        "description": "Forwarded htmlFor — useful when as=\"label\""
+      }
+    ],
+    "variants": [
+      "body",
+      "caption",
+      "overline",
+      "code"
+    ],
+    "sizes": [
+      "lg",
+      "md",
+      "sm",
+      "xs"
+    ],
+    "accessibility": [],
+    "examples": []
+  },
+  {
+    "name": "Textarea",
+    "category": "Form",
+    "description": "Multi-line text input with variants, sizes, and error state.",
+    "importPath": "pulse-components",
+    "props": [
+      {
+        "name": "variant",
+        "type": "TextareaVariant",
+        "required": false,
+        "defaultValue": "'outline'"
+      },
+      {
+        "name": "size",
+        "type": "TextareaSize",
+        "required": false,
+        "defaultValue": "'md'"
+      },
+      {
+        "name": "error",
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "false"
+      },
+      {
+        "name": "errorMessage",
+        "type": "string",
+        "required": false
+      },
+      {
+        "name": "resize",
+        "type": "TextareaResize",
+        "required": false,
+        "defaultValue": "'vertical'"
+      },
+      {
+        "name": "fullWidth",
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "false"
+      },
+      {
+        "name": "className",
+        "type": "string",
+        "required": false
+      }
+    ],
+    "variants": [
+      "outline",
+      "filled"
+    ],
+    "sizes": [
+      "sm",
+      "md",
+      "lg"
+    ],
+    "accessibility": [
+      "aria-invalid",
+      "aria-describedby",
+      "role"
+    ],
+    "examples": [
+      {
+        "name": "Default",
+        "args": {
+          "placeholder": "Write something..."
+        }
+      },
+      {
+        "name": "Filled",
+        "args": {
+          "variant": "filled",
+          "placeholder": "Filled variant"
+        }
+      },
+      {
+        "name": "WithError",
+        "args": {
+          "id": "bio",
+          "aria-label": "Biography",
+          "placeholder": "Your bio",
+          "error": true,
+          "errorMessage": "Bio cannot exceed 500 characters"
+        }
+      },
+      {
+        "name": "Disabled",
+        "args": {
+          "placeholder": "Disabled textarea",
+          "disabled": true
+        }
+      },
+      {
+        "name": "NoResize",
+        "args": {
+          "placeholder": "Cannot resize",
+          "resize": "none"
+        }
+      }
+    ]
+  }
+]
