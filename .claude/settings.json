@@ -1,0 +1,85 @@
+{
+  "permissions": {
+    "allow": [
+      "Read",
+      "Bash(npm run lint)",
+      "Bash(npm run typecheck)",
+      "Bash(npm test*)",
+      "Bash(npm run test:unit*)",
+      "Bash(npm run test:storybook*)",
+      "Bash(npm run coverage*)",
+      "Bash(npm run generate:mcp-data)",
+      "Bash(npm run check:mcp-data)",
+      "Bash(npm run build*)",
+      "Bash(npm run storybook*)",
+      "Bash(npx eslint*)",
+      "Bash(git status)",
+      "Bash(git diff*)",
+      "Bash(git log*)",
+      "Bash(git show*)",
+      "Bash(git branch*)"
+    ],
+    "ask": [
+      "Bash(git push*)",
+      "Edit(.github/workflows/**)",
+      "Edit(package.json)",
+      "Bash(npm version*)"
+    ],
+    "deny": [
+      "Edit(src/mcp/components-data.json)",
+      "Edit(dist/**)",
+      "Bash(npm publish*)",
+      "Bash(git push --force*)",
+      "Bash(git push -f*)",
+      "Bash(rm -rf *)",
+      "Read(.env*)",
+      "Read(**/*.pem)",
+      "Read(**/id_rsa*)",
+      "Read(**/id_ed25519*)"
+    ]
+  },
+  "hooks": {
+    "PostToolUse": [
+      {
+        "matcher": "Write|Edit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "jq -r '.tool_input.file_path // empty' | { read -r f; [ -n \"$f\" ] && npx eslint --fix \"$f\"; } 2>/dev/null || true",
+            "if": "Edit(src/**/*.ts)",
+            "timeout": 30,
+            "statusMessage": "Running eslint --fix..."
+          },
+          {
+            "type": "command",
+            "command": "jq -r '.tool_input.file_path // empty' | { read -r f; [ -n \"$f\" ] && npx eslint --fix \"$f\"; } 2>/dev/null || true",
+            "if": "Edit(src/**/*.tsx)",
+            "timeout": 30,
+            "statusMessage": "Running eslint --fix..."
+          },
+          {
+            "type": "command",
+            "command": "npm run generate:mcp-data >/dev/null 2>&1 && echo '{\"systemMessage\":\"\\ud83d\\udd04 src/mcp/components-data.json regenerated after a component change \\u2014 remember to commit it.\"}' || true",
+            "if": "Edit(src/components/**/*.tsx)",
+            "timeout": 60,
+            "statusMessage": "Regenerating MCP component metadata..."
+          }
+        ]
+      }
+    ],
+    "PreToolUse": [
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "npm run lint && npm run typecheck && npm run test:unit -- --run",
+            "if": "Bash(git commit*)",
+            "timeout": 180,
+            "statusMessage": "Running lint + typecheck + unit tests before commit..."
+          }
+        ]
+      }
+    ]
+  }
+}
