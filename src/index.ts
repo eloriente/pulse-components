@@ -56,6 +56,11 @@ export type { SpinnerProps, SpinnerSize, SpinnerVariant } from './components/Spi
 export { Divider } from './components/Divider';
 export type { DividerProps, DividerOrientation, DividerVariant } from './components/Divider';
 
+// ─── Overlay ─────────────────────────────────────────────────────────────────
+
+export { Tooltip } from './components/Tooltip';
+export type { TooltipProps, TooltipPlacement } from './components/Tooltip';
+
 // ─── Legacy demo components ───────────────────────────────────────────────────
 
 export { Header } from './components/Header';

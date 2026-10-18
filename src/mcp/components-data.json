@@ -1389,5 +1389,111 @@
         }
       }
     ]
+  },
+  {
+    "name": "Tooltip",
+    "category": "Overlay",
+    "description": "Accessible tooltip positioned with Floating UI (flips/shifts to stay in the viewport).\n\nThe trigger is wrapped in a `<span>` rather than cloned onto `children`, so it works\nwith any trigger — including this library's own components, none of which use\n`forwardRef`. The tooltip opens on hover and on keyboard focus, and closes on\n`Escape` or on blur/mouse leave.",
+    "importPath": "pulse-components",
+    "props": [
+      {
+        "name": "content",
+        "type": "ReactNode",
+        "required": true,
+        "description": "Content rendered inside the tooltip bubble when open"
+      },
+      {
+        "name": "children",
+        "type": "ReactNode",
+        "required": true,
+        "description": "Trigger element(s) the tooltip is attached to"
+      },
+      {
+        "name": "placement",
+        "type": "TooltipPlacement",
+        "required": false,
+        "defaultValue": "'top'",
+        "description": "Preferred side; flips automatically when there isn't room in the viewport"
+      },
+      {
+        "name": "delay",
+        "type": "number | { open?: number; close?: number }",
+        "required": false,
+        "defaultValue": "200",
+        "description": "Delay (ms) before showing/hiding on hover. A number applies to both; pass an object to set them independently"
+      },
+      {
+        "name": "disabled",
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "false",
+        "description": "Disables the tooltip entirely; children render without any wrapper or listeners"
+      },
+      {
+        "name": "className",
+        "type": "string",
+        "required": false,
+        "description": "Additional class applied to the tooltip bubble"
+      }
+    ],
+    "variants": [],
+    "sizes": [],
+    "accessibility": [],
+    "examples": [
+      {
+        "name": "Top",
+        "args": {
+          "content": "Saved to your library",
+          "placement": "top",
+          "children": "<button type=\"button\">Hover me</button>"
+        }
+      },
+      {
+        "name": "Bottom",
+        "args": {
+          "content": "Appears below the trigger",
+          "placement": "bottom",
+          "children": "<button type=\"button\">Hover me</button>"
+        }
+      },
+      {
+        "name": "Left",
+        "args": {
+          "content": "Appears to the left",
+          "placement": "left",
+          "children": "<button type=\"button\">Hover me</button>"
+        }
+      },
+      {
+        "name": "Right",
+        "args": {
+          "content": "Appears to the right",
+          "placement": "right",
+          "children": "<button type=\"button\">Hover me</button>"
+        }
+      },
+      {
+        "name": "WithIconButton",
+        "args": {
+          "content": "Delete item",
+          "children": "<Button iconOnly={Trash2} aria-label=\"Delete\" />"
+        }
+      },
+      {
+        "name": "OnKeyboardFocus",
+        "args": {
+          "content": "Keyboard accessible",
+          "children": "<button type=\"button\">Tab to me</button>"
+        }
+      },
+      {
+        "name": "Disabled",
+        "args": {
+          "content": "You should never see this",
+          "disabled": true,
+          "children": "<button type=\"button\">Hover me</button>"
+        }
+      }
+    ]
   }
 ]

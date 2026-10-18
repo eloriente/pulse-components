@@ -1,0 +1,21 @@
+.trigger {
+  display: inline-block;
+}
+
+.tooltip {
+  z-index: 1000;
+  max-width: 280px;
+  padding: var(--pulse-space-2, 8px) var(--pulse-space-3, 12px);
+  border-radius: var(--pulse-radius-md, 6px);
+  background-color: var(--pulse-color-neutral-900, #1a1a1a);
+  color: var(--pulse-color-neutral-0, #ffffff);
+  font-family: var(--pulse-font-family-base);
+  font-size: var(--pulse-font-size-sm, 12px);
+  line-height: var(--pulse-line-height-normal, 1.5);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  pointer-events: none;
+}
+
+.arrow {
+  fill: var(--pulse-color-neutral-900, #1a1a1a);
+}
