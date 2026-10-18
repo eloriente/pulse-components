@@ -14,7 +14,7 @@ Librería de componentes React (pulse-components) — React 19 + TypeScript + CS
   - `docs/`, `Welcome.mdx` — documentación de Storybook.
   - `test-setup.ts` — setup global de Vitest/RTL.
 - **CI** (`.github/workflows/quality-checks.yml`, en cada push/PR): `lint` → `typecheck` (`tsc --noEmit`) → `test-unit` (Vitest) → `test-storybook` (Playwright/Chromium) → `coverage` (80% mínimo, sube artifact).
-- ⚠️ **Importante**: `src/index.ts` hoy solo reexporta `Button`, `Header` y `Page`. El resto de componentes (Radio, Input, Checkbox, Label, Spinner, Textarea, Divider, Avatar, Switch, Text, Select, Icon, Badge) están implementados y agregados en `src/components/index.ts`, pero **no** llegan al entry point público — tenlo en cuenta si se pide "exportar" o "usar" alguno de ellos desde fuera.
+- `src/index.ts` reexporta todos los componentes de `src/components/index.ts` (mismas categorías: Primitives / Form / Display / Legacy). Si se agrega un componente nuevo a `src/components/index.ts`, replícalo también en `src/index.ts` para que llegue al entry point público.
 
 ## Componentes (`src/components/`)
 

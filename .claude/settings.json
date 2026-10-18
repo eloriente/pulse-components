@@ -20,7 +20,6 @@
       "Bash(git branch*)"
     ],
     "ask": [
-      "Bash(git push*)",
       "Edit(.github/workflows/**)",
       "Edit(package.json)",
       "Bash(npm version*)"
@@ -31,6 +30,8 @@
       "Bash(npm publish*)",
       "Bash(git push --force*)",
       "Bash(git push -f*)",
+      "Bash(git commit*)",
+      "Bash(git push*)",
       "Bash(rm -rf *)",
       "Read(.env*)",
       "Read(**/*.pem)",

@@ -5,11 +5,58 @@
  * Compatible with Tailwind CSS via the `className` prop on every component.
  */
 
+// ─── Primitives ───────────────────────────────────────────────────────────────
 
+export { Icon } from './components/Icon';
+export type { IconProps, IconSize } from './components/Icon';
 
-// Components
 export { Button } from './components/Button';
 export type { ButtonProps } from './components/Button';
+
+export { Heading, Text } from './components/Text';
+export type {
+  HeadingProps, HeadingLevel, HeadingSize,
+  TextProps, TextVariant, TextSize, TextWeight, TextAlign, TextColor,
+} from './components/Text';
+
+// ─── Form ────────────────────────────────────────────────────────────────────
+
+export { Label } from './components/Label';
+export type { LabelProps } from './components/Label';
+
+export { Input } from './components/Input';
+export type { InputProps, InputVariant, InputSize } from './components/Input';
+
+export { Textarea } from './components/Textarea';
+export type { TextareaProps, TextareaVariant, TextareaSize, TextareaResize } from './components/Textarea';
+
+export { Checkbox } from './components/Checkbox';
+export type { CheckboxProps } from './components/Checkbox';
+
+export { Radio } from './components/Radio';
+export type { RadioProps } from './components/Radio';
+
+export { Select } from './components/Select';
+export type { SelectProps, SelectSize, SelectVariant } from './components/Select';
+
+export { Switch } from './components/Switch';
+export type { SwitchProps, SwitchSize } from './components/Switch';
+
+// ─── Display ─────────────────────────────────────────────────────────────────
+
+export { Badge } from './components/Badge';
+export type { BadgeProps, BadgeVariant, BadgeColor, BadgeSize } from './components/Badge';
+
+export { Avatar } from './components/Avatar';
+export type { AvatarProps, AvatarSize, AvatarShape } from './components/Avatar';
+
+export { Spinner } from './components/Spinner';
+export type { SpinnerProps, SpinnerSize, SpinnerVariant } from './components/Spinner';
+
+export { Divider } from './components/Divider';
+export type { DividerProps, DividerOrientation, DividerVariant } from './components/Divider';
+
+// ─── Legacy demo components ───────────────────────────────────────────────────
 
 export { Header } from './components/Header';
 export type { HeaderProps } from './components/Header';

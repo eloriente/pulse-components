@@ -12,6 +12,17 @@
     "tailwind"
   ],
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/eloriente/pulse-components.git"
+  },
+  "homepage": "https://github.com/eloriente/pulse-components#readme",
+  "bugs": {
+    "url": "https://github.com/eloriente/pulse-components/issues"
+  },
+  "engines": {
+    "node": ">=22.12.0"
+  },
   "type": "module",
   "main": "./dist/index.cjs",
   "module": "./dist/index.js",
