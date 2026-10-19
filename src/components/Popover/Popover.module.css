@@ -1,0 +1,25 @@
+.trigger {
+  display: inline-block;
+}
+
+.popover {
+  z-index: 1000;
+  min-width: 200px;
+  max-width: 320px;
+  padding: var(--pulse-space-4, 16px);
+  border-radius: var(--pulse-radius-md, 6px);
+  background-color: var(--pulse-color-background, #ffffff);
+  border: var(--pulse-border-width, 1px) solid var(--pulse-color-border, rgba(0, 0, 0, 0.1));
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+  font-family: var(--pulse-font-family-base);
+  font-size: var(--pulse-font-size-md, 14px);
+  color: var(--pulse-color-text);
+}
+
+.popover:focus-visible {
+  outline: none;
+}
+
+.arrow {
+  fill: var(--pulse-color-background, #ffffff);
+}

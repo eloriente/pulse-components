@@ -54,6 +54,9 @@ export type { DividerProps, DividerOrientation, DividerVariant } from './Divider
 export { Tooltip } from './Tooltip';
 export type { TooltipProps, TooltipPlacement } from './Tooltip';
 
+export { Popover } from './Popover';
+export type { PopoverProps, PopoverPlacement } from './Popover';
+
 // ─── Legacy demo components ───────────────────────────────────────────────────
 
 export { Header } from './Header';

@@ -895,6 +895,124 @@
     "examples": []
   },
   {
+    "name": "Popover",
+    "category": "Overlay",
+    "description": "Accessible popover for interactive content, positioned with Floating UI\n(flips/shifts to stay in the viewport).\n\nUnlike {@link Tooltip}, it opens on click (not hover), traps focus inside the\npanel while open (`FloatingFocusManager`, non-modal), and returns focus to the\ntrigger on close. The trigger is wrapped in a `<span>` rather than cloned onto\n`children`, so it works with any trigger — including this library's own\ncomponents, none of which use `forwardRef`. Because of that wrapper, `aria-expanded`\ncan't be exposed on the actual interactive trigger element, so pass `aria-label`\nto describe the panel instead (required for `role=\"dialog\"` to be valid ARIA).",
+    "importPath": "pulse-components",
+    "props": [
+      {
+        "name": "content",
+        "type": "ReactNode",
+        "required": true,
+        "description": "Interactive content rendered inside the popover panel"
+      },
+      {
+        "name": "children",
+        "type": "ReactNode",
+        "required": true,
+        "description": "Trigger element that toggles the popover on click"
+      },
+      {
+        "name": "placement",
+        "type": "PopoverPlacement",
+        "required": false,
+        "defaultValue": "'bottom'",
+        "description": "Preferred side; flips automatically when there isn't room in the viewport"
+      },
+      {
+        "name": "open",
+        "type": "boolean",
+        "required": false,
+        "description": "Controlled open state. Omit to let the popover manage its own state"
+      },
+      {
+        "name": "defaultOpen",
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "false",
+        "description": "Initial open state when uncontrolled"
+      },
+      {
+        "name": "onOpenChange",
+        "type": "(open: boolean) => void",
+        "required": false,
+        "description": "Called whenever the open state changes (click on trigger, outside click, Escape)"
+      },
+      {
+        "name": "disabled",
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "false",
+        "description": "Disables the popover entirely; children render without any wrapper or listeners"
+      },
+      {
+        "name": "className",
+        "type": "string",
+        "required": false,
+        "description": "Additional class applied to the popover panel"
+      },
+      {
+        "name": "aria-label",
+        "type": "string",
+        "required": false,
+        "description": "Accessible name for the panel (`role=\"dialog\"` requires one). Required unless\n`content` already renders a visible, labelled heading referenced via\n`aria-labelledby` on a wrapper you control."
+      }
+    ],
+    "variants": [],
+    "sizes": [],
+    "accessibility": [
+      "aria-expanded",
+      "aria-label"
+    ],
+    "examples": [
+      {
+        "name": "Default",
+        "args": {
+          "content": "(\n      <div>\n        <p>Interactive content goes here.</p>\n        <button type=\"button\">Focusable action</button>\n      </div>\n    )",
+          "children": "<Button label=\"Open popover\" />"
+        }
+      },
+      {
+        "name": "MovesFocusIntoPanel",
+        "args": {
+          "content": "(\n      <div>\n        <button type=\"button\">Focusable action</button>\n      </div>\n    )",
+          "children": "<Button label=\"Open popover\" />"
+        }
+      },
+      {
+        "name": "ClosesOnEscapeAndReturnsFocus",
+        "args": {
+          "content": "<div>Content</div>",
+          "children": "<Button label=\"Open popover\" />"
+        }
+      },
+      {
+        "name": "ClosesOnOutsideClick",
+        "args": {
+          "content": "<div>Content</div>",
+          "children": "<Button label=\"Open popover\" />"
+        }
+      },
+      {
+        "name": "Controlled",
+        "args": {
+          "content": "<div>Controlled content</div>",
+          "children": "<Button label=\"Open popover\" />",
+          "open": false,
+          "onOpenChange": "fn()"
+        }
+      },
+      {
+        "name": "Disabled",
+        "args": {
+          "content": "<div>You should never see this</div>",
+          "disabled": true,
+          "children": "<Button label=\"Open popover\" />"
+        }
+      }
+    ]
+  },
+  {
     "name": "Radio",
     "category": "Form",
     "description": "Radio button with accessible label.",
