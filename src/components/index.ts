@@ -66,6 +66,9 @@ export type {
   DropdownMenuSeparator,
 } from './DropdownMenu';
 
+export { Modal } from './Modal';
+export type { ModalProps } from './Modal';
+
 // ─── Legacy demo components ───────────────────────────────────────────────────
 
 export { Header } from './Header';

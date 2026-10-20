@@ -966,6 +966,97 @@
     ]
   },
   {
+    "name": "Modal",
+    "category": "Overlay",
+    "description": "Accessible modal dialog: traps focus inside the panel while open (`FloatingFocusManager`,\nmodal), locks background scroll, and returns focus to the previously focused element\non close. Unlike {@link Popover} and {@link DropdownMenu}, it has no trigger — rendering\nis fully controlled via the `open`/`onClose` props.",
+    "importPath": "pulse-components",
+    "props": [
+      {
+        "name": "open",
+        "type": "boolean",
+        "required": true,
+        "description": "Whether the modal is open. Modal has no trigger of its own — rendering is fully controlled"
+      },
+      {
+        "name": "onClose",
+        "type": "() => void",
+        "required": true,
+        "description": "Called to request closing (Escape, backdrop click, or the built-in close button)"
+      },
+      {
+        "name": "title",
+        "type": "ReactNode",
+        "required": false,
+        "description": "Visible heading rendered at the top of the panel; also wired up as the dialog's accessible name"
+      },
+      {
+        "name": "children",
+        "type": "ReactNode",
+        "required": true,
+        "description": "Panel content"
+      },
+      {
+        "name": "aria-label",
+        "type": "string",
+        "required": false,
+        "description": "Accessible name fallback when there's no visible `title` (required in that case for valid ARIA)"
+      },
+      {
+        "name": "closeOnBackdropClick",
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "true",
+        "description": "Closes the modal when the backdrop is clicked. Default `true`"
+      },
+      {
+        "name": "closeOnEscape",
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "true",
+        "description": "Closes the modal on `Escape`. Default `true`"
+      },
+      {
+        "name": "className",
+        "type": "string",
+        "required": false,
+        "description": "Additional class applied to the panel"
+      }
+    ],
+    "variants": [],
+    "sizes": [],
+    "accessibility": [
+      "aria-modal",
+      "aria-labelledby",
+      "aria-label"
+    ],
+    "examples": [
+      {
+        "name": "Default",
+        "args": {}
+      },
+      {
+        "name": "MovesFocusIntoPanel",
+        "args": {}
+      },
+      {
+        "name": "ClosesOnEscapeAndReturnsFocus",
+        "args": {}
+      },
+      {
+        "name": "ClosesOnCloseButton",
+        "args": {}
+      },
+      {
+        "name": "ClosesOnBackdropClick",
+        "args": {}
+      },
+      {
+        "name": "WithoutTitleRequiresAriaLabel",
+        "args": {}
+      }
+    ]
+  },
+  {
     "name": "Page",
     "category": "Legacy demo components",
     "description": "Full-page layout example combining Header and content",
