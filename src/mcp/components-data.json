@@ -484,6 +484,97 @@
     ]
   },
   {
+    "name": "DropdownMenu",
+    "category": "Overlay",
+    "description": "Accessible dropdown menu positioned with Floating UI (flips/shifts to stay in\nthe viewport). Supports arrow-key navigation, typeahead (type a letter to jump\nto a matching item), `Escape` to close with focus returned to the trigger, and\ndisabled items/separators. The trigger is wrapped in a `<span>` rather than\ncloned onto `children`, so it works with any trigger — including this\nlibrary's own components, none of which use `forwardRef`.",
+    "importPath": "pulse-components",
+    "props": [
+      {
+        "name": "children",
+        "type": "ReactNode",
+        "required": true,
+        "description": "Trigger element that opens the menu on click"
+      },
+      {
+        "name": "items",
+        "type": "DropdownMenuEntry[]",
+        "required": true,
+        "description": "Menu entries, in order"
+      },
+      {
+        "name": "placement",
+        "type": "DropdownMenuPlacement",
+        "required": false,
+        "defaultValue": "'bottom-start'",
+        "description": "Preferred corner; flips automatically when there isn't room in the viewport"
+      },
+      {
+        "name": "disabled",
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "false",
+        "description": "Disables the menu entirely; children render without any wrapper or listeners"
+      },
+      {
+        "name": "className",
+        "type": "string",
+        "required": false,
+        "description": "Additional class applied to the menu panel"
+      }
+    ],
+    "variants": [],
+    "sizes": [],
+    "accessibility": [
+      "aria-expanded",
+      "role"
+    ],
+    "examples": [
+      {
+        "name": "Default",
+        "args": {
+          "items": "[\n      { label: 'Rename', icon: Pencil, onSelect: fn() },\n      { label: 'Duplicate', icon: Copy, onSelect: fn() },\n      { type: 'separator' },\n      { label: 'Delete', icon: Trash2, danger: true, onSelect: fn() },\n    ]",
+          "children": "<Button label=\"Options\" />"
+        }
+      },
+      {
+        "name": "SelectingAnItemClosesTheMenu",
+        "args": {
+          "items": "[\n      { label: 'Rename', onSelect: fn() },\n      { label: 'Delete', danger: true, onSelect: fn() },\n    ]",
+          "children": "<Button label=\"Options\" />"
+        }
+      },
+      {
+        "name": "ArrowKeyNavigation",
+        "args": {
+          "items": "[\n      { label: 'First', onSelect: fn() },\n      { label: 'Second', onSelect: fn() },\n      { label: 'Third', onSelect: fn() },\n    ]",
+          "children": "<Button label=\"Options\" />"
+        }
+      },
+      {
+        "name": "SkipsDisabledItemsOnNavigation",
+        "args": {
+          "items": "[\n      { label: 'First', onSelect: fn() },\n      { label: 'Second (disabled)', disabled: true, onSelect: fn() },\n      { label: 'Third', onSelect: fn() },\n    ]",
+          "children": "<Button label=\"Options\" />"
+        }
+      },
+      {
+        "name": "ClosesOnEscapeAndReturnsFocus",
+        "args": {
+          "items": "[{ label: 'Rename', onSelect: fn() }]",
+          "children": "<Button label=\"Options\" />"
+        }
+      },
+      {
+        "name": "Disabled",
+        "args": {
+          "items": "[{ label: 'Rename', onSelect: fn() }]",
+          "disabled": true,
+          "children": "<Button label=\"Options\" />"
+        }
+      }
+    ]
+  },
+  {
     "name": "Header",
     "category": "Legacy demo components",
     "description": "Site header with branding and authentication actions",

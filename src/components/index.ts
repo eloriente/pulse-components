@@ -57,6 +57,15 @@ export type { TooltipProps, TooltipPlacement } from './Tooltip';
 export { Popover } from './Popover';
 export type { PopoverProps, PopoverPlacement } from './Popover';
 
+export { DropdownMenu } from './DropdownMenu';
+export type {
+  DropdownMenuProps,
+  DropdownMenuPlacement,
+  DropdownMenuEntry,
+  DropdownMenuAction,
+  DropdownMenuSeparator,
+} from './DropdownMenu';
+
 // ─── Legacy demo components ───────────────────────────────────────────────────
 
 export { Header } from './Header';
