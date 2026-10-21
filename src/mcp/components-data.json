@@ -3,7 +3,7 @@
     "name": "Accordion",
     "category": "Navigation",
     "description": "Accessible accordion following the ARIA APG accordion pattern: each header is a\nbutton (`aria-expanded`/`aria-controls`) inside an `<h3>`, each panel is a\n`role=\"region\"` labelled by its header. Arrow-key navigation moves focus\nbetween headers (`Home`/`End` jump to the first/last enabled one); `Enter`/\n`Space` toggle natively since headers are real `<button>` elements. Data-driven\n(`items`), consistent with {@link DropdownMenu} and {@link Tabs}. Always fills\nits container's width (doesn't shrink-wrap to the currently expanded content),\nso its width stays stable as items open and close.",
-    "importPath": "pulse-components",
+    "importPath": "@pulseui/react",
     "props": [
       {
         "name": "items",
@@ -123,7 +123,7 @@
     "name": "Alert",
     "category": "Feedback",
     "description": "Inline, persistent banner for page-level messages (as opposed to {@link Toast},\nwhich is for transient notifications that appear and disappear on their own).\nPersistent by default; pass `autoDismiss` to opt into auto-hiding it instead.",
-    "importPath": "pulse-components",
+    "importPath": "@pulseui/react",
     "props": [
       {
         "name": "variant",
@@ -256,7 +256,7 @@
     "name": "Avatar",
     "category": "Display",
     "description": "User avatar — shows an image or falls back to initials. Also falls back to\ninitials if the image fails to load (e.g. a broken or 404 `src`).",
-    "importPath": "pulse-components",
+    "importPath": "@pulseui/react",
     "props": [
       {
         "name": "src",
@@ -339,7 +339,7 @@
     "name": "Badge",
     "category": "Display",
     "description": "Status badge / label chip for counts, states, and categories.",
-    "importPath": "pulse-components",
+    "importPath": "@pulseui/react",
     "props": [
       {
         "name": "variant",
@@ -419,7 +419,7 @@
     "name": "Breadcrumb",
     "category": "Navigation",
     "description": "Accessible breadcrumb trail: `nav[aria-label=\"Breadcrumb\"]` wrapping an\nordered list. The last item always renders as the current page\n(`aria-current=\"page\"`, not a link) regardless of whether it has an `href`.",
-    "importPath": "pulse-components",
+    "importPath": "@pulseui/react",
     "props": [
       {
         "name": "items",
@@ -492,7 +492,7 @@
     "name": "Button",
     "category": "Primitives",
     "description": "Primary UI component for user interaction",
-    "importPath": "pulse-components",
+    "importPath": "@pulseui/react",
     "props": [
       {
         "name": "variant",
@@ -656,7 +656,7 @@
     "name": "Checkbox",
     "category": "Form",
     "description": "Checkbox with indeterminate support and accessible label.",
-    "importPath": "pulse-components",
+    "importPath": "@pulseui/react",
     "props": [
       {
         "name": "label",
@@ -739,7 +739,7 @@
     "name": "Divider",
     "category": "Display",
     "description": "Visual separator — horizontal or vertical.",
-    "importPath": "pulse-components",
+    "importPath": "@pulseui/react",
     "props": [
       {
         "name": "orientation",
@@ -801,7 +801,7 @@
     "name": "DropdownMenu",
     "category": "Overlay",
     "description": "Accessible dropdown menu positioned with Floating UI (flips/shifts to stay in\nthe viewport). Supports arrow-key navigation, typeahead (type a letter to jump\nto a matching item), `Escape` to close with focus returned to the trigger, and\ndisabled items/separators. Supports controlled (`open`/`onOpenChange`) and\nuncontrolled (`defaultOpen`) modes, same as {@link Popover}. The trigger is\nwrapped in a `<span>` rather than cloned onto `children`, so it works with\nany trigger — including this library's own components, none of which use\n`forwardRef`.",
-    "importPath": "pulse-components",
+    "importPath": "@pulseui/react",
     "props": [
       {
         "name": "children",
@@ -911,7 +911,7 @@
     "name": "Heading",
     "category": "Primitives",
     "description": "Semantic heading (h1–h6) with independent visual sizing.",
-    "importPath": "pulse-components",
+    "importPath": "@pulseui/react",
     "props": [
       {
         "name": "level",
@@ -972,7 +972,7 @@
     "name": "Icon",
     "category": "Primitives",
     "description": "Icon component — renders Lucide icons or custom SVG components\nwith consistent sizing, color, and accessibility support.",
-    "importPath": "pulse-components",
+    "importPath": "@pulseui/react",
     "props": [
       {
         "name": "as",
@@ -1073,7 +1073,7 @@
     "name": "Input",
     "category": "Form",
     "description": "Text input with variants, sizes, icons, and error state.",
-    "importPath": "pulse-components",
+    "importPath": "@pulseui/react",
     "props": [
       {
         "name": "variant",
@@ -1207,7 +1207,7 @@
     "name": "Label",
     "category": "Form",
     "description": "Semantic label for form fields.",
-    "importPath": "pulse-components",
+    "importPath": "@pulseui/react",
     "props": [
       {
         "name": "children",
@@ -1271,7 +1271,7 @@
     "name": "Modal",
     "category": "Overlay",
     "description": "Accessible modal dialog: traps focus inside the panel while open (`FloatingFocusManager`,\nmodal), locks background scroll, and returns focus to the previously focused element\non close. Unlike {@link Popover} and {@link DropdownMenu}, it has no trigger — rendering\nis fully controlled via the `open`/`onClose` props.",
-    "importPath": "pulse-components",
+    "importPath": "@pulseui/react",
     "props": [
       {
         "name": "open",
@@ -1362,7 +1362,7 @@
     "name": "Pagination",
     "category": "Navigation",
     "description": "Accessible pagination: `nav[aria-label=\"Pagination\"]` with Previous/Next\nbuttons and page number buttons, collapsing distant pages into an ellipsis\nwhile always keeping the first and last page visible.",
-    "importPath": "pulse-components",
+    "importPath": "@pulseui/react",
     "props": [
       {
         "name": "currentPage",
@@ -1447,7 +1447,7 @@
     "name": "Popover",
     "category": "Overlay",
     "description": "Accessible popover for interactive content, positioned with Floating UI\n(flips/shifts to stay in the viewport).\n\nUnlike {@link Tooltip}, it opens on click (not hover), traps focus inside the\npanel while open (`FloatingFocusManager`, non-modal), and returns focus to the\ntrigger on close. The trigger is wrapped in a `<span>` rather than cloned onto\n`children`, so it works with any trigger — including this library's own\ncomponents, none of which use `forwardRef`. Because of that wrapper, `aria-expanded`\ncan't be exposed on the actual interactive trigger element, so pass `aria-label`\nto describe the panel instead (required for `role=\"dialog\"` to be valid ARIA).",
-    "importPath": "pulse-components",
+    "importPath": "@pulseui/react",
     "props": [
       {
         "name": "content",
@@ -1565,7 +1565,7 @@
     "name": "Radio",
     "category": "Form",
     "description": "Radio button with accessible label.",
-    "importPath": "pulse-components",
+    "importPath": "@pulseui/react",
     "props": [
       {
         "name": "label",
@@ -1633,7 +1633,7 @@
     "name": "Select",
     "category": "Form",
     "description": "Styled native select dropdown.",
-    "importPath": "pulse-components",
+    "importPath": "@pulseui/react",
     "props": [
       {
         "name": "variant",
@@ -1734,7 +1734,7 @@
     "name": "Spinner",
     "category": "Display",
     "description": "Loading spinner indicator.",
-    "importPath": "pulse-components",
+    "importPath": "@pulseui/react",
     "props": [
       {
         "name": "size",
@@ -1812,7 +1812,7 @@
     "name": "Switch",
     "category": "Form",
     "description": "Toggle switch — a styled checkbox rendered as an on/off switch.",
-    "importPath": "pulse-components",
+    "importPath": "@pulseui/react",
     "props": [
       {
         "name": "label",
@@ -1878,7 +1878,7 @@
     "name": "Tabs",
     "category": "Navigation",
     "description": "Accessible tabs following the ARIA APG tabs pattern: roving tabindex, arrow-key\nnavigation (`Home`/`End` jump to the first/last enabled tab), and automatic\nactivation — moving focus with the keyboard selects the tab immediately,\nmatching how native OS tabs behave. Disabled tabs are skipped during\nnavigation. Data-driven (`items`), not a compound component — consistent with\n{@link DropdownMenu}, the only other data-driven list component in this\nlibrary.",
-    "importPath": "pulse-components",
+    "importPath": "@pulseui/react",
     "props": [
       {
         "name": "items",
@@ -1973,7 +1973,7 @@
     "name": "Text",
     "category": "Primitives",
     "description": "Polymorphic text primitive for body copy, captions, code, and labels.",
-    "importPath": "pulse-components",
+    "importPath": "@pulseui/react",
     "props": [
       {
         "name": "as",
@@ -2091,7 +2091,7 @@
     "name": "Textarea",
     "category": "Form",
     "description": "Multi-line text input with variants, sizes, and error state.",
-    "importPath": "pulse-components",
+    "importPath": "@pulseui/react",
     "props": [
       {
         "name": "variant",
@@ -2192,7 +2192,7 @@
     "name": "Toast",
     "category": "Feedback",
     "description": "A single toast notification. You normally won't render this directly — call\n`useToast().toast(...)` from inside a {@link ToastProvider}, which manages\nthe stack and renders this component for you.",
-    "importPath": "pulse-components",
+    "importPath": "@pulseui/react",
     "props": [
       {
         "name": "variant",
@@ -2249,7 +2249,7 @@
     "name": "Tooltip",
     "category": "Overlay",
     "description": "Accessible tooltip positioned with Floating UI (flips/shifts to stay in the viewport).\n\nThe trigger is wrapped in a `<span>` rather than cloned onto `children`, so it works\nwith any trigger — including this library's own components, none of which use\n`forwardRef`. The tooltip opens on hover and on keyboard focus, and closes on\n`Escape` or on blur/mouse leave.",
-    "importPath": "pulse-components",
+    "importPath": "@pulseui/react",
     "props": [
       {
         "name": "content",

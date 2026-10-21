@@ -5,6 +5,19 @@ All notable changes to this project are documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [Unreleased]
+
+### Changed
+
+- Renamed the package from `pulse-components` to **`@pulseui/react`**
+  (scoped, to make room for future framework packages like `@pulseui/vue`),
+  and the GitHub repository from `pulse-components` to `pulseui-react`.
+  **Breaking** for anyone who already depended on the old name — but
+  `v1.0.2` was never published to npm, so there are no real consumers to
+  break. All install/import examples across the README, Storybook docs and
+  MCP config are updated accordingly. The product/brand name was already
+  "PulseUI" (see `brand/`); this aligns the package and repo names with it.
+
 ## [1.0.2] - 2026-10-22
 
 Branding, accessibility fixes, and a live Storybook preview on GitHub Pages.

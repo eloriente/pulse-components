@@ -28,7 +28,7 @@ import { Meta } from '@storybook/addon-docs/blocks';
 
 # Getting Started
 
-Everything you need to install Pulse Components and render your first component.
+Everything you need to install PulseUI and render your first component.
 
 ---
 
@@ -43,29 +43,29 @@ Everything you need to install Pulse Components and render your first component.
 ## Installation
 
 ```bash
-npm install pulse-components
+npm install @pulseui/react
 ```
 
 ---
 
 ## Importing styles
 
-Pulse Components ships its own CSS. Import it **once** in your application entry point
+PulseUI ships its own CSS. Import it **once** in your application entry point
 (e.g. `main.tsx`, `_app.tsx`, `layout.tsx`):
 
 ```tsx
-import 'pulse-components/styles';
+import '@pulseui/react/styles';
 ```
 
 If you also want access to the raw `--pulse-*` CSS custom properties in your own
 stylesheets, import the tokens separately:
 
 ```css
-@import 'pulse-components/tokens';
+@import '@pulseui/react/tokens';
 ```
 
-> You do **not** need both. `pulse-components/styles` already includes the component
-> styles. Use `pulse-components/tokens` only when you want to reference the variables
+> You do **not** need both. `@pulseui/react/styles` already includes the component
+> styles. Use `@pulseui/react/tokens` only when you want to reference the variables
 > directly in your own CSS files.
 
 ---
@@ -75,8 +75,8 @@ stylesheets, import the tokens separately:
 ### Button
 
 ```tsx
-import { Button } from 'pulse-components';
-import 'pulse-components/styles';
+import { Button } from '@pulseui/react';
+import '@pulseui/react/styles';
 
 export default function App() {
   return (
@@ -150,9 +150,9 @@ The package exposes three entry points:
 
 | Import path | What it provides |
 |---|---|
-| `pulse-components` | All components and TypeScript types |
-| `pulse-components/styles` | Bundled component CSS (`dist/style.css`) |
-| `pulse-components/tokens` | Design token CSS variables only (`dist/tokens/index.css`) |
+| `@pulseui/react` | All components and TypeScript types |
+| `@pulseui/react/styles` | Bundled component CSS (`dist/style.css`) |
+| `@pulseui/react/tokens` | Design token CSS variables only (`dist/tokens/index.css`) |
 
 ---
 
@@ -161,5 +161,5 @@ The package exposes three entry points:
 All prop interfaces are exported and can be imported for use in your own code:
 
 ```tsx
-import type { ButtonProps, ButtonVariant } from 'pulse-components';
+import type { ButtonProps, ButtonVariant } from '@pulseui/react';
 ```

@@ -1,11 +1,11 @@
 ---
 name: component-scaffolder
-description: Use when creating a brand-new component for pulse-components, or when adding a variant/size to an existing one in a way that touches all 5 files. Guarantees the result matches the project's conventions (structure, props, a11y, CSF3 stories, grouped tests) instead of ad-hoc code.
+description: Use when creating a brand-new component for PulseUI (@pulseui/react), or when adding a variant/size to an existing one in a way that touches all 5 files. Guarantees the result matches the project's conventions (structure, props, a11y, CSF3 stories, grouped tests) instead of ad-hoc code.
 tools: Read, Write, Edit, Glob, Grep, Bash
 model: inherit
 ---
 
-Eres el encargado de crear componentes nuevos para `pulse-components` siguiendo exactamente las convenciones documentadas en `CLAUDE.md`. No improvises una estructura distinta aunque parezca "más simple".
+Eres el encargado de crear componentes nuevos para PulseUI (`@pulseui/react`) siguiendo exactamente las convenciones documentadas en `CLAUDE.md`. No improvises una estructura distinta aunque parezca "más simple".
 
 ## Antes de escribir código
 

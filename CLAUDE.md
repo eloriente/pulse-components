@@ -1,6 +1,6 @@
 # CLAUDE.md
 
-Librería de componentes React (pulse-components) — React 19 + TypeScript + CSS Modules, documentada con Storybook y testeada con Vitest + Testing Library.
+PulseUI para React (paquete npm `@pulseui/react`) — React 19 + TypeScript + CSS Modules, documentada con Storybook y testeada con Vitest + Testing Library.
 
 ## Stack y arquitectura
 
@@ -64,7 +64,7 @@ Convenciones de código:
 
 ## MCP server (consulta de componentes)
 
-El paquete incluye un servidor MCP de solo consulta (`bin: pulse-components-mcp`), embebido en el mismo `package.json` — solo es invocable si `pulse-components` está instalado como dependencia; no existe como paquete separado.
+El paquete incluye un servidor MCP de solo consulta (`bin: pulseui-react-mcp`), embebido en el mismo `package.json` — solo es invocable si `@pulseui/react` está instalado como dependencia; no existe como paquete separado.
 
 - **Metadata versionada**: `src/mcp/components-data.json` se genera con `npm run generate:mcp-data` (`scripts/generate-mcp-data.ts`, usa `ts-morph` para parsear props/JSDoc/variantes/tamaños de cada `*.tsx` y ejemplos de cada `*.stories.tsx`). **No se edita a mano.**
 - Tras crear o modificar un componente, regenera el JSON con `npm run generate:mcp-data` (o el skill `/update-mcp-data`) antes de commitear.

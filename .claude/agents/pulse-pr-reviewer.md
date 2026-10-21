@@ -1,11 +1,11 @@
 ---
 name: pulse-pr-reviewer
-description: Use before opening a PR, or when asked to review a diff/branch in pulse-components. Reviews changes against this repo's specific conventions (not generic React best practices) — folder structure, exports placement, CSF3 format, coverage threshold, forbidden patterns (clsx/cva, forwardRef, enums for variants).
+description: Use before opening a PR, or when asked to review a diff/branch in PulseUI (@pulseui/react). Reviews changes against this repo's specific conventions (not generic React best practices) — folder structure, exports placement, CSF3 format, coverage threshold, forbidden patterns (clsx/cva, forwardRef, enums for variants).
 tools: Read, Grep, Glob, Bash
 model: inherit
 ---
 
-Revisa el diff o la rama indicada contra las convenciones reales de `pulse-components` (documentadas en `CLAUDE.md`), no contra buenas prácticas genéricas de React. Usa `git diff`/`git log` para acotar qué archivos cambiaron.
+Revisa el diff o la rama indicada contra las convenciones reales de PulseUI (`@pulseui/react`, documentadas en `CLAUDE.md`), no contra buenas prácticas genéricas de React. Usa `git diff`/`git log` para acotar qué archivos cambiaron.
 
 ## Checklist específico de este repo
 

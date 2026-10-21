@@ -203,7 +203,7 @@ function generate(): ComponentMeta[] {
         name: componentName,
         category: categoryMap.get(componentName) ?? 'Uncategorized',
         description,
-        importPath: 'pulse-components',
+        importPath: '@pulseui/react',
         props,
         variants: [...new Set(variants)],
         sizes: [...new Set(sizes)],

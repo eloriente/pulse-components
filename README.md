@@ -2,7 +2,7 @@
   <img src="brand/wordmark.svg" alt="PulseUI" width="280" />
 </p>
 
-# pulse-components
+# PulseUI
 
 An open-source React component library built with TypeScript and CSS Modules.
 Designed to be used as-is, forked, or extended to match your own design system.
@@ -13,7 +13,7 @@ Designed to be used as-is, forked, or extended to match your own design system.
 - **25 components** — primitives, form controls, display, overlays, feedback and navigation
 - **CSS Modules** — scoped styles with zero class-name collisions
 - **Design tokens** — CSS custom properties (`--pulse-*`) for colors, typography and spacing
-- **Accessible by default** — every interactive component follows the relevant ARIA pattern (dialog, menu, tabs, accordion...); Storybook's a11y addon fails the build on any violation. See the [Accessibility guide](https://eloriente.github.io/pulse-components/?path=/docs/guide-accessibility--docs) for the full breakdown
+- **Accessible by default** — every interactive component follows the relevant ARIA pattern (dialog, menu, tabs, accordion...); Storybook's a11y addon fails the build on any violation. See the [Accessibility guide](https://eloriente.github.io/pulseui-react/?path=/docs/guide-accessibility--docs) for the full breakdown
 - **Tailwind compatible** — every component accepts a `className` prop for utility overrides
 - **Storybook 10** — interactive component explorer with a11y checks and interaction tests
 - **Vitest + Playwright** — story-based tests run in a real browser
@@ -24,18 +24,18 @@ Designed to be used as-is, forked, or extended to match your own design system.
 ### Installation
 
 ```bash
-npm install pulse-components
+npm install @pulseui/react
 ```
 
 ### Basic usage
 
 ```tsx
-import { Button } from 'pulse-components';
+import { Button } from '@pulseui/react';
 // Include the base styles once in your app entry point
-import 'pulse-components/styles';
+import '@pulseui/react/styles';
 
 export default function App() {
-  return <Button primary label="Hello world" />;
+  return <Button variant="primary" label="Hello world" />;
 }
 ```
 
@@ -44,7 +44,7 @@ export default function App() {
 Import the tokens CSS to get access to all `--pulse-*` custom properties in your own styles:
 
 ```css
-@import 'pulse-components/tokens';
+@import '@pulseui/react/tokens';
 ```
 
 You can override any token in your root styles:
@@ -61,8 +61,8 @@ You can override any token in your root styles:
 All components accept a `className` prop. Pass Tailwind utility classes to extend or override the default styles:
 
 ```tsx
-import { Button } from 'pulse-components';
-import 'pulse-components/styles';
+import { Button } from '@pulseui/react';
+import '@pulseui/react/styles';
 
 // Tailwind classes are merged with the component's base styles
 <Button label="Custom" className="shadow-lg tracking-wide" />
@@ -72,7 +72,7 @@ import 'pulse-components/styles';
 
 ## Components
 
-Full props, variants and live examples for every component are in Storybook — browse the [live preview](https://eloriente.github.io/pulse-components/) or run `npm run storybook` locally.
+Full props, variants and live examples for every component are in Storybook — browse the [live preview](https://eloriente.github.io/pulseui-react/) or run `npm run storybook` locally.
 
 | Category | Components |
 | --- | --- |
@@ -88,8 +88,8 @@ Overlay components (Tooltip, Popover, DropdownMenu, Modal) are built on [Floatin
 ```tsx
 import { useState } from 'react';
 import { Trash2 } from 'lucide-react';
-import { Tooltip, Button, Modal } from 'pulse-components';
-import 'pulse-components/styles';
+import { Tooltip, Button, Modal } from '@pulseui/react';
+import '@pulseui/react/styles';
 
 function Example() {
   const [open, setOpen] = useState(false);
@@ -108,14 +108,14 @@ function Example() {
 
 ## MCP server
 
-The package ships a read-only [Model Context Protocol](https://modelcontextprotocol.io) server so an AI coding assistant can look up component props, variants, sizes and usage examples instead of guessing. It only works when `pulse-components` is installed as a project dependency — it isn't published as a separate package.
+The package ships a read-only [Model Context Protocol](https://modelcontextprotocol.io) server so an AI coding assistant can look up component props, variants, sizes and usage examples instead of guessing. It only works when `@pulseui/react` is installed as a project dependency — it isn't published as a separate package.
 
 ```json
 {
   "mcpServers": {
-    "pulse-components": {
+    "pulseui-react": {
       "command": "npx",
-      "args": ["pulse-components-mcp"]
+      "args": ["pulseui-react-mcp"]
     }
   }
 }
@@ -179,7 +179,7 @@ Uses [ESLint](https://eslint.org/) (flat config, `typescript-eslint` recommended
 ## Project structure
 
 ```
-pulse-components/
+pulseui-react/
 ├── src/
 │   ├── components/
 │   │   ├── Button/

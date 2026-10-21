@@ -5,7 +5,7 @@ import { Meta } from '@storybook/addon-docs/blocks';
 
 # Theming
 
-Pulse Components was built with customisation in mind. Every visual decision lives
+PulseUI was built with customisation in mind. Every visual decision lives
 in a `--pulse-*` CSS custom property, so you can restyle the entire library without
 touching a single component file.
 
@@ -37,11 +37,11 @@ Override the token and every component that references it updates automatically.
 ## Global theme override
 
 The simplest approach is to redefine variables on `:root` in your global CSS file,
-**after** importing the Pulse styles:
+**after** importing the PulseUI styles:
 
 ```css
 /* global.css */
-@import 'pulse-components/styles';
+@import '@pulseui/react/styles';
 
 :root {
   /* Brand color */
@@ -90,7 +90,7 @@ A simple dark-mode approach using the `prefers-color-scheme` media query or a
 `.dark` class toggle:
 
 ```css
-@import 'pulse-components/styles';
+@import '@pulseui/react/styles';
 
 /* System dark mode */
 @media (prefers-color-scheme: dark) {

@@ -5,7 +5,7 @@ addons.setConfig({
   theme: create({
     base: 'light',
     brandTitle: 'PulseUI',
-    brandUrl: 'https://github.com/eloriente/pulse-components',
+    brandUrl: 'https://github.com/eloriente/pulseui-react',
     brandImage: 'wordmark.svg',
     brandTarget: '_self',
   }),

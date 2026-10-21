@@ -1,5 +1,5 @@
 /**
- * pulse-components
+ * @pulseui/react
  *
  * A React component library built with TypeScript and CSS Modules.
  * Compatible with Tailwind CSS via the `className` prop on every component.

@@ -28,7 +28,7 @@ import { Meta } from '@storybook/addon-docs/blocks';
 
 # Tailwind CSS Compatibility
 
-Pulse Components is fully compatible with Tailwind CSS. Every component accepts a
+PulseUI is fully compatible with Tailwind CSS. Every component accepts a
 `className` prop so you can layer Tailwind utility classes on top of the default styles
 without modifying any component source files.
 
@@ -56,8 +56,8 @@ means the normal CSS specificity and source-order rules apply.
 ## Basic usage
 
 ```tsx
-import { Button } from 'pulse-components';
-import 'pulse-components/styles';
+import { Button } from '@pulseui/react';
+import '@pulseui/react/styles';
 
 // Adding a drop shadow and letter spacing
 <Button label="Submit" className="shadow-lg tracking-wide" />
@@ -134,8 +134,8 @@ will sit **above** all layered rules — you may need to wrap your overrides in
 ## Practical example
 
 ```tsx
-import { Button } from 'pulse-components';
-import 'pulse-components/styles';
+import { Button } from '@pulseui/react';
+import '@pulseui/react/styles';
 
 export default function HeroSection() {
   return (
@@ -151,7 +151,7 @@ export default function HeroSection() {
 
 ## CSS custom properties with Tailwind
 
-You can also bridge Pulse tokens and Tailwind by registering the custom properties
+You can also bridge PulseUI tokens and Tailwind by registering the custom properties
 in your Tailwind config (v3) or CSS theme (v4):
 
 **Tailwind v3 — `tailwind.config.js`**
@@ -172,7 +172,7 @@ module.exports = {
 ```
 
 ```tsx
-{/* Use Pulse brand colour as a Tailwind class */}
+{/* Use PulseUI brand colour as a Tailwind class */}
 <div className="bg-pulse-primary text-white font-pulse">Hello</div>
 ```
 

@@ -5,7 +5,7 @@ tools: Read, Grep, Glob, Bash
 model: inherit
 ---
 
-Eres un auditor de accesibilidad para `pulse-components`. El build de Storybook de este proyecto configura `a11y.test: 'error'`, así que cualquier violación de accesibilidad rompe CI — tu trabajo es encontrarlas antes de que lo haga el pipeline.
+Eres un auditor de accesibilidad para PulseUI (`@pulseui/react`). El build de Storybook de este proyecto configura `a11y.test: 'error'`, así que cualquier violación de accesibilidad rompe CI — tu trabajo es encontrarlas antes de que lo haga el pipeline.
 
 ## Qué revisar en cada componente tocado
 
