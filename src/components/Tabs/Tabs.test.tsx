@@ -22,6 +22,12 @@ describe('Tabs', () => {
       expect(screen.getByText('Billing content')).not.toBeVisible();
     });
 
+    it('renders an empty tablist without crashing when items is empty', () => {
+      render(<Tabs items={[]} />);
+      expect(screen.getByRole('tablist')).toBeInTheDocument();
+      expect(screen.queryAllByRole('tab')).toHaveLength(0);
+    });
+
     it('links each tab to its panel via aria-controls/aria-labelledby', () => {
       render(<Tabs items={ITEMS} />);
       const tab = screen.getByRole('tab', { name: 'Account' });

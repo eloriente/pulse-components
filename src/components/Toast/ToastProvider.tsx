@@ -33,8 +33,6 @@ export interface ToastProviderProps {
   position?: ToastPosition;
 }
 
-let idCounter = 0;
-
 /**
  * Provides `useToast()` to the component tree below it and renders the
  * notification stack in a portal. Mount it once, near the root of your app.
@@ -53,6 +51,7 @@ let idCounter = 0;
 export function ToastProvider({ children, position = 'bottom-right' }: ToastProviderProps) {
   const [items, setItems] = useState<ToastItem[]>([]);
   const timers = useRef(new Map<string, ReturnType<typeof setTimeout>>());
+  const idCounter = useRef(0);
 
   const dismiss = useCallback((id: string) => {
     setItems((current) => current.filter((item) => item.id !== id));
@@ -65,7 +64,7 @@ export function ToastProvider({ children, position = 'bottom-right' }: ToastProv
 
   const toast = useCallback(
     ({ title, description, variant = 'info', duration = 5000 }: ToastOptions) => {
-      const id = `toast-${++idCounter}`;
+      const id = `toast-${++idCounter.current}`;
       setItems((current) => [...current, { id, title, description, variant }]);
       if (duration > 0 && Number.isFinite(duration)) {
         timers.current.set(

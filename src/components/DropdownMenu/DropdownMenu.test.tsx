@@ -119,6 +119,35 @@ describe('DropdownMenu', () => {
     });
   });
 
+  describe('Typeahead', () => {
+    it('jumps to the item whose label starts with the typed letter', async () => {
+      const user = userEvent.setup();
+      render(
+        <DropdownMenu items={[{ label: 'Apple' }, { label: 'Banana' }, { label: 'Cherry' }]}>
+          <button type="button">Options</button>
+        </DropdownMenu>,
+      );
+      await user.click(screen.getByRole('button', { name: 'Options' }));
+      await waitFor(() => expect(screen.getByRole('menuitem', { name: 'Apple' })).toHaveFocus());
+      await user.keyboard('c');
+      await waitFor(() => expect(screen.getByRole('menuitem', { name: 'Cherry' })).toHaveFocus());
+    });
+  });
+
+  describe('Edge cases', () => {
+    it('opens an empty menu without crashing when items is empty', async () => {
+      const user = userEvent.setup();
+      render(
+        <DropdownMenu items={[]}>
+          <button type="button">Options</button>
+        </DropdownMenu>,
+      );
+      await user.click(screen.getByRole('button', { name: 'Options' }));
+      await waitFor(() => expect(screen.getByRole('menu')).toBeInTheDocument());
+      expect(screen.queryAllByRole('menuitem')).toHaveLength(0);
+    });
+  });
+
   describe('Controlled mode', () => {
     it('calls onOpenChange instead of opening itself when controlled', async () => {
       const user = userEvent.setup();

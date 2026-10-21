@@ -21,6 +21,12 @@ describe('Accordion', () => {
       }
     });
 
+    it('renders nothing without crashing when items is empty', () => {
+      const { container } = render(<Accordion items={[]} />);
+      expect(screen.queryAllByRole('button')).toHaveLength(0);
+      expect(container.firstElementChild).toBeInTheDocument();
+    });
+
     it('respects defaultValue when uncontrolled', () => {
       render(<Accordion items={ITEMS} defaultValue={['returns']} />);
       expect(screen.getByRole('button', { name: 'Returns' })).toHaveAttribute(

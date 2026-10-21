@@ -12,7 +12,8 @@ concurrency:
   cancel-in-progress: true
 
 env:
-  NODE_VERSION: '22'
+  # Keep in sync with "engines.node" in package.json.
+  NODE_VERSION: '22.12.0'
 
 jobs:
   # ─── Lint ──────────────────────────────────────────────────────────────────

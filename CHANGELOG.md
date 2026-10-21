@@ -68,12 +68,24 @@ decided when ready to publish.
   safe literal text color instead of the token directly, since those two
   tokens are too light for text at this size/weight — same reasoning as the
   `Alert` error-contrast fix above).
+- `ToastProvider`: the internal toast-id counter was module-level (`let
+  idCounter`), shared across every `ToastProvider` instance; two providers
+  mounted at once could hand out colliding ids. Now a per-instance `useRef`.
 
 ### Changed
 
 - `strict: true` enabled in `tsconfig.app.json`, `tsconfig.node.json` and
   `tsconfig.mcp.json` (previously only had a few individual compiler flags).
   No code changes were needed — everything already type-checked cleanly.
+- CI's `NODE_VERSION` is now pinned to `22.12.0` (previously the floating
+  `22`), to stay in sync with `engines.node` in `package.json`.
+
+### Tests
+
+- Added coverage for previously-untested edge cases: `DropdownMenu` typeahead
+  and an empty `items` array, `Tabs` with an empty `items` array, `Accordion`
+  with an empty `items` array, and `ToastProvider` with two provider
+  instances mounted simultaneously (id collisions, independent dismissal).
 
 ### Security
 

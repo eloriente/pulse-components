@@ -151,4 +151,45 @@ describe('Toast', () => {
       );
     });
   });
+
+  describe('Multiple providers', () => {
+    it('dismisses the correct toast when two providers are mounted at once', async () => {
+      const user = userEvent.setup();
+      function ProviderA() {
+        const { toast } = useToast();
+        return (
+          <button type="button" onClick={() => toast({ title: 'From A' })}>
+            Trigger A
+          </button>
+        );
+      }
+      function ProviderB() {
+        const { toast } = useToast();
+        return (
+          <button type="button" onClick={() => toast({ title: 'From B' })}>
+            Trigger B
+          </button>
+        );
+      }
+      render(
+        <>
+          <ToastProvider>
+            <ProviderA />
+          </ToastProvider>
+          <ToastProvider>
+            <ProviderB />
+          </ToastProvider>
+        </>,
+      );
+      await user.click(screen.getByRole('button', { name: 'Trigger A' }));
+      await user.click(screen.getByRole('button', { name: 'Trigger B' }));
+      expect(await screen.findByText('From A')).toBeInTheDocument();
+      expect(screen.getByText('From B')).toBeInTheDocument();
+
+      const dismissButtons = screen.getAllByRole('button', { name: 'Dismiss' });
+      await user.click(dismissButtons[0]);
+      await waitFor(() => expect(screen.queryByText('From A')).not.toBeInTheDocument());
+      expect(screen.getByText('From B')).toBeInTheDocument();
+    });
+  });
 });
