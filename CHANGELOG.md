@@ -19,6 +19,21 @@ decided when ready to publish.
   the published package's API. **Breaking** for anyone importing them from
   `pulse-components`.
 
+### Added
+
+- `DropdownMenu` now supports controlled (`open`/`onOpenChange`) and
+  uncontrolled (`defaultOpen`) modes, matching `Popover`'s API.
+- `--pulse-color-surface`, `--pulse-color-surface-subtle` and
+  `--pulse-color-text-muted` design tokens, now actually defined in
+  `tokens/colors.css` (several components already referenced them via
+  `var(--token, #fallback)`, so they worked, but weren't real/overridable
+  tokens).
+- `eslint-plugin-react-hooks` (`rules-of-hooks` + `exhaustive-deps`) in
+  `eslint.config.ts`.
+- `build` job in CI (`npm run build`), so build-time-only failures are caught
+  independently of typecheck/lint.
+- `author` field in `package.json`.
+
 ### Fixed
 
 - `Switch`: the thumb turned the same color as the track when checked (a
@@ -26,12 +41,32 @@ decided when ready to publish.
 - `src/mcp/server.ts`: the MCP server reported a hardcoded version (`0.1.0`)
   instead of matching the package version.
 - `@modelcontextprotocol/sdk` bumped to `1.32.1` (latest non-breaking patch).
+- `Avatar`: a broken/404 `src` now falls back to the initials instead of
+  showing forever as a broken image.
+- `Divider`: the labelled variant (`label` prop set) now forwards extra props
+  (`id`, `data-*`, `aria-*`, event handlers) like the other two variants
+  already did.
+- `Checkbox`: the indeterminate-state ref callback is now memoized, instead of
+  being a new function on every render.
+- `Pagination`: an out-of-range `currentPage` (e.g. stale after the result set
+  shrank) is now clamped into `[1, totalPages]` instead of highlighting no
+  page; rendering with `totalPages < 1` now renders nothing instead of an
+  empty, inert control.
 
 ### Changed
 
 - `strict: true` enabled in `tsconfig.app.json`, `tsconfig.node.json` and
   `tsconfig.mcp.json` (previously only had a few individual compiler flags).
   No code changes were needed — everything already type-checked cleanly.
+
+### Security
+
+- A critical advisory in `proxy-addr` (and moderate ones in `hono`/`ip-address`/`qs`),
+  all transitive through `@modelcontextprotocol/sdk`'s optional HTTP transport,
+  remains in `node_modules` — no fix is available upstream without downgrading
+  Vite. Confirmed `src/mcp/server.ts` only imports the SDK's stdio transport
+  and never loads the vulnerable HTTP transport code, so it isn't reachable at
+  runtime in this package. Tracked for when the SDK ships a fix.
 
 ## [1.0.0] - 2026-10-21
 

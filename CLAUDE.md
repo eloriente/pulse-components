@@ -13,7 +13,7 @@ Librería de componentes React (pulse-components) — React 19 + TypeScript + CS
   - `tokens/` — design tokens en CSS (`colors.css`, `spacing.css`, `typography.css`, `index.css`), consumidos como variables `--pulse-*` en los `.module.css` de cada componente.
   - `docs/`, `Welcome.mdx` — documentación de Storybook.
   - `test-setup.ts` — setup global de Vitest/RTL.
-- **CI** (`.github/workflows/quality-checks.yml`, en cada push/PR): `lint` → `typecheck` (`tsc --noEmit`) → `test-unit` (Vitest) → `test-storybook` (Playwright/Chromium) → `coverage` (80% mínimo, sube artifact).
+- **CI** (`.github/workflows/quality-checks.yml`, en cada push/PR): `lint` → `typecheck` (`tsc --noEmit`) → `mcp-data` (`check:mcp-data`) → `build` (`npm run build`, detecta errores solo-de-build) → `test-unit` (Vitest) → `test-storybook` (Playwright/Chromium) → `coverage` (80% mínimo, sube artifact). Todos los jobs corren en paralelo salvo `coverage`, que depende de `test-unit`+`test-storybook`.
 - `src/index.ts` reexporta todos los componentes de `src/components/index.ts` (mismas categorías: Primitives / Form / Display / Overlay / Feedback / Navigation), **excepto** `Header` y `Page` (ver nota abajo). Si se agrega un componente nuevo a `src/components/index.ts`, replícalo también en `src/index.ts` para que llegue al entry point público.
 
 ## Componentes (`src/components/`)
