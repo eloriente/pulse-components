@@ -1,6 +1,6 @@
 {
   "name": "pulse-components",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "description": "An open-source React component library built with TypeScript and CSS Modules. Compatible with Tailwind CSS.",
   "keywords": [
     "react",
