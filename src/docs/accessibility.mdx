@@ -1,0 +1,136 @@
+{/* docs/accessibility.mdx */}
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="Guide/Accessibility" />
+
+<style>{`
+  .token-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 2rem;
+    font-size: 0.875rem;
+  }
+  .token-table thead tr {
+    border-bottom: 2px solid #e0e0e0;
+  }
+  .token-table thead th {
+    padding: 0.75rem;
+    text-align: left;
+    font-weight: 600;
+  }
+  .token-table tbody tr {
+    border-bottom: 1px solid #f0f0f0;
+  }
+  .token-table tbody td {
+    padding: 0.75rem;
+  }
+`}</style>
+
+# Accessibility
+
+Every component is built against the relevant [WAI-ARIA Authoring Practices](https://www.w3.org/WAI/ARIA/apg/) pattern and targets **WCAG 2.1 AA** as a practical baseline — not an afterthought bolted on at the end.
+
+---
+
+## How it's enforced, not just claimed
+
+This isn't a documentation promise with nothing behind it:
+
+- Every story runs through **axe-core** via Storybook's `addon-a11y`, configured in
+  `.storybook/preview.tsx` with `a11y.test: 'error'` — a real accessibility violation
+  **fails the Storybook build**, the same as a TypeScript error would.
+- `npm run test:storybook` runs those same axe checks headlessly in CI
+  (`test-storybook` job), on every push and pull request.
+- Keyboard interaction (arrow keys, `Home`/`End`, `Escape`, focus trapping) is covered
+  by dedicated tests in each component's `*.test.tsx`, not just visual review.
+
+---
+
+## Try it yourself
+
+Open **any** component's story in this Storybook and look at the **Accessibility**
+tab in the addon panel below the canvas. It runs the exact same axe-core scan CI
+runs, live, against whatever variant/args you currently have selected — violations,
+passes and incomplete checks are all listed with the specific DOM node and WCAG
+criterion involved.
+
+This is the fastest way to confirm a component is accessible for *your* specific
+combination of props, not just the default story.
+
+---
+
+## ARIA patterns by component
+
+<table className="token-table">
+  <thead>
+    <tr>
+      <th>Pattern</th>
+      <th>Components</th>
+      <th>Notes</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Dialog (modal)</td>
+      <td><code>Modal</code></td>
+      <td>Focus trapped and restored on close, <code>Escape</code> to dismiss, backdrop click closes</td>
+    </tr>
+    <tr>
+      <td>Menu</td>
+      <td><code>DropdownMenu</code></td>
+      <td>Roving tabindex, arrow-key navigation, typeahead, closes on <code>Escape</code> or outside click</td>
+    </tr>
+    <tr>
+      <td>Tabs</td>
+      <td><code>Tabs</code></td>
+      <td>Arrow-key navigation between tabs (horizontal or vertical), disabled tabs are skipped</td>
+    </tr>
+    <tr>
+      <td>Disclosure / accordion</td>
+      <td><code>Accordion</code></td>
+      <td><code>aria-expanded</code> + <code>aria-controls</code>/<code>aria-labelledby</code> linking trigger and panel</td>
+    </tr>
+    <tr>
+      <td>Tooltip &amp; Popover</td>
+      <td><code>Tooltip</code>, <code>Popover</code></td>
+      <td>Built on <code>@floating-ui/react</code> for positioning and focus/dismiss behavior</td>
+    </tr>
+    <tr>
+      <td>Live region</td>
+      <td><code>Toast</code>, <code>Alert</code></td>
+      <td><code>aria-live="polite"</code> (Toast) and <code>role="alert"</code> (Alert) so screen readers announce them</td>
+    </tr>
+    <tr>
+      <td>Form validation</td>
+      <td><code>Input</code>, <code>Textarea</code>, <code>Select</code>, <code>Checkbox</code></td>
+      <td><code>aria-invalid</code> and <code>aria-describedby</code> linking the field to its error message</td>
+    </tr>
+  </tbody>
+</table>
+
+---
+
+## Known trade-offs
+
+A couple of deliberate, documented decisions worth knowing about rather than
+discovering by surprise:
+
+- **`DropdownMenu` doesn't cycle `Tab` inside the menu.** Combining roving-tabindex
+  arrow-key navigation with Floating UI's focus manager in a way that also passes
+  axe's `aria-hidden-focus` check meant disabling the focus guards that would
+  otherwise let `Tab` wrap around inside the menu. Arrow keys, `Home`/`End` and
+  `Escape` all work as expected; `Tab` simply moves focus out of the menu like it
+  would for any other control.
+- **`Alert`'s `autoDismiss` is opt-in and off by default.** An alert that disappears
+  on its own without user input can conflict with [WCAG 2.2.1 (Timing
+  Adjustable)](https://www.w3.org/WAI/WCAG21/Understanding/timing-adjustable.html).
+  Use `dismissible` (a manual close button) for anything the user must be able to
+  read on their own schedule.
+
+---
+
+## For contributors
+
+A new component isn't done until it passes axe with zero violations across every
+story and variant, and its keyboard interactions are covered by tests — see
+[Contributing](?path=/docs/guide-contributing--docs) for the full checklist.

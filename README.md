@@ -13,7 +13,7 @@ Designed to be used as-is, forked, or extended to match your own design system.
 - **27 components** — primitives, form controls, display, overlays, feedback and navigation
 - **CSS Modules** — scoped styles with zero class-name collisions
 - **Design tokens** — CSS custom properties (`--pulse-*`) for colors, typography and spacing
-- **Accessible by default** — every interactive component follows the relevant ARIA pattern (dialog, menu, tabs, accordion...); Storybook's a11y addon fails the build on any violation
+- **Accessible by default** — every interactive component follows the relevant ARIA pattern (dialog, menu, tabs, accordion...); Storybook's a11y addon fails the build on any violation. See the [Accessibility guide](https://eloriente.github.io/pulse-components/?path=/docs/guide-accessibility--docs) for the full breakdown
 - **Tailwind compatible** — every component accepts a `className` prop for utility overrides
 - **Storybook 10** — interactive component explorer with a11y checks and interaction tests
 - **Vitest + Playwright** — story-based tests run in a real browser
@@ -72,7 +72,7 @@ import 'pulse-components/styles';
 
 ## Components
 
-Full props, variants and live examples for every component are in Storybook — run `npm run storybook` locally to browse them.
+Full props, variants and live examples for every component are in Storybook — browse the [live preview](https://eloriente.github.io/pulse-components/) or run `npm run storybook` locally.
 
 | Category | Components |
 | --- | --- |
