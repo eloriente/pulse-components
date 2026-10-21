@@ -84,12 +84,6 @@
 .md .input:checked ~ .thumb { transform: translateX(16px); }
 .lg .input:checked ~ .thumb { transform: translateX(20px); }
 
-.input:checked + .thumb,
-.track:has(.input:checked) {
-  background-color: var(--pulse-color-primary);
-}
-
-/* Redefine track background when checked using :has */
 .track:has(.input:checked) {
   background-color: var(--pulse-color-primary);
 }
