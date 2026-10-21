@@ -17,6 +17,18 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Storybook now uses a custom theme (`.storybook/manager.ts`) with the
   PulseUI logo and name in the sidebar, and the `Welcome.mdx` page and
   `README.md` now show the wordmark.
+- `public/favicon.svg` now switches to white on dark system/browser themes via
+  an embedded `prefers-color-scheme` media query, instead of staying the
+  brand-purple mark (low contrast in dark tabs/sidebars).
+
+### Fixed
+
+- Several stale references in `src/Welcome.mdx` and `src/docs/*.mdx`: broken
+  "Where to go next" links (missing their Storybook category prefix),
+  mentions of `Button`'s removed `primary`/`backgroundColor` props and of the
+  no-longer-public `Header`/`Page` components, a nonexistent `npm run dev`
+  script, "Oxlint" instead of ESLint, and the missing `--pulse-color-text-muted`/
+  `-surface`/`-surface-subtle` tokens in the Design Tokens reference.
 
 ## [1.0.1] - 2026-10-21
 
