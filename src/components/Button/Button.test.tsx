@@ -28,13 +28,18 @@ describe('Button', () => {
   });
 
   describe('Variants', () => {
-    it('applies primary class when primary=true', () => {
-      const { container } = render(<Button label="Primary" primary />);
+    it('applies primary class when variant="primary"', () => {
+      const { container } = render(<Button label="Primary" variant="primary" />);
       expect(container.querySelector('button')?.className).toContain('primary');
     });
 
-    it('applies secondary class when primary=false', () => {
-      const { container } = render(<Button label="Secondary" primary={false} />);
+    it('applies secondary class by default', () => {
+      const { container } = render(<Button label="Secondary" />);
+      expect(container.querySelector('button')?.className).toContain('secondary');
+    });
+
+    it('applies secondary class when variant="secondary"', () => {
+      const { container } = render(<Button label="Secondary" variant="secondary" />);
       expect(container.querySelector('button')?.className).toContain('secondary');
     });
   });
@@ -119,11 +124,6 @@ describe('Button', () => {
     it('applies custom className', () => {
       const { container } = render(<Button label="Button" className="my-class" />);
       expect(container.querySelector('button')?.className).toContain('my-class');
-    });
-
-    it('applies inline backgroundColor style', () => {
-      const { container } = render(<Button label="Button" backgroundColor="rgb(255, 0, 0)" />);
-      expect(container.querySelector('button')).toHaveStyle({ backgroundColor: 'rgb(255, 0, 0)' });
     });
   });
 });

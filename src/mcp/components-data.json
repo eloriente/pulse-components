@@ -495,11 +495,11 @@
     "importPath": "pulse-components",
     "props": [
       {
-        "name": "primary",
-        "type": "boolean",
+        "name": "variant",
+        "type": "ButtonVariant",
         "required": false,
-        "defaultValue": "false",
-        "description": "Primary call to action variant"
+        "defaultValue": "'secondary'",
+        "description": "Visual style of the button"
       },
       {
         "name": "size",
@@ -554,12 +554,6 @@
         "description": "HTML button type"
       },
       {
-        "name": "backgroundColor",
-        "type": "string",
-        "required": false,
-        "description": "Background color override"
-      },
-      {
         "name": "onClick",
         "type": "() => void",
         "required": false,
@@ -575,10 +569,13 @@
         "name": "className",
         "type": "string",
         "required": false,
-        "description": "Additional CSS classes (e.g. Tailwind utilities)."
+        "description": "Additional CSS classes"
       }
     ],
-    "variants": [],
+    "variants": [
+      "primary",
+      "secondary"
+    ],
     "sizes": [],
     "accessibility": [
       "aria-busy",
@@ -589,13 +586,14 @@
       {
         "name": "Primary",
         "args": {
-          "primary": true,
+          "variant": "primary",
           "label": "Button"
         }
       },
       {
         "name": "Secondary",
         "args": {
+          "variant": "secondary",
           "label": "Button"
         }
       },
@@ -616,7 +614,7 @@
       {
         "name": "WithIconLeft",
         "args": {
-          "primary": true,
+          "variant": "primary",
           "label": "Search",
           "iconLeft": "Search"
         }
@@ -631,7 +629,7 @@
       {
         "name": "IconOnly",
         "args": {
-          "primary": true,
+          "variant": "primary",
           "iconOnly": "Plus",
           "aria-label": "Add item"
         }
@@ -639,7 +637,7 @@
       {
         "name": "Disabled",
         "args": {
-          "primary": true,
+          "variant": "primary",
           "label": "Disabled",
           "disabled": true
         }
@@ -647,19 +645,9 @@
       {
         "name": "Loading",
         "args": {
-          "primary": true,
+          "variant": "primary",
           "label": "Saving...",
           "loading": true
-        }
-      },
-      {
-        "name": "Destructive",
-        "args": {
-          "label": "Delete",
-          "iconLeft": "Trash2",
-          "backgroundColor": "var(--pulse-color-error, #e53e3e)",
-          "primary": true,
-          "aria-label": "Delete item"
         }
       }
     ]

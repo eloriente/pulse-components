@@ -11,7 +11,7 @@ export { Icon } from './components/Icon';
 export type { IconProps, IconSize } from './components/Icon';
 
 export { Button } from './components/Button';
-export type { ButtonProps } from './components/Button';
+export type { ButtonProps, ButtonVariant } from './components/Button';
 
 export { Heading, Text } from './components/Text';
 export type {

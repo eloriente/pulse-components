@@ -45,10 +45,15 @@
 /* === Subtle variant === */
 .subtle.color-default { background-color: var(--pulse-color-surface-subtle, #f3f4f6); color: var(--pulse-color-text, #111827); }
 .subtle.color-primary { background-color: color-mix(in srgb, var(--pulse-color-primary) 12%, transparent); color: var(--pulse-color-primary); }
-.subtle.color-success { background-color: #dcfce7; color: #166534; }
-.subtle.color-warning { background-color: #fef9c3; color: #a16207; }
-.subtle.color-error   { background-color: #fee2e2; color: #991b1b; }
-.subtle.color-info    { background-color: #dbeafe; color: #1d4ed8; }
+.subtle.color-success { background-color: var(--pulse-color-success-bg, #e7fdd8); color: var(--pulse-color-success, #357a14); }
+.subtle.color-warning { background-color: color-mix(in srgb, var(--pulse-color-warning, #92400e) 12%, transparent); color: var(--pulse-color-warning, #92400e); }
+/* --pulse-color-error itself is too light for text at this size/weight on a
+   tinted background (same WCAG AA failure already fixed in Alert's error
+   variant) — reuse that same darker, verified-safe red instead of the token. */
+.subtle.color-error { background-color: color-mix(in srgb, var(--pulse-color-error, #d0312d) 10%, transparent); color: #842029; }
+/* --pulse-color-info is a bright, light blue meant for icons/accents, not
+   body text — reuse the same safe dark blue the hardcoded version already used. */
+.subtle.color-info { background-color: color-mix(in srgb, var(--pulse-color-info, #1ea7fd) 15%, transparent); color: #1d4ed8; }
 
 /* === Outline variant === */
 .outline.color-default { border: 1px solid var(--pulse-color-border, #d1d5db); color: var(--pulse-color-text, #111827); background: transparent; }

@@ -3,9 +3,11 @@ import type { LucideProps } from 'lucide-react';
 import { Icon } from '../Icon';
 import styles from './Button.module.css';
 
+export type ButtonVariant = 'primary' | 'secondary';
+
 export interface ButtonProps {
-  /** Primary call to action variant */
-  primary?: boolean;
+  /** Visual style of the button */
+  variant?: ButtonVariant;
   /** How large should the button be? */
   size?: 'small' | 'medium' | 'large';
   /** Button label text */
@@ -22,8 +24,6 @@ export interface ButtonProps {
   disabled?: boolean;
   /** HTML button type */
   type?: 'button' | 'submit' | 'reset';
-  /** Background color override */
-  backgroundColor?: string;
   /** Optional click handler */
   onClick?: () => void;
   /**
@@ -31,9 +31,7 @@ export interface ButtonProps {
    * alone is not descriptive enough.
    */
   'aria-label'?: string;
-  /**
-   * Additional CSS classes (e.g. Tailwind utilities).
-   */
+  /** Additional CSS classes */
   className?: string;
 }
 
@@ -45,7 +43,7 @@ const ICON_SIZE_MAP = {
 
 /** Primary UI component for user interaction */
 export function Button({
-  primary = false,
+  variant = 'secondary',
   size = 'medium',
   label,
   iconLeft,
@@ -54,7 +52,6 @@ export function Button({
   loading = false,
   disabled = false,
   type = 'button',
-  backgroundColor,
   className,
   'aria-label': ariaLabel,
   ...props
@@ -66,7 +63,7 @@ export function Button({
   const classes = [
     styles.button,
     styles[size],
-    primary ? styles.primary : styles.secondary,
+    styles[variant],
     iconOnly ? styles.iconOnly : '',
     loading ? styles.loading : '',
     className,
@@ -78,7 +75,6 @@ export function Button({
     <button
       type={type}
       className={classes}
-      style={backgroundColor ? { backgroundColor } : undefined}
       disabled={isDisabled}
       aria-busy={loading || undefined}
       aria-label={computedAriaLabel}

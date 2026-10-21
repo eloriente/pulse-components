@@ -4,7 +4,7 @@ export { Icon } from './Icon';
 export type { IconProps, IconSize } from './Icon';
 
 export { Button } from './Button';
-export type { ButtonProps } from './Button';
+export type { ButtonProps, ButtonVariant } from './Button';
 
 export { Heading, Text } from './Text';
 export type {

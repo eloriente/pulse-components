@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { fn } from 'storybook/test';
 import { within, userEvent, expect } from 'storybook/test';
-import { Search, ChevronRight, Plus, Trash2 } from 'lucide-react';
+import { Search, ChevronRight, Plus } from 'lucide-react';
 import { Button } from './Button';
 
 const meta = {
@@ -10,7 +10,7 @@ const meta = {
   parameters: { layout: 'centered' },
   tags: ['autodocs'],
   argTypes: {
-    backgroundColor: { control: 'color' },
+    variant: { control: 'select', options: ['primary', 'secondary'] },
     size: { control: 'select', options: ['small', 'medium', 'large'] },
   },
   args: { onClick: fn() },
@@ -20,7 +20,7 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Primary: Story = {
-  args: { primary: true, label: 'Button' },
+  args: { variant: 'primary', label: 'Button' },
   play: async ({ canvasElement, args }) => {
     const canvas = within(canvasElement);
     const button = canvas.getByRole('button', { name: 'Button' });
@@ -32,7 +32,7 @@ export const Primary: Story = {
 };
 
 export const Secondary: Story = {
-  args: { label: 'Button' },
+  args: { variant: 'secondary', label: 'Button' },
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
     await expect(canvas.getByRole('button', { name: 'Button' })).toBeInTheDocument();
@@ -48,7 +48,7 @@ export const Small: Story = {
 };
 
 export const WithIconLeft: Story = {
-  args: { primary: true, label: 'Search', iconLeft: Search },
+  args: { variant: 'primary', label: 'Search', iconLeft: Search },
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
     const button = canvas.getByRole('button', { name: 'Search' });
@@ -64,7 +64,7 @@ export const WithIconRight: Story = {
 
 export const IconOnly: Story = {
   args: {
-    primary: true,
+    variant: 'primary',
     iconOnly: Plus,
     'aria-label': 'Add item',
   },
@@ -75,7 +75,7 @@ export const IconOnly: Story = {
 };
 
 export const Disabled: Story = {
-  args: { primary: true, label: 'Disabled', disabled: true },
+  args: { variant: 'primary', label: 'Disabled', disabled: true },
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
     const button = canvas.getByRole('button', { name: 'Disabled' });
@@ -84,21 +84,11 @@ export const Disabled: Story = {
 };
 
 export const Loading: Story = {
-  args: { primary: true, label: 'Saving...', loading: true },
+  args: { variant: 'primary', label: 'Saving...', loading: true },
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
     const button = canvas.getByRole('button');
     await expect(button).toBeDisabled();
     await expect(button).toHaveAttribute('aria-busy', 'true');
-  },
-};
-
-export const Destructive: Story = {
-  args: {
-    label: 'Delete',
-    iconLeft: Trash2,
-    backgroundColor: 'var(--pulse-color-error, #e53e3e)',
-    primary: true,
-    'aria-label': 'Delete item',
   },
 };
