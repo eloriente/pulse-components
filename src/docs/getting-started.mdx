@@ -34,7 +34,7 @@ Everything you need to install Pulse Components and render your first component.
 
 ## Prerequisites
 
-- **Node.js** >= 18
+- **Node.js** >= 22.12.0
 - **npm** >= 9
 - **React** >= 18 (peer dependency)
 
@@ -82,7 +82,7 @@ export default function App() {
   return (
     <div>
       <Button label="Log in" onClick={() => console.log('login')} />
-      <Button primary label="Sign up" onClick={() => console.log('signup')} />
+      <Button variant="primary" label="Sign up" onClick={() => console.log('signup')} />
     </div>
   );
 }
@@ -107,9 +107,9 @@ export default function App() {
       <td>Button text <strong>(required)</strong></td>
     </tr>
     <tr>
-      <td><code>primary</code></td>
-      <td><code>boolean</code></td>
-      <td><code>false</code></td>
+      <td><code>variant</code></td>
+      <td><code>'primary' | 'secondary'</code></td>
+      <td><code>'secondary'</code></td>
       <td>Uses the brand colour instead of the outline style</td>
     </tr>
     <tr>
@@ -117,12 +117,6 @@ export default function App() {
       <td><code>'small' | 'medium' | 'large'</code></td>
       <td><code>'medium'</code></td>
       <td>Controls font size and padding</td>
-    </tr>
-    <tr>
-      <td><code>backgroundColor</code></td>
-      <td><code>string</code></td>
-      <td>—</td>
-      <td>Inline colour override (overrides variant)</td>
     </tr>
     <tr>
       <td><code>onClick</code></td>
@@ -141,57 +135,12 @@ export default function App() {
 
 ---
 
-### Header
+### The rest of the library
 
-```tsx
-import { Header } from 'pulse-components';
-import 'pulse-components/styles';
-
-export default function App() {
-  const [user, setUser] = React.useState<{ name: string }>();
-
-  return (
-    <Header
-      user={user}
-      onLogin={() => setUser({ name: 'Jane Doe' })}
-      onLogout={() => setUser(undefined)}
-      onCreateAccount={() => setUser({ name: 'Jane Doe' })}
-    />
-  );
-}
-```
-
-**Header props**
-
-| Prop | Type | Description |
-|---|---|---|
-| `user` | `{ name: string }` | When provided, shows a welcome message and a Log out button |
-| `onLogin` | `() => void` | Called when the user clicks "Log in" |
-| `onLogout` | `() => void` | Called when the user clicks "Log out" |
-| `onCreateAccount` | `() => void` | Called when the user clicks "Sign up" |
-| `className` | `string` | Extra CSS classes applied to the root `<header>` element |
-
----
-
-### Page
-
-`Page` is a full-page composition demo that combines `Header` with a content section.
-It manages its own internal `user` state.
-
-```tsx
-import { Page } from 'pulse-components';
-import 'pulse-components/styles';
-
-export default function App() {
-  return <Page />;
-}
-```
-
-**Page props**
-
-| Prop | Type | Description |
-|---|---|---|
-| `className` | `string` | Extra CSS classes applied to the content `<section>` |
+Button is just one of 27 components. Every other one follows the same shape — a
+named export, a typed props interface, and a `className` prop for overrides. Browse
+the **Components** section of the sidebar for the full list, each with its own
+interactive docs page and prop table generated from its TypeScript interface.
 
 ---
 
@@ -212,5 +161,5 @@ The package exposes three entry points:
 All prop interfaces are exported and can be imported for use in your own code:
 
 ```tsx
-import type { ButtonProps, HeaderProps, PageProps } from 'pulse-components';
+import type { ButtonProps, ButtonVariant } from 'pulse-components';
 ```

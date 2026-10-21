@@ -108,7 +108,10 @@ Defined in `src/tokens/colors.css`.
     colors={{
       '--pulse-color-text': '#333333',
       '--pulse-color-text-subtle': '#666666',
+      '--pulse-color-text-muted': '#6b7280',
       '--pulse-color-background': '#ffffff',
+      '--pulse-color-surface': '#ffffff',
+      '--pulse-color-surface-subtle': '#f0f0f0',
       '--pulse-color-border': 'rgba(0, 0, 0, 0.1)',
     }}
   />
@@ -149,9 +152,24 @@ These are the tokens your components should use. Override in `:root` to theme yo
       <td>Secondary, muted, or disabled text</td>
     </tr>
     <tr>
+      <td><code>--pulse-color-text-muted</code></td>
+      <td><code>#6b7280</code></td>
+      <td>Lower-emphasis text — kept off the neutral scale to stay WCAG AA</td>
+    </tr>
+    <tr>
       <td><code>--pulse-color-background</code></td>
       <td><code>#ffffff</code></td>
-      <td>Page and component backgrounds</td>
+      <td>Page backgrounds</td>
+    </tr>
+    <tr>
+      <td><code>--pulse-color-surface</code></td>
+      <td><code>#ffffff</code></td>
+      <td>Component surfaces (cards, panels, menus)</td>
+    </tr>
+    <tr>
+      <td><code>--pulse-color-surface-subtle</code></td>
+      <td><code>#f0f0f0</code></td>
+      <td>Slightly recessed surfaces (hover rows, subtle backgrounds)</td>
     </tr>
     <tr>
       <td><code>--pulse-color-border</code></td>

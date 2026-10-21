@@ -1,0 +1,12 @@
+<svg width="1280" height="640" viewBox="0 0 1280 640" xmlns="http://www.w3.org/2000/svg" role="img">
+  <title>PulseUI</title>
+  <rect x="0" y="0" width="1280" height="640" fill="#ffffff"/>
+  <g transform="translate(360, 230)">
+    <path d="M24,22 A30,30 0 0,1 24,82" fill="none" stroke="#555ab9" stroke-width="4" opacity="0.4"/>
+    <path d="M24,8 A44,44 0 0,1 24,96" fill="none" stroke="#555ab9" stroke-width="4" opacity="0.22"/>
+    <rect x="8" y="45" width="9" height="66" rx="4.5" fill="#3f4490"/>
+    <circle cx="24" cy="52" r="20" fill="#3f4490"/>
+    <text x="110" y="76" font-size="64" font-weight="500" fill="#3f4490" font-family="system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif">PulseUI</text>
+  </g>
+  <text x="640" y="430" text-anchor="middle" font-size="22" fill="#6b7280" font-family="system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif">An open-source React component library built with TypeScript and CSS Modules</text>
+</svg>

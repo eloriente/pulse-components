@@ -14,6 +14,7 @@ const config: StorybookConfig = {
     '@storybook/addon-a11y',
     '@storybook/addon-docs',
   ],
+  staticDirs: ['../public', '../brand'],
   framework: '@storybook/react-vite',
 };
 

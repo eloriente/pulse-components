@@ -37,13 +37,13 @@ conventions the project follows.
 ## Development setup
 
 **Prerequisites:**
-- Node.js >= 18
+- Node.js >= 22.12.0
 - npm >= 9
 
 **Clone and install:**
 
 ```bash
-git clone https://github.com/your-org/pulse-components.git
+git clone https://github.com/eloriente/pulse-components.git
 cd pulse-components
 npm install
 ```
@@ -51,7 +51,7 @@ npm install
 **Start Storybook:**
 
 ```bash
-npm run dev
+npm run storybook
 ```
 
 Opens the interactive component explorer at [http://localhost:6006](http://localhost:6006).
@@ -72,14 +72,14 @@ before running the test suite.
   </thead>
   <tbody>
     <tr>
-      <td><code>dev</code></td>
-      <td><code>npm run dev</code></td>
+      <td><code>storybook</code></td>
+      <td><code>npm run storybook</code></td>
       <td>Start Storybook at <code>localhost:6006</code></td>
     </tr>
     <tr>
       <td><code>build</code></td>
       <td><code>npm run build</code></td>
-      <td>Build the library to <code>dist/</code> (ESM + CJS)</td>
+      <td>Build the library and MCP server to <code>dist/</code> (ESM + CJS)</td>
     </tr>
     <tr>
       <td><code>build:storybook</code></td>
@@ -87,14 +87,29 @@ before running the test suite.
       <td>Generate a static Storybook site</td>
     </tr>
     <tr>
-      <td><code>test</code></td>
-      <td><code>npm test</code></td>
-      <td>Run all story-based tests in headless Chromium</td>
+      <td><code>test:unit</code></td>
+      <td><code>npm run test:unit</code></td>
+      <td>Run Vitest + Testing Library tests (jsdom)</td>
+    </tr>
+    <tr>
+      <td><code>test:storybook</code></td>
+      <td><code>npm run test:storybook</code></td>
+      <td>Run story-based interaction and a11y tests in headless Chromium</td>
+    </tr>
+    <tr>
+      <td><code>coverage</code></td>
+      <td><code>npm run coverage</code></td>
+      <td>Run the full test suite with coverage (80% minimum)</td>
+    </tr>
+    <tr>
+      <td><code>generate:mcp-data</code></td>
+      <td><code>npm run generate:mcp-data</code></td>
+      <td>Regenerate <code>src/mcp/components-data.json</code> from component source</td>
     </tr>
     <tr>
       <td><code>lint</code></td>
       <td><code>npm run lint</code></td>
-      <td>Run Oxlint (fast Rust-based linter)</td>
+      <td>Run ESLint</td>
     </tr>
     <tr>
       <td><code>typecheck</code></td>
@@ -117,14 +132,14 @@ the library.
 src/components/MyComponent/
 ├── MyComponent.tsx
 ├── MyComponent.module.css
-├── MyComponent.stories.ts
+├── MyComponent.stories.tsx
+├── MyComponent.test.tsx
 └── index.ts
 ```
 
 ### 2. Write the component (`MyComponent.tsx`)
 
 ```tsx
-import React from 'react';
 import styles from './MyComponent.module.css';
 
 export interface MyComponentProps {
@@ -134,17 +149,19 @@ export interface MyComponentProps {
   className?: string;
 }
 
-export const MyComponent = ({ label, className }: MyComponentProps) => {
+export function MyComponent({ label, className }: MyComponentProps) {
   return (
     <div className={[styles.root, className].filter(Boolean).join(' ')}>
       {label}
     </div>
   );
-};
+}
 ```
 
 Key rules:
 - Export a named `interface` for the props (not `type`) so Storybook can infer them.
+- Use a function declaration (`export function MyComponent(...)`), not `forwardRef` or
+  `React.FC`.
 - Always include a `className?: string` prop.
 - Never hardcode colours or sizes — use `var(--pulse-*)` tokens in the CSS.
 
@@ -163,17 +180,17 @@ Key rules:
 Always reference `--pulse-*` tokens. Never hardcode hex values or pixel sizes that
 duplicate something already in the token system.
 
-### 4. Write the stories (`MyComponent.stories.ts`)
+### 4. Write the stories (`MyComponent.stories.tsx`)
 
-```ts
-import type { Meta, StoryObj } from '@storybook/react';
+```tsx
+import type { Meta, StoryObj } from '@storybook/react-vite';
 import { MyComponent } from './MyComponent';
 
-const meta: Meta<typeof MyComponent> = {
+const meta = {
   title: 'Components/MyComponent',
   component: MyComponent,
   tags: ['autodocs'],
-};
+} satisfies Meta<typeof MyComponent>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
@@ -187,16 +204,23 @@ export const Default: Story = {
 
 - Set `title: 'Components/MyComponent'` to place it in the right sidebar section.
 - Add `tags: ['autodocs']` to auto-generate a props table from your TypeScript interface.
-- Write one story per meaningful variant.
+- Write one story per meaningful variant, named semantically (`Primary`, `Disabled`,
+  `Loading`...), not just `Default`.
 
-### 5. Create the barrel export (`index.ts`)
+### 5. Write the tests (`MyComponent.test.tsx`)
+
+Use Vitest + React Testing Library, grouped by aspect (`describe('Rendering', ...)`,
+`describe('Interactions', ...)`, etc.) — see any existing component's test file for
+the pattern this project follows.
+
+### 6. Create the barrel export (`index.ts`)
 
 ```ts
 export { MyComponent } from './MyComponent';
 export type { MyComponentProps } from './MyComponent';
 ```
 
-### 6. Register the component in the package exports
+### 7. Register the component in the package exports
 
 Add the component to `src/components/index.ts`:
 
@@ -212,6 +236,16 @@ export { MyComponent } from './components/MyComponent';
 export type { MyComponentProps } from './components/MyComponent';
 ```
 
+### 8. Regenerate the MCP server metadata
+
+```bash
+npm run generate:mcp-data
+```
+
+This parses every component's props, JSDoc and stories into
+`src/mcp/components-data.json`. CI fails the PR if this file is out of date, so
+commit the regenerated file alongside your component.
+
 ---
 
 ## Checklist before opening a pull request
@@ -219,9 +253,11 @@ export type { MyComponentProps } from './components/MyComponent';
 - [ ] **Component file** — named export + TypeScript props interface + `className` prop
 - [ ] **CSS Module** — all values use `--pulse-*` tokens, no hardcoded colours or sizes
 - [ ] **Stories** — at least one story per variant, `title: 'Components/...'`, `tags: ['autodocs']`
+- [ ] **Tests** — grouped by aspect, covering rendering, variants and interactions
 - [ ] **Barrel export** — component and types exported from `index.ts`
 - [ ] **Package exports updated** — added to `src/components/index.ts` and `src/index.ts`
-- [ ] **Tests pass** — `npm test` exits clean
+- [ ] **MCP data regenerated** — `npm run generate:mcp-data` run and the file committed
+- [ ] **Tests pass** — `npm run test:unit` and `npm run test:storybook` exit clean
 - [ ] **Types pass** — `npm run typecheck` exits clean
 - [ ] **Lint passes** — `npm run lint` exits clean
 
@@ -229,11 +265,15 @@ export type { MyComponentProps } from './components/MyComponent';
 
 ## Code style
 
-- **TypeScript** — strict mode is enabled; no `any`, no unused variables.
-- **Linting** — Oxlint enforces `react/rules-of-hooks` (error) and
-  `react/only-export-components` (warning). Run `npm run lint` before committing.
+- **TypeScript** — strict mode is enabled across every tsconfig; no `any`, no unused
+  variables.
+- **Linting** — ESLint (flat config) with `typescript-eslint` recommended plus
+  `eslint-plugin-react-hooks` (`rules-of-hooks` as an error, `exhaustive-deps` as a
+  warning). Run `npm run lint` before committing.
 - **CSS** — CSS Modules only; no global class names except token overrides on `:root`.
-- **No default exports** for components — use named exports consistently.
+  No `clsx`/`cva` — classes are composed manually and joined with `.filter(Boolean)`.
+- **No default exports** for components — use named exports, and function
+  declarations rather than `forwardRef` or `React.FC`.
 - **File naming** — `PascalCase` for component files, `camelCase` for utilities.
 
 ---
@@ -245,9 +285,9 @@ export type { MyComponentProps } from './components/MyComponent';
    git checkout -b feat/my-component
    ```
 2. Make your changes following the guidelines above.
-3. Run the full validation suite:
+3. Run the same checks CI runs:
    ```bash
-   npm run typecheck && npm run lint && npm test
+   npm run lint && npm run typecheck && npm run check:mcp-data && npm run build && npm run test:unit && npm run test:storybook
    ```
 4. Push and open a pull request against `main`.
 5. Describe what the component does, which props it accepts and include a screenshot

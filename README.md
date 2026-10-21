@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="brand/wordmark.svg" alt="PulseUI" width="280" />
+</p>
+
 # pulse-components
 
 An open-source React component library built with TypeScript and CSS Modules.

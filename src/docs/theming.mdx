@@ -58,7 +58,7 @@ The simplest approach is to redefine variables on `:root` in your global CSS fil
 }
 ```
 
-Every `Button`, `Header` and `Page` component will now use your overrides automatically.
+Every component that references these tokens will now use your overrides automatically.
 
 ---
 
@@ -78,27 +78,9 @@ element instead of `:root`:
 
 ```tsx
 <div className="dark-section">
-  <Header user={{ name: 'Jane' }} onLogout={() => {}} />
+  <Button variant="primary" label="Submit" />
 </div>
 ```
-
----
-
-## Inline override via `backgroundColor` prop
-
-The `Button` component exposes an escape hatch for one-off colour needs:
-
-```tsx
-<Button
-  primary
-  label="Custom colour"
-  backgroundColor="#ff6b6b"
-/>
-```
-
-This sets an inline `style` attribute directly on the `<button>` element, bypassing
-the CSS token system. Use it sparingly — token overrides are preferred for anything
-that should be consistent across your application.
 
 ---
 
@@ -137,7 +119,7 @@ A simple dark-mode approach using the `prefers-color-scheme` media query or a
 
 ## Full token reference
 
-See the **[Design Tokens](?path=/docs/design-tokens--docs)** page for a complete list
+See the **[Design Tokens](?path=/docs/tokens-design-tokens--docs)** page for a complete list
 of every `--pulse-*` variable, its default value and its intended usage.
 
 ---
@@ -149,5 +131,3 @@ of every `--pulse-*` variable, its default value and its intended usage.
   are what components use internally.
 - Keep overrides in one place (a `theme.css` or your root CSS entry) to make future
   updates predictable.
-- Avoid using the `backgroundColor` inline prop for theme-level changes — use CSS
-  custom properties instead so the change propagates everywhere.

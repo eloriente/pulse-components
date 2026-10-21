@@ -1,0 +1,8 @@
+<svg width="300" height="120" viewBox="0 0 300 120" xmlns="http://www.w3.org/2000/svg" role="img">
+  <title>PulseUI</title>
+  <path d="M24,22 A30,30 0 0,1 24,82" fill="none" stroke="#555ab9" stroke-width="3" opacity="0.4"/>
+  <path d="M24,8 A44,44 0 0,1 24,96" fill="none" stroke="#555ab9" stroke-width="3" opacity="0.22"/>
+  <rect x="8" y="45" width="7" height="55" rx="3.5" fill="#3f4490"/>
+  <circle cx="24" cy="52" r="16" fill="#3f4490"/>
+  <text x="92" y="68" font-size="44" font-weight="500" fill="#3f4490" font-family="system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif">PulseUI</text>
+</svg>

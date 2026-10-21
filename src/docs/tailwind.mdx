@@ -43,7 +43,7 @@ Each component merges your `className` with its own internal CSS Modules classes
 const classes = [
   styles.button,       // CSS Module class — always applied
   styles[size],        // size variant class
-  primary ? styles.primary : styles.secondary,
+  styles[variant],     // 'primary' or 'secondary'
   className,           // your custom classes — appended last
 ].filter(Boolean).join(' ');
 ```
@@ -63,10 +63,10 @@ import 'pulse-components/styles';
 <Button label="Submit" className="shadow-lg tracking-wide" />
 
 // Full-width button
-<Button primary label="Continue" className="w-full" />
+<Button variant="primary" label="Continue" className="w-full" />
 
 // Custom margin
-<Header className="mb-8" user={user} onLogout={handleLogout} />
+<Avatar className="mb-8" alt="Jane Doe" />
 ```
 
 ---
@@ -83,7 +83,7 @@ utility to **reliably win**, use Tailwind's `!` (important) modifier:
 
 ```tsx
 {/* Force a red background regardless of component styles */}
-<Button primary label="Danger" className="!bg-red-600 !hover:bg-red-700" />
+<Button variant="primary" label="Danger" className="!bg-red-600 !hover:bg-red-700" />
 
 {/* Force a custom font size */}
 <Button label="Small text" className="!text-xs" />
@@ -114,7 +114,7 @@ guaranteeing it takes precedence.
     </tr>
     <tr>
       <td>Change a value that's driven by a <code>--pulse-*</code> token</td>
-      <td>Override the CSS variable instead (see <a href="?path=/docs/theming--docs">Theming</a>)</td>
+      <td>Override the CSS variable instead (see <a href="?path=/docs/tokens-theming--docs">Theming</a>)</td>
     </tr>
   </tbody>
 </table>
@@ -134,23 +134,14 @@ will sit **above** all layered rules — you may need to wrap your overrides in
 ## Practical example
 
 ```tsx
-import { Button, Header } from 'pulse-components';
+import { Button } from 'pulse-components';
 import 'pulse-components/styles';
 
 export default function HeroSection() {
   return (
-    <section className="min-h-screen bg-gray-50 flex flex-col">
-      <Header
-        className="sticky top-0 z-50 backdrop-blur-sm !bg-white/80"
-        user={undefined}
-        onLogin={() => {}}
-        onCreateAccount={() => {}}
-      />
-
-      <div className="flex-1 flex items-center justify-center gap-4 p-8">
-        <Button label="Learn more" className="shadow-md" />
-        <Button primary label="Get started" className="shadow-xl !px-8" />
-      </div>
+    <section className="min-h-screen bg-gray-50 flex flex-col items-center justify-center gap-4 p-8">
+      <Button label="Learn more" className="shadow-md" />
+      <Button variant="primary" label="Get started" className="shadow-xl !px-8" />
     </section>
   );
 }
