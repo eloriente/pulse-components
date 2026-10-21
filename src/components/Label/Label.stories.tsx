@@ -3,7 +3,7 @@ import { within, expect } from 'storybook/test';
 import { Label } from './Label';
 
 const meta = {
-  title: 'Components/Label',
+  title: 'Components/Form/Label',
   component: Label,
   parameters: { layout: 'centered' },
   tags: ['autodocs'],

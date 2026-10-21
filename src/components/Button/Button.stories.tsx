@@ -5,7 +5,7 @@ import { Search, ChevronRight, Plus } from 'lucide-react';
 import { Button } from './Button';
 
 const meta = {
-  title: 'Components/Button',
+  title: 'Components/Primitives/Button',
   component: Button,
   parameters: { layout: 'centered' },
   tags: ['autodocs'],

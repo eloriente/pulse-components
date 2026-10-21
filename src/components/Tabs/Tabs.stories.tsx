@@ -3,7 +3,7 @@ import { within, userEvent, expect, waitFor, fn } from 'storybook/test';
 import { Tabs } from './Tabs';
 
 const meta = {
-  title: 'Components/Tabs',
+  title: 'Components/Navigation/Tabs',
   component: Tabs,
   parameters: { layout: 'centered' },
   tags: ['autodocs'],

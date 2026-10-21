@@ -71,18 +71,18 @@
 
 /* Error */
 .error {
-  border-color: var(--pulse-color-error, #e53e3e);
+  border-color: var(--pulse-color-error, #d0312d);
 }
 
 .errorMessage {
   font-size: var(--pulse-font-size-sm, 0.875rem);
-  color: var(--pulse-color-error, #e53e3e);
+  color: var(--pulse-color-error, #d0312d);
 }
 
 .chevron {
   position: absolute;
   right: var(--pulse-space-3, 12px);
-  color: var(--pulse-color-text-subtle, #9ca3af);
+  color: var(--pulse-color-text-subtle, #666666);
   pointer-events: none;
   display: flex;
   align-items: center;

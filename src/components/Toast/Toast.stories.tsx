@@ -29,7 +29,7 @@ function ToastDemo() {
 }
 
 const meta = {
-  title: 'Components/Toast',
+  title: 'Components/Feedback/Toast',
   component: ToastProvider,
   parameters: { layout: 'centered' },
   tags: ['autodocs'],

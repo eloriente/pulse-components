@@ -104,7 +104,3 @@ export type { BreadcrumbProps, BreadcrumbItem } from './components/Breadcrumb';
 
 export { Pagination } from './components/Pagination';
 export type { PaginationProps } from './components/Pagination';
-
-// Header and Page are Storybook example/demo components only — not part of the
-// public API. They stay in src/components/index.ts for Storybook but are
-// intentionally not re-exported here.

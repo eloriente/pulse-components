@@ -13,7 +13,7 @@
 }
 
 .wrapper.error .dot {
-  border-color: var(--pulse-color-error, #e53e3e);
+  border-color: var(--pulse-color-error, #d0312d);
 }
 
 .radioWrapper {

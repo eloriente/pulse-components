@@ -36,7 +36,7 @@ src/components/ComponentName/
 
 ## Stories (CSF3)
 
-- `title: 'Components/ComponentName'`, `tags: ['autodocs']`, `argTypes` tipados por control.
+- `title: 'Components/<Categoría>/ComponentName'` — la categoría es una de Primitives / Form / Display / Overlay / Feedback / Navigation, la misma bajo la que ya está agrupado en `src/components/index.ts`. `tags: ['autodocs']`, `argTypes` tipados por control.
 - Historias con nombres semánticos (`Primary`, `Disabled`, `Loading`, `WithIconLeft`), nunca solo `Default`.
 - Si el componente tiene interacción relevante, añade una `play` function con `within`/`userEvent`/`expect` de `storybook/test`.
 
@@ -48,7 +48,7 @@ src/components/ComponentName/
 
 ## Al terminar
 
-1. Añade el export al **barrel correcto**: `src/components/index.ts`, bajo la categoría que corresponda (Primitives / Form / Display) — respeta el bloque de comentarios de sección existente.
-2. **No** lo añadas a `src/index.ts` (el entry point público) a menos que el usuario lo pida explícitamente — hoy solo expone `Button`, `Header` y `Page`.
+1. Añade el export al **barrel correcto**: `src/components/index.ts`, bajo la categoría que corresponda (Primitives / Form / Display / Overlay / Feedback / Navigation) — respeta el bloque de comentarios de sección existente.
+2. Replícalo también en `src/index.ts` (el entry point público) — todo lo que está en `src/components/index.ts` se reexporta ahí, salvo que el usuario pida explícitamente mantenerlo como demo interno de Storybook.
 3. Ejecuta `npm run generate:mcp-data` para regenerar `src/mcp/components-data.json` (si el hook de post-edit no lo hizo ya) y reporta qué cambió.
 4. Corre `npm run lint`, `npm run typecheck` y `npm run test:unit -- --run` sobre el componente nuevo antes de darlo por terminado.

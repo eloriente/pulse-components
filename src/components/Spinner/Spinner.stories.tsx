@@ -3,7 +3,7 @@ import { within, expect } from 'storybook/test';
 import { Spinner } from './Spinner';
 
 const meta = {
-  title: 'Components/Spinner',
+  title: 'Components/Display/Spinner',
   component: Spinner,
   parameters: { layout: 'centered' },
   tags: ['autodocs'],

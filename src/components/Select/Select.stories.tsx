@@ -3,7 +3,7 @@ import { within, userEvent, expect } from 'storybook/test';
 import { Select } from './Select';
 
 const meta = {
-  title: 'Components/Select',
+  title: 'Components/Form/Select',
   component: Select,
   parameters: { layout: 'centered' },
   tags: ['autodocs'],

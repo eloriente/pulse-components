@@ -3,7 +3,7 @@ import { within, userEvent, expect } from 'storybook/test';
 import { Textarea } from './Textarea';
 
 const meta = {
-  title: 'Components/Textarea',
+  title: 'Components/Form/Textarea',
   component: Textarea,
   parameters: { layout: 'centered' },
   tags: ['autodocs'],

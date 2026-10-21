@@ -20,7 +20,7 @@
 }
 
 .textarea::placeholder {
-  color: var(--pulse-color-text-subtle, #9ca3af);
+  color: var(--pulse-color-text-subtle, #666666);
 }
 
 .textarea:focus {
@@ -68,15 +68,15 @@
 
 /* Error */
 .error {
-  border-color: var(--pulse-color-error, #e53e3e);
+  border-color: var(--pulse-color-error, #d0312d);
 }
 
 .error:focus {
-  border-color: var(--pulse-color-error, #e53e3e);
-  box-shadow: 0 0 0 3px color-mix(in srgb, var(--pulse-color-error, #e53e3e) 20%, transparent);
+  border-color: var(--pulse-color-error, #d0312d);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--pulse-color-error, #d0312d) 20%, transparent);
 }
 
 .errorMessage {
   font-size: var(--pulse-font-size-sm, 0.875rem);
-  color: var(--pulse-color-error, #e53e3e);
+  color: var(--pulse-color-error, #d0312d);
 }

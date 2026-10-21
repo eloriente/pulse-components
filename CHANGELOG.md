@@ -7,8 +7,43 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Removed
+
+- `Header` and `Page` — the legacy Storybook template demo components — are
+  gone entirely (`src/components/Header/`, `src/components/Page/`). They were
+  already excluded from the public package API since `1.0.1`; this removes
+  them from the codebase and Storybook altogether. The public component count
+  is now 25.
+
+### Fixed
+
+- CSS fallback values that didn't match their real design tokens — some
+  failing WCAG AA contrast on their own — across `Text`, `Input`, `Textarea`,
+  `Select`, `Checkbox`, `Radio`, `Label` and `Badge` (e.g.
+  `var(--pulse-color-error, #e53e3e)` when the real token is `#d0312d`;
+  `#9ca3af` vs the real `--pulse-color-text-subtle` of `#666666`). Every
+  fallback now matches its token exactly, so a consumer who somehow doesn't
+  load `pulse-components/tokens` still gets an accessible, on-brand color
+  instead of an unrelated, sometimes-failing one.
+- `design-tokens.mdx`: `--pulse-color-warning` was documented as `#f5a623`;
+  the real value in `colors.css` is `#92400e`. Fixed in both the color
+  palette and the reference table.
+- `Text` now has its own Storybook page (`Text.stories.tsx`) instead of being
+  folded into `Heading`'s, since both share `src/components/Text/Text.tsx`.
+  Previously `Text`'s props (`variant`, `size`, `weight`, `align`, `color`,
+  `truncate`) never got an autodocs props table, since the shared `meta`
+  pointed `component` at `Heading`. `scripts/generate-mcp-data.ts` now
+  resolves a component's example stories by the component's own name first,
+  falling back to the folder name, so `Heading` and `Text` each get their
+  correct examples in `components-data.json` instead of sharing one list.
+
 ### Added
 
+- `Text.stories.tsx` expanded with an interactive `Default` story (full
+  Controls support via `argTypes`) and dedicated stories for `Sizes`,
+  `Weights`, `Alignment` and `InverseColor` (demoed correctly on a dark
+  surface) — previously `weight`, `align` and `inverse` had no story coverage
+  at all.
 - Project branding: a `brand/` directory with the PulseUI mark (`logo.svg`,
   `logo-dark.svg`, `logo-mono.svg`, `wordmark.svg`, `social-preview.svg`/`.png`).
 - Favicon (SVG + PNG fallbacks + apple-touch-icon) replacing the generic
@@ -23,6 +58,18 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - `.github/workflows/deploy-storybook.yml`: deploys the static Storybook build
   to GitHub Pages on every push to `main` (and manually via
   `workflow_dispatch`), for sharing a live preview ahead of an npm publish.
+- `src/docs/accessibility.mdx`: documents the WCAG 2.1 AA target, how it's
+  enforced (axe-core via `addon-a11y`, checked in CI), how to check any
+  component's accessibility live in Storybook, the ARIA pattern used per
+  component, and known trade-offs. Linked from `Welcome.mdx` and `README.md`.
+
+### Changed
+
+- Every component's Storybook `title` is now prefixed with its category
+  (`Components/<Category>/Name`, matching the grouping already used in
+  `src/components/index.ts` — Primitives / Form / Display / Overlay /
+  Feedback / Navigation / Legacy), so the sidebar is organized instead of one
+  flat list of 27 components.
 
 ### Fixed
 

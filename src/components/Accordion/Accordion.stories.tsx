@@ -3,7 +3,7 @@ import { within, userEvent, expect, waitFor, fn } from 'storybook/test';
 import { Accordion } from './Accordion';
 
 const meta = {
-  title: 'Components/Accordion',
+  title: 'Components/Navigation/Accordion',
   component: Accordion,
   parameters: { layout: 'centered' },
   tags: ['autodocs'],

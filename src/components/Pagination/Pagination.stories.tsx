@@ -4,7 +4,7 @@ import { within, userEvent, expect, fn } from 'storybook/test';
 import { Pagination } from './Pagination';
 
 const meta = {
-  title: 'Components/Pagination',
+  title: 'Components/Navigation/Pagination',
   component: Pagination,
   parameters: { layout: 'centered' },
   tags: ['autodocs'],

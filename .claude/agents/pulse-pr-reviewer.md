@@ -11,8 +11,8 @@ Revisa el diff o la rama indicada contra las convenciones reales de `pulse-compo
 
 - **Estructura**: si se tocó o creó un componente, ¿están los 5 archivos (`.tsx`, `.module.css`, `.stories.tsx`, `.test.tsx`, `index.ts`)? ¿Falta alguno?
 - **Exports**:
-  - ¿Se añadió el export a `src/components/index.ts` en la categoría correcta (Primitives/Form/Display)?
-  - ¿Se tocó `src/index.ts` (el entry point público, que hoy solo expone `Button`, `Header`, `Page`) sin que el usuario lo pidiera explícitamente? Si es así, señálalo — puede ser intencional o un error.
+  - ¿Se añadió el export a `src/components/index.ts` en la categoría correcta (Primitives/Form/Display/Overlay/Feedback/Navigation)?
+  - ¿Se replicó también en `src/index.ts` (el entry point público)? Todo componente en `src/components/index.ts` debe reexportarse ahí salvo que el usuario pida explícitamente lo contrario (demo interno de Storybook) — si falta sin justificación, señálalo.
 - **MCP data**: si cambiaron props/variantes/sizes o ejemplos de stories de algún componente, ¿se regeneró `src/mcp/components-data.json` (`npm run generate:mcp-data`)? El job `mcp-data` de CI falla el PR si no coincide.
 - **Patrones prohibidos**: `clsx`, `cva`, `tailwind-merge`, `forwardRef`, `React.FC`, enums para variantes (deben ser union types exportados).
 - **Composición de clases**: debe seguir el patrón `[styles.x, styles[variant], className].filter(Boolean).join(' ')`.

@@ -13,7 +13,7 @@
 }
 
 .wrapper.error .checkmark {
-  border-color: var(--pulse-color-error, #e53e3e);
+  border-color: var(--pulse-color-error, #d0312d);
 }
 
 .checkboxWrapper {

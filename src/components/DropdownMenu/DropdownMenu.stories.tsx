@@ -5,7 +5,7 @@ import { DropdownMenu } from './DropdownMenu';
 import { Button } from '../Button';
 
 const meta = {
-  title: 'Components/DropdownMenu',
+  title: 'Components/Overlay/DropdownMenu',
   component: DropdownMenu,
   parameters: { layout: 'centered' },
   tags: ['autodocs'],

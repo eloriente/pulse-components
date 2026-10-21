@@ -97,11 +97,3 @@ export type { BreadcrumbProps, BreadcrumbItem } from './Breadcrumb';
 
 export { Pagination } from './Pagination';
 export type { PaginationProps } from './Pagination';
-
-// ─── Legacy demo components ───────────────────────────────────────────────────
-
-export { Header } from './Header';
-export type { HeaderProps } from './Header';
-
-export { Page } from './Page';
-export type { PageProps } from './Page';

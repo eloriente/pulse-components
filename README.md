@@ -10,7 +10,7 @@ Designed to be used as-is, forked, or extended to match your own design system.
 ## Features
 
 - **React 19** + **TypeScript**
-- **27 components** — primitives, form controls, display, overlays, feedback and navigation
+- **25 components** — primitives, form controls, display, overlays, feedback and navigation
 - **CSS Modules** — scoped styles with zero class-name collisions
 - **Design tokens** — CSS custom properties (`--pulse-*`) for colors, typography and spacing
 - **Accessible by default** — every interactive component follows the relevant ARIA pattern (dialog, menu, tabs, accordion...); Storybook's a11y addon fails the build on any violation. See the [Accessibility guide](https://eloriente.github.io/pulse-components/?path=/docs/guide-accessibility--docs) for the full breakdown
@@ -82,8 +82,6 @@ Full props, variants and live examples for every component are in Storybook — 
 | Overlay | Tooltip, Popover, DropdownMenu, Modal |
 | Feedback | Toast (+ `ToastProvider`/`useToast`), Alert |
 | Navigation | Tabs, Accordion, Breadcrumb, Pagination |
-
-`Header` and `Page` also exist in `src/components/` as Storybook example components, but are **not** part of the public package API (not exported from `pulse-components`).
 
 Overlay components (Tooltip, Popover, DropdownMenu, Modal) are built on [Floating UI](https://floating-ui.com/) for positioning, focus management and dismiss behavior. None of this library's components use `forwardRef`; these wrap their trigger in a `<span>` instead of cloning it, so they work with any trigger element, including this library's own components.
 

@@ -14,13 +14,11 @@ Librería de componentes React (pulse-components) — React 19 + TypeScript + CS
   - `docs/`, `Welcome.mdx` — documentación de Storybook.
   - `test-setup.ts` — setup global de Vitest/RTL.
 - **CI** (`.github/workflows/quality-checks.yml`, en cada push/PR): `lint` → `typecheck` (`tsc --noEmit`) → `mcp-data` (`check:mcp-data`) → `build` (`npm run build`, detecta errores solo-de-build) → `test-unit` (Vitest) → `test-storybook` (Playwright/Chromium) → `coverage` (80% mínimo, sube artifact). Todos los jobs corren en paralelo salvo `coverage`, que depende de `test-unit`+`test-storybook`.
-- `src/index.ts` reexporta todos los componentes de `src/components/index.ts` (mismas categorías: Primitives / Form / Display / Overlay / Feedback / Navigation), **excepto** `Header` y `Page` (ver nota abajo). Si se agrega un componente nuevo a `src/components/index.ts`, replícalo también en `src/index.ts` para que llegue al entry point público.
+- `src/index.ts` reexporta todos los componentes de `src/components/index.ts` (mismas categorías: Primitives / Form / Display / Overlay / Feedback / Navigation). Si se agrega un componente nuevo a `src/components/index.ts`, replícalo también en `src/index.ts` para que llegue al entry point público.
 
 ## Componentes (`src/components/`)
 
-Componentes actuales (27): `Icon, Button, Heading, Text, Label, Input, Textarea, Checkbox, Radio, Select, Switch, Badge, Avatar, Spinner, Divider, Tooltip, Popover, DropdownMenu, Modal, Toast, Alert, Tabs, Accordion, Breadcrumb, Pagination, Header, Page`.
-
-⚠️ **`Header` y `Page` son ejemplos de demo heredados de la plantilla de Storybook** (branding "Acme", sin tests propios). Se mantienen en `src/components/index.ts` para que sigan documentados en Storybook, pero **no** se reexportan desde `src/index.ts` (el entry point público) — no llegan a quien instale el paquete.
+Componentes actuales (25): `Icon, Button, Heading, Text, Label, Input, Textarea, Checkbox, Radio, Select, Switch, Badge, Avatar, Spinner, Divider, Tooltip, Popover, DropdownMenu, Modal, Toast, Alert, Tabs, Accordion, Breadcrumb, Pagination`.
 
 Cada carpeta sigue siempre la misma estructura:
 
@@ -41,13 +39,13 @@ Convenciones de código:
 - **Naming**: componentes y tipos en PascalCase, props/variables en camelCase, clases CSS en camelCase.
 - **Accesibilidad**: siempre se cuida (`aria-invalid`, `aria-describedby`, `aria-busy`, `role="alert"` en mensajes de error).
 - **Compartido**: no hay carpeta `utils/`/`hooks/`; lo único transversal es el componente `Icon` (wrapper de `lucide-react`) usado por Button/Input/Select, y los tokens CSS globales.
-- **Exports**: cada `index.ts` reexporta componente + tipos; `src/components/index.ts` agrupa todo por categorías comentadas (Primitives / Form / Display / Legacy).
+- **Exports**: cada `index.ts` reexporta componente + tipos; `src/components/index.ts` agrupa todo por categorías comentadas (Primitives / Form / Display / Overlay / Feedback / Navigation).
 
 ## Storybook
 
 - Config en `.storybook/main.ts` (framework `@storybook/react-vite`, stories en `src/**/*.stories.tsx` y `**/*.mdx`) y `.storybook/preview.tsx` (importa tokens globalmente, `a11y.test: 'error'` — las violaciones de accesibilidad rompen el build).
 - Addons: `@chromatic-com/storybook`, `@storybook/addon-vitest`, `@storybook/addon-a11y`, `@storybook/addon-docs`.
-- Formato **CSF3**: `meta` con `satisfies Meta<typeof Component>`, `title: 'Components/X'`, `tags: ['autodocs']`, `argTypes` tipados por control; stories como `StoryObj` nombradas semánticamente (`Primary`, `Disabled`, `Loading`, `WithIconLeft`, no solo `Default`).
+- Formato **CSF3**: `meta` con `satisfies Meta<typeof Component>`, `title: 'Components/<Categoría>/X'` (la categoría es una de Primitives / Form / Display / Overlay / Feedback / Navigation, igual que en `src/components/index.ts` — agrupa el sidebar de Storybook), `tags: ['autodocs']`, `argTypes` tipados por control; stories como `StoryObj` nombradas semánticamente (`Primary`, `Disabled`, `Loading`, `WithIconLeft`, no solo `Default`).
 - Los tests de interacción viven en `play` functions dentro de las stories (`within`, `userEvent`, `expect` de `storybook/test`) y se ejecutan como parte del proyecto Vitest `storybook` (Playwright/Chromium).
 
 ## Tests

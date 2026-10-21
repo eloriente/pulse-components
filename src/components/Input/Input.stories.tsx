@@ -4,7 +4,7 @@ import { Search, Eye } from 'lucide-react';
 import { Input } from './Input';
 
 const meta = {
-  title: 'Components/Input',
+  title: 'Components/Form/Input',
   component: Input,
   parameters: { layout: 'centered' },
   tags: ['autodocs'],

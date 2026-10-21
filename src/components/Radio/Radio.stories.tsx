@@ -4,7 +4,7 @@ import { fn } from 'storybook/test';
 import { Radio } from './Radio';
 
 const meta = {
-  title: 'Components/Radio',
+  title: 'Components/Form/Radio',
   component: Radio,
   parameters: { layout: 'centered' },
   tags: ['autodocs'],

@@ -4,7 +4,7 @@ import { fn } from 'storybook/test';
 import { Switch } from './Switch';
 
 const meta = {
-  title: 'Components/Switch',
+  title: 'Components/Form/Switch',
   component: Switch,
   parameters: { layout: 'centered' },
   tags: ['autodocs'],

@@ -110,9 +110,16 @@ function objectLiteralToPlain(obj: import('ts-morph').ObjectLiteralExpression): 
   return result;
 }
 
-function getExamples(folder: string): ComponentExample[] {
-  const storiesPath = path.join(componentsDir, folder, `${folder}.stories.tsx`);
-  if (!fs.existsSync(storiesPath)) return [];
+function getExamples(folder: string, componentName: string): ComponentExample[] {
+  // Prefer a stories file named after the component itself (several components
+  // can share one source file, e.g. Heading/Text in Text.tsx, each with its
+  // own stories file), falling back to the folder-named convention.
+  const candidates = [
+    path.join(componentsDir, folder, `${componentName}.stories.tsx`),
+    path.join(componentsDir, folder, `${folder}.stories.tsx`),
+  ];
+  const storiesPath = candidates.find((p) => fs.existsSync(p));
+  if (!storiesPath) return [];
 
   const sourceFile = project.addSourceFileAtPathIfExists(storiesPath) ?? project.addSourceFileAtPath(storiesPath);
   const examples: ComponentExample[] = [];
@@ -201,7 +208,7 @@ function generate(): ComponentMeta[] {
         variants: [...new Set(variants)],
         sizes: [...new Set(sizes)],
         accessibility: getAccessibilityNotes(fn),
-        examples: getExamples(folder),
+        examples: getExamples(folder, componentName),
       });
     }
   }

@@ -908,50 +908,6 @@
     ]
   },
   {
-    "name": "Header",
-    "category": "Legacy demo components",
-    "description": "Site header with branding and authentication actions",
-    "importPath": "pulse-components",
-    "props": [
-      {
-        "name": "user",
-        "type": "User",
-        "required": false,
-        "description": "Currently logged-in user. When provided, shows welcome message and logout button."
-      },
-      {
-        "name": "onLogin",
-        "type": "() => void",
-        "required": false,
-        "description": "Called when the user clicks \"Log in\""
-      },
-      {
-        "name": "onLogout",
-        "type": "() => void",
-        "required": false,
-        "description": "Called when the user clicks \"Log out\""
-      },
-      {
-        "name": "onCreateAccount",
-        "type": "() => void",
-        "required": false,
-        "description": "Called when the user clicks \"Sign up\""
-      },
-      {
-        "name": "className",
-        "type": "string",
-        "required": false,
-        "description": "Additional CSS classes to apply to the root element.\nUse this to extend or override styles (e.g. with Tailwind utilities)."
-      }
-    ],
-    "variants": [],
-    "sizes": [],
-    "accessibility": [
-      "aria-hidden"
-    ],
-    "examples": []
-  },
-  {
     "name": "Heading",
     "category": "Primitives",
     "description": "Semantic heading (h1–h6) with independent visual sizing.",
@@ -997,7 +953,20 @@
       "2xs"
     ],
     "accessibility": [],
-    "examples": []
+    "examples": [
+      {
+        "name": "AllLevels",
+        "args": {}
+      },
+      {
+        "name": "IndependentSize",
+        "args": {
+          "level": 2,
+          "size": "xl",
+          "children": "Big but semantically h2"
+        }
+      }
+    ]
   },
   {
     "name": "Icon",
@@ -1388,26 +1357,6 @@
         "args": {}
       }
     ]
-  },
-  {
-    "name": "Page",
-    "category": "Legacy demo components",
-    "description": "Full-page layout example combining Header and content",
-    "importPath": "pulse-components",
-    "props": [
-      {
-        "name": "className",
-        "type": "string",
-        "required": false,
-        "description": "Additional CSS classes to apply to the content section.\nUse this to extend or override styles (e.g. with Tailwind utilities)."
-      }
-    ],
-    "variants": [],
-    "sizes": [],
-    "accessibility": [
-      "aria-hidden"
-    ],
-    "examples": []
   },
   {
     "name": "Pagination",
@@ -2100,7 +2049,43 @@
       "xs"
     ],
     "accessibility": [],
-    "examples": []
+    "examples": [
+      {
+        "name": "Default",
+        "args": {
+          "children": "The quick brown fox jumps over the lazy dog.",
+          "variant": "body"
+        }
+      },
+      {
+        "name": "Variants",
+        "args": {}
+      },
+      {
+        "name": "Sizes",
+        "args": {}
+      },
+      {
+        "name": "Weights",
+        "args": {}
+      },
+      {
+        "name": "Alignment",
+        "args": {}
+      },
+      {
+        "name": "Colors",
+        "args": {}
+      },
+      {
+        "name": "InverseColor",
+        "args": {}
+      },
+      {
+        "name": "Truncate",
+        "args": {}
+      }
+    ]
   },
   {
     "name": "Textarea",

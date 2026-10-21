@@ -16,6 +16,6 @@
 }
 
 .required {
-  color: var(--pulse-color-error, #e53e3e);
+  color: var(--pulse-color-error, #d0312d);
   font-weight: var(--pulse-font-weight-bold, 700);
 }

@@ -3,7 +3,7 @@ import { within, expect } from 'storybook/test';
 import { Divider } from './Divider';
 
 const meta = {
-  title: 'Components/Divider',
+  title: 'Components/Display/Divider',
   component: Divider,
   parameters: { layout: 'padded' },
   tags: ['autodocs'],

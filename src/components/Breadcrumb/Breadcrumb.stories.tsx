@@ -3,7 +3,7 @@ import { within, expect } from 'storybook/test';
 import { Breadcrumb } from './Breadcrumb';
 
 const meta = {
-  title: 'Components/Breadcrumb',
+  title: 'Components/Navigation/Breadcrumb',
   component: Breadcrumb,
   parameters: { layout: 'centered' },
   tags: ['autodocs'],
