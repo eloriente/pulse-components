@@ -1,0 +1,117 @@
+.viewport {
+  position: fixed;
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  gap: var(--pulse-space-2, 8px);
+  padding: var(--pulse-space-4, 16px);
+  max-width: 360px;
+  pointer-events: none;
+}
+
+.viewport > * {
+  pointer-events: auto;
+}
+
+.top-left {
+  top: 0;
+  left: 0;
+}
+
+.top-center {
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.top-right {
+  top: 0;
+  right: 0;
+}
+
+.bottom-left {
+  bottom: 0;
+  left: 0;
+}
+
+.bottom-center {
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.bottom-right {
+  bottom: 0;
+  right: 0;
+}
+
+.toast {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--pulse-space-2, 8px);
+  padding: var(--pulse-space-3, 12px) var(--pulse-space-4, 16px);
+  border-radius: var(--pulse-radius-md, 6px);
+  background-color: var(--pulse-color-background, #ffffff);
+  border: var(--pulse-border-width, 1px) solid var(--pulse-color-border, rgba(0, 0, 0, 0.1));
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+  font-family: var(--pulse-font-family-base);
+}
+
+.icon {
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.body {
+  flex: 1;
+  min-width: 0;
+}
+
+.title {
+  margin: 0;
+  font-size: var(--pulse-font-size-md, 14px);
+  font-weight: var(--pulse-font-weight-bold, 700);
+  color: var(--pulse-color-text);
+}
+
+.description {
+  margin: 2px 0 0;
+  font-size: var(--pulse-font-size-sm, 12px);
+  color: var(--pulse-color-text-subtle, #666666);
+}
+
+.closeButton {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  border: none;
+  border-radius: var(--pulse-radius-sm, 3px);
+  background: none;
+  color: var(--pulse-color-text-subtle, #666666);
+  cursor: pointer;
+}
+
+.closeButton:hover,
+.closeButton:focus-visible {
+  background-color: var(--pulse-color-neutral-100, #f0f0f0);
+  outline: none;
+}
+
+.info .icon {
+  color: var(--pulse-color-info, #1ea7fd);
+}
+
+.success .icon {
+  color: var(--pulse-color-success, #357a14);
+}
+
+.warning .icon {
+  color: var(--pulse-color-warning, #92400e);
+}
+
+.error .icon {
+  color: var(--pulse-color-error, #d0312d);
+}

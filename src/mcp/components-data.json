@@ -1691,6 +1691,63 @@
     ]
   },
   {
+    "name": "Toast",
+    "category": "Feedback",
+    "description": "A single toast notification. You normally won't render this directly — call\n`useToast().toast(...)` from inside a {@link ToastProvider}, which manages\nthe stack and renders this component for you.",
+    "importPath": "pulse-components",
+    "props": [
+      {
+        "name": "variant",
+        "type": "ToastVariant",
+        "required": false,
+        "defaultValue": "'info'"
+      },
+      {
+        "name": "title",
+        "type": "ReactNode",
+        "required": false
+      },
+      {
+        "name": "description",
+        "type": "ReactNode",
+        "required": false
+      },
+      {
+        "name": "onDismiss",
+        "type": "() => void",
+        "required": true
+      }
+    ],
+    "variants": [
+      "info",
+      "success",
+      "warning",
+      "error"
+    ],
+    "sizes": [],
+    "accessibility": [
+      "aria-label"
+    ],
+    "examples": [
+      {
+        "name": "Default",
+        "args": {}
+      },
+      {
+        "name": "Variants",
+        "args": {}
+      },
+      {
+        "name": "StacksMultipleToasts",
+        "args": {}
+      },
+      {
+        "name": "AutoDismisses",
+        "args": {}
+      }
+    ]
+  },
+  {
     "name": "Tooltip",
     "category": "Overlay",
     "description": "Accessible tooltip positioned with Floating UI (flips/shifts to stay in the viewport).\n\nThe trigger is wrapped in a `<span>` rather than cloned onto `children`, so it works\nwith any trigger — including this library's own components, none of which use\n`forwardRef`. The tooltip opens on hover and on keyboard focus, and closes on\n`Escape` or on blur/mouse leave.",

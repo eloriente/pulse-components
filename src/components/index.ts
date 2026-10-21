@@ -69,6 +69,18 @@ export type {
 export { Modal } from './Modal';
 export type { ModalProps } from './Modal';
 
+// ─── Feedback ────────────────────────────────────────────────────────────────
+
+export { Toast, ToastProvider, useToast } from './Toast';
+export type {
+  ToastProps,
+  ToastOptions,
+  ToastVariant,
+  ToastProviderProps,
+  ToastPosition,
+  ToastContextValue,
+} from './Toast';
+
 // ─── Legacy demo components ───────────────────────────────────────────────────
 
 export { Header } from './Header';
