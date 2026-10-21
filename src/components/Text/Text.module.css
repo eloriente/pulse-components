@@ -85,10 +85,10 @@
 /* Colors */
 .text-color-default  { color: var(--pulse-color-text); }
 .text-color-muted    { color: var(--pulse-color-text-muted, #6b7280); }
-.text-color-subtle   { color: var(--pulse-color-text-subtle, #9ca3af); }
+.text-color-subtle   { color: var(--pulse-color-text-subtle, #666666); }
 .text-color-inverse  { color: var(--pulse-color-neutral-0, #ffffff); }
-.text-color-error    { color: var(--pulse-color-error, #e53e3e); }
-.text-color-success  { color: var(--pulse-color-success, #38a169); }
+.text-color-error    { color: var(--pulse-color-error, #d0312d); }
+.text-color-success  { color: var(--pulse-color-success, #357a14); }
 .text-color-warning  { color: var(--pulse-color-warning, #92400e); }
 
 /* Truncation */
