@@ -20,6 +20,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - `public/favicon.svg` now switches to white on dark system/browser themes via
   an embedded `prefers-color-scheme` media query, instead of staying the
   brand-purple mark (low contrast in dark tabs/sidebars).
+- `.github/workflows/deploy-storybook.yml`: deploys the static Storybook build
+  to GitHub Pages on every push to `main` (and manually via
+  `workflow_dispatch`), for sharing a live preview ahead of an npm publish.
 
 ### Fixed
 
