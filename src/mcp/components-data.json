@@ -1641,6 +1641,101 @@
     ]
   },
   {
+    "name": "Tabs",
+    "category": "Navigation",
+    "description": "Accessible tabs following the ARIA APG tabs pattern: roving tabindex, arrow-key\nnavigation (`Home`/`End` jump to the first/last enabled tab), and automatic\nactivation — moving focus with the keyboard selects the tab immediately,\nmatching how native OS tabs behave. Disabled tabs are skipped during\nnavigation. Data-driven (`items`), not a compound component — consistent with\n{@link DropdownMenu}, the only other data-driven list component in this\nlibrary.",
+    "importPath": "pulse-components",
+    "props": [
+      {
+        "name": "items",
+        "type": "TabItem[]",
+        "required": true,
+        "description": "Tabs, in order"
+      },
+      {
+        "name": "value",
+        "type": "string",
+        "required": false,
+        "description": "Controlled selected value. Omit to let Tabs manage its own state"
+      },
+      {
+        "name": "defaultValue",
+        "type": "string",
+        "required": false,
+        "description": "Initial selected value when uncontrolled. Defaults to the first enabled tab"
+      },
+      {
+        "name": "onChange",
+        "type": "(value: string) => void",
+        "required": false,
+        "description": "Called whenever the selected tab changes (click or arrow-key navigation)"
+      },
+      {
+        "name": "orientation",
+        "type": "TabsOrientation",
+        "required": false,
+        "defaultValue": "'horizontal'",
+        "description": "Layout and arrow-key direction. Default `'horizontal'`"
+      },
+      {
+        "name": "className",
+        "type": "string",
+        "required": false,
+        "description": "Additional class applied to the root element"
+      }
+    ],
+    "variants": [],
+    "sizes": [],
+    "accessibility": [
+      "aria-orientation",
+      "aria-selected",
+      "aria-controls",
+      "aria-labelledby",
+      "role"
+    ],
+    "examples": [
+      {
+        "name": "Default",
+        "args": {
+          "items": "BASIC_ITEMS"
+        }
+      },
+      {
+        "name": "Vertical",
+        "args": {
+          "items": "BASIC_ITEMS",
+          "orientation": "vertical"
+        }
+      },
+      {
+        "name": "WithDisabledTab",
+        "args": {
+          "items": "[\n      { value: 'account', label: 'Account', content: 'Manage your account settings.' },\n      { value: 'billing', label: 'Billing', content: 'Disabled', disabled: true },\n      { value: 'team', label: 'Team', content: 'Invite and manage teammates.' },\n    ]"
+        }
+      },
+      {
+        "name": "ArrowKeyNavigation",
+        "args": {
+          "items": "BASIC_ITEMS"
+        }
+      },
+      {
+        "name": "SkipsDisabledTabOnNavigation",
+        "args": {
+          "items": "[\n      { value: 'account', label: 'Account', content: 'Account content' },\n      { value: 'billing', label: 'Billing', content: 'Billing content', disabled: true },\n      { value: 'team', label: 'Team', content: 'Team content' },\n    ]"
+        }
+      },
+      {
+        "name": "Controlled",
+        "args": {
+          "items": "BASIC_ITEMS",
+          "value": "billing",
+          "onChange": "fn()"
+        }
+      }
+    ]
+  },
+  {
     "name": "Text",
     "category": "Primitives",
     "description": "Polymorphic text primitive for body copy, captions, code, and labels.",

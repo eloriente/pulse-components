@@ -84,6 +84,11 @@ export type {
 export { Alert } from './Alert';
 export type { AlertProps, AlertVariant } from './Alert';
 
+// ─── Navigation ──────────────────────────────────────────────────────────────
+
+export { Tabs } from './Tabs';
+export type { TabsProps, TabsOrientation, TabItem } from './Tabs';
+
 // ─── Legacy demo components ───────────────────────────────────────────────────
 
 export { Header } from './Header';
