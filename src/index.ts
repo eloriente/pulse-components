@@ -88,6 +88,9 @@ export type {
   ToastContextValue,
 } from './components/Toast';
 
+export { Alert } from './components/Alert';
+export type { AlertProps, AlertVariant } from './components/Alert';
+
 // ─── Legacy demo components ───────────────────────────────────────────────────
 
 export { Header } from './components/Header';

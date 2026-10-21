@@ -1,5 +1,138 @@
 [
   {
+    "name": "Alert",
+    "category": "Feedback",
+    "description": "Inline, persistent banner for page-level messages (as opposed to {@link Toast},\nwhich is for transient notifications that appear and disappear on their own).\nPersistent by default; pass `autoDismiss` to opt into auto-hiding it instead.",
+    "importPath": "pulse-components",
+    "props": [
+      {
+        "name": "variant",
+        "type": "AlertVariant",
+        "required": false,
+        "defaultValue": "'info'",
+        "description": "Visual and semantic tone of the alert"
+      },
+      {
+        "name": "title",
+        "type": "ReactNode",
+        "required": false,
+        "description": "Bold heading above the description"
+      },
+      {
+        "name": "children",
+        "type": "ReactNode",
+        "required": false,
+        "description": "Description content"
+      },
+      {
+        "name": "dismissible",
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "false",
+        "description": "Shows a close button"
+      },
+      {
+        "name": "autoDismiss",
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "false",
+        "description": "Auto-dismisses the alert after `autoDismissDelay`. Off by default — Alert is\nmeant to be a *persistent* banner (unlike Toast, which already auto-dismisses).\n\n⚠️ Avoid for messages the user must read or act on: an alert that disappears\non its own without user input can conflict with WCAG 2.2.1 (Timing Adjustable).\nPrefer `dismissible` (manual close) for anything important."
+      },
+      {
+        "name": "autoDismissDelay",
+        "type": "number",
+        "required": false,
+        "defaultValue": "8000",
+        "description": "Delay in ms before auto-dismissing. Only applies when `autoDismiss` is true. Default `8000`"
+      },
+      {
+        "name": "onDismiss",
+        "type": "() => void",
+        "required": false,
+        "description": "Called when the alert is dismissed, manually or automatically. Required when `dismissible` or `autoDismiss` is true"
+      },
+      {
+        "name": "className",
+        "type": "string",
+        "required": false,
+        "description": "Additional CSS classes"
+      }
+    ],
+    "variants": [
+      "info",
+      "success",
+      "warning",
+      "error"
+    ],
+    "sizes": [],
+    "accessibility": [
+      "aria-label",
+      "role"
+    ],
+    "examples": [
+      {
+        "name": "Info",
+        "args": {
+          "variant": "info",
+          "title": "Heads up",
+          "children": "A new version of this app is available."
+        }
+      },
+      {
+        "name": "Success",
+        "args": {
+          "variant": "success",
+          "title": "Payment successful",
+          "children": "Your subscription has been renewed."
+        }
+      },
+      {
+        "name": "Warning",
+        "args": {
+          "variant": "warning",
+          "title": "Trial ending soon",
+          "children": "Your trial ends in 3 days."
+        }
+      },
+      {
+        "name": "Error",
+        "args": {
+          "variant": "error",
+          "title": "Something went wrong",
+          "children": "We could not save your changes. Please try again."
+        }
+      },
+      {
+        "name": "WithoutTitle",
+        "args": {
+          "variant": "info",
+          "children": "A simple one-line message with no heading."
+        }
+      },
+      {
+        "name": "Dismissible",
+        "args": {
+          "variant": "warning",
+          "title": "Trial ending soon",
+          "children": "Your trial ends in 3 days.",
+          "dismissible": true,
+          "onDismiss": "fn()"
+        }
+      },
+      {
+        "name": "AutoDismiss",
+        "args": {
+          "variant": "info",
+          "title": "Saved",
+          "children": "This will dismiss itself shortly.",
+          "autoDismiss": true,
+          "autoDismissDelay": 1500,
+          "onDismiss": "fn()"
+        }
+      }
+    ]
+  },
+  {
     "name": "Avatar",
     "category": "Display",
     "description": "User avatar — shows an image or falls back to initials.",
