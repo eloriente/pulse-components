@@ -14,11 +14,13 @@ Librería de componentes React (pulse-components) — React 19 + TypeScript + CS
   - `docs/`, `Welcome.mdx` — documentación de Storybook.
   - `test-setup.ts` — setup global de Vitest/RTL.
 - **CI** (`.github/workflows/quality-checks.yml`, en cada push/PR): `lint` → `typecheck` (`tsc --noEmit`) → `test-unit` (Vitest) → `test-storybook` (Playwright/Chromium) → `coverage` (80% mínimo, sube artifact).
-- `src/index.ts` reexporta todos los componentes de `src/components/index.ts` (mismas categorías: Primitives / Form / Display / Legacy). Si se agrega un componente nuevo a `src/components/index.ts`, replícalo también en `src/index.ts` para que llegue al entry point público.
+- `src/index.ts` reexporta todos los componentes de `src/components/index.ts` (mismas categorías: Primitives / Form / Display / Overlay / Feedback / Navigation), **excepto** `Header` y `Page` (ver nota abajo). Si se agrega un componente nuevo a `src/components/index.ts`, replícalo también en `src/index.ts` para que llegue al entry point público.
 
 ## Componentes (`src/components/`)
 
-Componentes actuales: `Page, Radio, Input, Checkbox, Label, Spinner, Textarea, Button, Divider, Avatar, Switch, Text, Select, Icon, Header, Badge`.
+Componentes actuales (27): `Icon, Button, Heading, Text, Label, Input, Textarea, Checkbox, Radio, Select, Switch, Badge, Avatar, Spinner, Divider, Tooltip, Popover, DropdownMenu, Modal, Toast, Alert, Tabs, Accordion, Breadcrumb, Pagination, Header, Page`.
+
+⚠️ **`Header` y `Page` son ejemplos de demo heredados de la plantilla de Storybook** (branding "Acme", sin tests propios). Se mantienen en `src/components/index.ts` para que sigan documentados en Storybook, pero **no** se reexportan desde `src/index.ts` (el entry point público) — no llegan a quien instale el paquete.
 
 Cada carpeta sigue siempre la misma estructura:
 

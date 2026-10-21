@@ -5,6 +5,34 @@ All notable changes to this project are documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [Unreleased]
+
+Fixes from a post-1.0.0 QA pass. Not yet published — version number to be
+decided when ready to publish.
+
+### Removed
+
+- `Header` and `Page` are no longer exported from the public entry point
+  (`src/index.ts`). They were Storybook template example components with no
+  tests of their own, never intended as part of the design system; they
+  remain in `src/components/index.ts` for Storybook but are no longer part of
+  the published package's API. **Breaking** for anyone importing them from
+  `pulse-components`.
+
+### Fixed
+
+- `Switch`: the thumb turned the same color as the track when checked (a
+  duplicated/misordered CSS rule made it nearly invisible).
+- `src/mcp/server.ts`: the MCP server reported a hardcoded version (`0.1.0`)
+  instead of matching the package version.
+- `@modelcontextprotocol/sdk` bumped to `1.32.1` (latest non-breaking patch).
+
+### Changed
+
+- `strict: true` enabled in `tsconfig.app.json`, `tsconfig.node.json` and
+  `tsconfig.mcp.json` (previously only had a few individual compiler flags).
+  No code changes were needed — everything already type-checked cleanly.
+
 ## [1.0.0] - 2026-10-21
 
 First stable release. Every component listed below is exported from both the

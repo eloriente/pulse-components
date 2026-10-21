@@ -11,6 +11,7 @@
     "sourceMap": true,
     "outDir": "./dist/mcp",
     "rootDir": "./src/mcp",
+    "strict": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true

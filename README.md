@@ -78,7 +78,8 @@ Full props, variants and live examples for every component are in Storybook — 
 | Overlay | Tooltip, Popover, DropdownMenu, Modal |
 | Feedback | Toast (+ `ToastProvider`/`useToast`), Alert |
 | Navigation | Tabs, Accordion, Breadcrumb, Pagination |
-| Other | Header, Page *(Storybook example components)* |
+
+`Header` and `Page` also exist in `src/components/` as Storybook example components, but are **not** part of the public package API (not exported from `pulse-components`).
 
 Overlay components (Tooltip, Popover, DropdownMenu, Modal) are built on [Floating UI](https://floating-ui.com/) for positioning, focus management and dismiss behavior. None of this library's components use `forwardRef`; these wrap their trigger in a `<span>` instead of cloning it, so they work with any trigger element, including this library's own components.
 
