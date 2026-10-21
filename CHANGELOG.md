@@ -18,6 +18,16 @@ decided when ready to publish.
   remain in `src/components/index.ts` for Storybook but are no longer part of
   the published package's API. **Breaking** for anyone importing them from
   `pulse-components`.
+- `Button`: the `backgroundColor` prop was removed — it let consumers bypass
+  the design system with an arbitrary inline style. **Breaking.**
+
+### Changed (breaking)
+
+- `Button`: replaced the `primary?: boolean` prop with `variant?: 'primary' |
+  'secondary'` (default `'secondary'`, same as before), matching the
+  `variant` pattern every other component in this library already uses.
+  **Breaking**: replace `primary` with `variant="primary"`, and omit `primary`
+  (or `primary={false}`) with nothing (secondary is the default).
 
 ### Added
 
@@ -52,6 +62,12 @@ decided when ready to publish.
   shrank) is now clamped into `[1, totalPages]` instead of highlighting no
   page; rendering with `totalPages < 1` now renders nothing instead of an
   empty, inert control.
+- `Badge`: the `subtle` variant's success/warning/error/info colors were
+  hardcoded hex values unrelated to the design tokens; now derived from
+  `--pulse-color-success`/`-warning`/`-error`/`-info` (error and info keep a
+  safe literal text color instead of the token directly, since those two
+  tokens are too light for text at this size/weight — same reasoning as the
+  `Alert` error-contrast fix above).
 
 ### Changed
 
