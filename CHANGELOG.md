@@ -79,6 +79,10 @@ decided when ready to publish.
   No code changes were needed — everything already type-checked cleanly.
 - CI's `NODE_VERSION` is now pinned to `22.12.0` (previously the floating
   `22`), to stay in sync with `engines.node` in `package.json`.
+- CI workflow now declares `permissions: contents: read` at the top level
+  (least privilege — it only reads the repo and uploads a coverage artifact)
+  and pins every third-party GitHub Action to its resolved commit SHA instead
+  of a mutable `@v4` tag.
 
 ### Tests
 
