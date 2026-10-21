@@ -1,0 +1,77 @@
+.accordion {
+  display: flex;
+  flex-direction: column;
+  /* Fills its container instead of shrink-wrapping to whichever panel is
+     currently expanded, so the width doesn't jump as items open/close. */
+  width: 100%;
+  box-sizing: border-box;
+  border-top: var(--pulse-border-width, 1px) solid var(--pulse-color-border, rgba(0, 0, 0, 0.1));
+}
+
+.item {
+  border-bottom: var(--pulse-border-width, 1px) solid var(--pulse-color-border, rgba(0, 0, 0, 0.1));
+}
+
+.heading {
+  margin: 0;
+}
+
+.trigger {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: var(--pulse-space-4, 16px) var(--pulse-space-2, 8px);
+  border: none;
+  background: none;
+  font-family: var(--pulse-font-family-base);
+  font-size: var(--pulse-font-size-md, 14px);
+  font-weight: var(--pulse-font-weight-bold, 700);
+  color: var(--pulse-color-text);
+  text-align: left;
+  cursor: pointer;
+}
+
+.iconLeft {
+  justify-content: flex-start;
+  gap: var(--pulse-space-2, 8px);
+}
+
+.triggerLabel {
+  flex: 1;
+}
+
+.trigger:hover:not(:disabled) {
+  color: var(--pulse-color-primary);
+}
+
+.trigger:focus-visible {
+  outline: 2px solid var(--pulse-color-primary);
+  outline-offset: -2px;
+}
+
+.trigger:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.chevron {
+  flex-shrink: 0;
+  transition: transform 0.15s ease;
+}
+
+.expanded .chevron {
+  transform: rotate(180deg);
+}
+
+.panel {
+  overflow: hidden;
+}
+
+.panelContent {
+  padding: 0 var(--pulse-space-2, 8px) var(--pulse-space-4, 16px);
+  font-family: var(--pulse-font-family-base);
+  font-size: var(--pulse-font-size-md, 14px);
+  color: var(--pulse-color-text-subtle, #666666);
+  line-height: var(--pulse-line-height-normal, 1.5);
+}

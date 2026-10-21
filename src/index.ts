@@ -96,6 +96,15 @@ export type { AlertProps, AlertVariant } from './components/Alert';
 export { Tabs } from './components/Tabs';
 export type { TabsProps, TabsOrientation, TabItem } from './components/Tabs';
 
+export { Accordion } from './components/Accordion';
+export type { AccordionProps, AccordionType, AccordionItem } from './components/Accordion';
+
+export { Breadcrumb } from './components/Breadcrumb';
+export type { BreadcrumbProps, BreadcrumbItem } from './components/Breadcrumb';
+
+export { Pagination } from './components/Pagination';
+export type { PaginationProps } from './components/Pagination';
+
 // ─── Legacy demo components ───────────────────────────────────────────────────
 
 export { Header } from './components/Header';
