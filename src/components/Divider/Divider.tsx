@@ -47,6 +47,7 @@ export function Divider({
       <div
         className={[styles.withLabel, styles[variant], className].filter(Boolean).join(' ')}
         role="separator"
+        {...(props as HTMLAttributes<HTMLDivElement>)}
       >
         <span className={styles.line} aria-hidden="true" />
         <span className={styles.labelText}>{label}</span>

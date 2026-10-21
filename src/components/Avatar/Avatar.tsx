@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import type { ImgHTMLAttributes } from 'react';
 import styles from './Avatar.module.css';
 
@@ -34,7 +35,8 @@ function getInitials(name: string): string {
 }
 
 /**
- * User avatar — shows an image or falls back to initials.
+ * User avatar — shows an image or falls back to initials. Also falls back to
+ * initials if the image fails to load (e.g. a broken or 404 `src`).
  *
  * @example
  * ```tsx
@@ -43,6 +45,7 @@ function getInitials(name: string): string {
  * ```
  */
 export function Avatar({ src, alt, size = 'md', shape = 'circle', color, className, ...props }: AvatarProps) {
+  const [failedSrc, setFailedSrc] = useState<string | undefined>(undefined);
   const px = SIZE_PX[size];
 
   const containerClass = [
@@ -52,7 +55,7 @@ export function Avatar({ src, alt, size = 'md', shape = 'circle', color, classNa
     className,
   ].filter(Boolean).join(' ');
 
-  if (src) {
+  if (src && src !== failedSrc) {
     return (
       <img
         src={src}
@@ -60,6 +63,7 @@ export function Avatar({ src, alt, size = 'md', shape = 'circle', color, classNa
         className={containerClass}
         width={px}
         height={px}
+        onError={() => setFailedSrc(src)}
         {...props}
       />
     );

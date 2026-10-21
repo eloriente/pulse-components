@@ -119,6 +119,30 @@ describe('DropdownMenu', () => {
     });
   });
 
+  describe('Controlled mode', () => {
+    it('calls onOpenChange instead of opening itself when controlled', async () => {
+      const user = userEvent.setup();
+      const onOpenChange = vi.fn();
+      render(
+        <DropdownMenu items={[{ label: 'Rename' }]} open={false} onOpenChange={onOpenChange}>
+          <button type="button">Options</button>
+        </DropdownMenu>,
+      );
+      await user.click(screen.getByRole('button', { name: 'Options' }));
+      expect(onOpenChange).toHaveBeenCalledWith(true);
+      expect(screen.queryByRole('menu')).not.toBeInTheDocument();
+    });
+
+    it('renders the menu when the controlled open prop is true', () => {
+      render(
+        <DropdownMenu items={[{ label: 'Rename' }]} open onOpenChange={() => {}}>
+          <button type="button">Options</button>
+        </DropdownMenu>,
+      );
+      expect(screen.getByRole('menu')).toBeInTheDocument();
+    });
+  });
+
   describe('Disabled', () => {
     it('never opens the menu when the whole component is disabled', async () => {
       const user = userEvent.setup();

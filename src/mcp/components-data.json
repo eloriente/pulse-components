@@ -255,7 +255,7 @@
   {
     "name": "Avatar",
     "category": "Display",
-    "description": "User avatar — shows an image or falls back to initials.",
+    "description": "User avatar — shows an image or falls back to initials. Also falls back to\ninitials if the image fails to load (e.g. a broken or 404 `src`).",
     "importPath": "pulse-components",
     "props": [
       {
@@ -812,7 +812,7 @@
   {
     "name": "DropdownMenu",
     "category": "Overlay",
-    "description": "Accessible dropdown menu positioned with Floating UI (flips/shifts to stay in\nthe viewport). Supports arrow-key navigation, typeahead (type a letter to jump\nto a matching item), `Escape` to close with focus returned to the trigger, and\ndisabled items/separators. The trigger is wrapped in a `<span>` rather than\ncloned onto `children`, so it works with any trigger — including this\nlibrary's own components, none of which use `forwardRef`.",
+    "description": "Accessible dropdown menu positioned with Floating UI (flips/shifts to stay in\nthe viewport). Supports arrow-key navigation, typeahead (type a letter to jump\nto a matching item), `Escape` to close with focus returned to the trigger, and\ndisabled items/separators. Supports controlled (`open`/`onOpenChange`) and\nuncontrolled (`defaultOpen`) modes, same as {@link Popover}. The trigger is\nwrapped in a `<span>` rather than cloned onto `children`, so it works with\nany trigger — including this library's own components, none of which use\n`forwardRef`.",
     "importPath": "pulse-components",
     "props": [
       {
@@ -833,6 +833,25 @@
         "required": false,
         "defaultValue": "'bottom-start'",
         "description": "Preferred corner; flips automatically when there isn't room in the viewport"
+      },
+      {
+        "name": "open",
+        "type": "boolean",
+        "required": false,
+        "description": "Controlled open state. Omit to let the menu manage its own state"
+      },
+      {
+        "name": "defaultOpen",
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "false",
+        "description": "Initial open state when uncontrolled"
+      },
+      {
+        "name": "onOpenChange",
+        "type": "(open: boolean) => void",
+        "required": false,
+        "description": "Called whenever the open state changes (click on trigger, select an item, outside click, Escape)"
       },
       {
         "name": "disabled",

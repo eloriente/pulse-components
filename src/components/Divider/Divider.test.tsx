@@ -37,4 +37,9 @@ describe('Divider', () => {
     const { container } = render(<Divider className="my-class" />);
     expect(container.querySelector('hr')?.className).toContain('my-class');
   });
+
+  it('spreads extra props onto the labelled variant', () => {
+    render(<Divider label="OR" data-testid="or-divider" />);
+    expect(screen.getByTestId('or-divider')).toBeInTheDocument();
+  });
 });

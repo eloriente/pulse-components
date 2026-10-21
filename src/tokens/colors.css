@@ -24,7 +24,13 @@
   /* Semantic */
   --pulse-color-text: var(--pulse-color-neutral-800);
   --pulse-color-text-subtle: var(--pulse-color-neutral-600);
+  /* Not on the neutral-0..900 scale: neutral-400 (#999999) only has ~2.85:1
+     contrast on white, failing WCAG AA for text; this preserves the value
+     every component already used as its fallback, which passes at ~4.83:1. */
+  --pulse-color-text-muted: #6b7280;
   --pulse-color-background: var(--pulse-color-neutral-0);
+  --pulse-color-surface: var(--pulse-color-neutral-0);
+  --pulse-color-surface-subtle: var(--pulse-color-neutral-100);
   --pulse-color-border: rgba(0, 0, 0, 0.1);
 
   /* Status */

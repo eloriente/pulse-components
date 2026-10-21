@@ -1,4 +1,4 @@
-import { render, screen } from '@testing-library/react';
+import { fireEvent, render, screen } from '@testing-library/react';
 import { describe, it, expect } from 'vitest';
 import { Avatar } from './Avatar';
 
@@ -30,6 +30,24 @@ describe('Avatar', () => {
       render(<Avatar src="/photo.jpg" alt="Profile photo" />);
       const img = screen.getByRole('img', { name: 'Profile photo' });
       expect(img).toHaveAttribute('src', '/photo.jpg');
+    });
+
+    it('falls back to initials when the image fails to load', () => {
+      render(<Avatar src="/broken.jpg" alt="John Doe" />);
+      fireEvent.error(screen.getByRole('img', { name: 'John Doe' }));
+      expect(screen.getByText('JD')).toBeInTheDocument();
+      expect(screen.queryByRole('img', { name: 'John Doe' })?.tagName).not.toBe('IMG');
+    });
+
+    it('retries the image when src changes after a previous failure', () => {
+      const { rerender } = render(<Avatar src="/broken.jpg" alt="John Doe" />);
+      fireEvent.error(screen.getByRole('img', { name: 'John Doe' }));
+      expect(screen.getByText('JD')).toBeInTheDocument();
+
+      rerender(<Avatar src="/new-photo.jpg" alt="John Doe" />);
+      const img = screen.getByRole('img', { name: 'John Doe' });
+      expect(img.tagName).toBe('IMG');
+      expect(img).toHaveAttribute('src', '/new-photo.jpg');
     });
   });
 

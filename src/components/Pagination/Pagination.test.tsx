@@ -29,6 +29,14 @@ describe('getPaginationRange', () => {
     expect(result[0]).toBe(1);
     expect(result[result.length - 1]).toBe(20);
   });
+
+  it('returns an empty list for totalPages = 0', () => {
+    expect(getPaginationRange(1, 0)).toEqual([]);
+  });
+
+  it('does not throw for a negative totalPages', () => {
+    expect(getPaginationRange(1, -3)).toEqual([]);
+  });
 });
 
 describe('Pagination', () => {
@@ -135,6 +143,34 @@ describe('Pagination', () => {
       );
       expect(screen.getByRole('button', { name: 'First page' })).toBeEnabled();
       expect(screen.getByRole('button', { name: 'Last page' })).toBeDisabled();
+    });
+  });
+
+  describe('Edge cases', () => {
+    it('renders nothing when totalPages is 0', () => {
+      const { container } = render(
+        <Pagination currentPage={1} totalPages={0} onPageChange={() => {}} />,
+      );
+      expect(container).toBeEmptyDOMElement();
+    });
+
+    it('renders nothing when totalPages is negative', () => {
+      const { container } = render(
+        <Pagination currentPage={1} totalPages={-5} onPageChange={() => {}} />,
+      );
+      expect(container).toBeEmptyDOMElement();
+    });
+
+    it('clamps a currentPage above totalPages to the last page', () => {
+      render(<Pagination currentPage={999} totalPages={5} onPageChange={() => {}} />);
+      expect(screen.getByRole('button', { name: 'Page 5', current: 'page' })).toBeInTheDocument();
+      expect(screen.getByRole('button', { name: 'Next page' })).toBeDisabled();
+    });
+
+    it('clamps a currentPage below 1 to the first page', () => {
+      render(<Pagination currentPage={-3} totalPages={5} onPageChange={() => {}} />);
+      expect(screen.getByRole('button', { name: 'Page 1', current: 'page' })).toBeInTheDocument();
+      expect(screen.getByRole('button', { name: 'Previous page' })).toBeDisabled();
     });
   });
 

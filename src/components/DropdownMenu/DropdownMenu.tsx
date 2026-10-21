@@ -48,6 +48,12 @@ export interface DropdownMenuProps {
   items: DropdownMenuEntry[];
   /** Preferred corner; flips automatically when there isn't room in the viewport */
   placement?: DropdownMenuPlacement;
+  /** Controlled open state. Omit to let the menu manage its own state */
+  open?: boolean;
+  /** Initial open state when uncontrolled */
+  defaultOpen?: boolean;
+  /** Called whenever the open state changes (click on trigger, select an item, outside click, Escape) */
+  onOpenChange?: (open: boolean) => void;
   /** Disables the menu entirely; children render without any wrapper or listeners */
   disabled?: boolean;
   /** Additional class applied to the menu panel */
@@ -58,9 +64,11 @@ export interface DropdownMenuProps {
  * Accessible dropdown menu positioned with Floating UI (flips/shifts to stay in
  * the viewport). Supports arrow-key navigation, typeahead (type a letter to jump
  * to a matching item), `Escape` to close with focus returned to the trigger, and
- * disabled items/separators. The trigger is wrapped in a `<span>` rather than
- * cloned onto `children`, so it works with any trigger — including this
- * library's own components, none of which use `forwardRef`.
+ * disabled items/separators. Supports controlled (`open`/`onOpenChange`) and
+ * uncontrolled (`defaultOpen`) modes, same as {@link Popover}. The trigger is
+ * wrapped in a `<span>` rather than cloned onto `children`, so it works with
+ * any trigger — including this library's own components, none of which use
+ * `forwardRef`.
  *
  * @example
  * ```tsx
@@ -79,10 +87,21 @@ export function DropdownMenu({
   children,
   items,
   placement = 'bottom-start',
+  open: controlledOpen,
+  defaultOpen = false,
+  onOpenChange,
   disabled = false,
   className,
 }: DropdownMenuProps) {
-  const [open, setOpen] = useState(false);
+  const [uncontrolledOpen, setUncontrolledOpen] = useState(defaultOpen);
+  const isControlled = controlledOpen !== undefined;
+  const open = isControlled ? controlledOpen : uncontrolledOpen;
+
+  const setOpen = (next: boolean) => {
+    if (!isControlled) setUncontrolledOpen(next);
+    onOpenChange?.(next);
+  };
+
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
 
   const { refs, floatingStyles, context } = useFloating({

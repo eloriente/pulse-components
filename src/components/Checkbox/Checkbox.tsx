@@ -1,3 +1,4 @@
+import { useCallback } from 'react';
 import type { InputHTMLAttributes, ReactNode } from 'react';
 import styles from './Checkbox.module.css';
 
@@ -29,6 +30,13 @@ export function Checkbox({
   id,
   ...props
 }: CheckboxProps) {
+  const setIndeterminateRef = useCallback(
+    (el: HTMLInputElement | null) => {
+      if (el) el.indeterminate = indeterminate;
+    },
+    [indeterminate],
+  );
+
   return (
     <label
       className={[
@@ -46,9 +54,7 @@ export function Checkbox({
           className={styles.input}
           disabled={disabled}
           aria-invalid={error || undefined}
-          ref={(el) => {
-            if (el) el.indeterminate = indeterminate;
-          }}
+          ref={setIndeterminateRef}
           {...props}
         />
         <span className={styles.checkmark} aria-hidden="true" />

@@ -72,10 +72,15 @@ export function Pagination({
   showFirstLast = false,
   className,
 }: PaginationProps) {
-  const pages = getPaginationRange(currentPage, totalPages, siblingCount);
+  if (totalPages < 1) return null;
+
+  // Clamp an out-of-range currentPage (e.g. a stale value after the result set
+  // shrank) so the control always highlights a real page instead of none.
+  const safeCurrentPage = Math.min(Math.max(currentPage, 1), totalPages);
+  const pages = getPaginationRange(safeCurrentPage, totalPages, siblingCount);
 
   const goTo = (page: number) => {
-    if (page < 1 || page > totalPages || page === currentPage) return;
+    if (page < 1 || page > totalPages || page === safeCurrentPage) return;
     onPageChange(page);
   };
 
@@ -91,7 +96,7 @@ export function Pagination({
               type="button"
               className={styles.navButton}
               aria-label="First page"
-              disabled={currentPage <= 1}
+              disabled={safeCurrentPage <= 1}
               onClick={() => goTo(1)}
             >
               <Icon as={ChevronsLeft} size="sm" />
@@ -103,8 +108,8 @@ export function Pagination({
             type="button"
             className={styles.navButton}
             aria-label="Previous page"
-            disabled={currentPage <= 1}
-            onClick={() => goTo(currentPage - 1)}
+            disabled={safeCurrentPage <= 1}
+            onClick={() => goTo(safeCurrentPage - 1)}
           >
             <Icon as={ChevronLeft} size="sm" />
           </button>
@@ -118,9 +123,9 @@ export function Pagination({
             <li key={page}>
               <button
                 type="button"
-                aria-current={page === currentPage ? 'page' : undefined}
+                aria-current={page === safeCurrentPage ? 'page' : undefined}
                 aria-label={`Page ${page}`}
-                className={[styles.pageButton, page === currentPage ? styles.current : '']
+                className={[styles.pageButton, page === safeCurrentPage ? styles.current : '']
                   .filter(Boolean)
                   .join(' ')}
                 onClick={() => goTo(page)}
@@ -135,8 +140,8 @@ export function Pagination({
             type="button"
             className={styles.navButton}
             aria-label="Next page"
-            disabled={currentPage >= totalPages}
-            onClick={() => goTo(currentPage + 1)}
+            disabled={safeCurrentPage >= totalPages}
+            onClick={() => goTo(safeCurrentPage + 1)}
           >
             <Icon as={ChevronRight} size="sm" />
           </button>
@@ -147,7 +152,7 @@ export function Pagination({
               type="button"
               className={styles.navButton}
               aria-label="Last page"
-              disabled={currentPage >= totalPages}
+              disabled={safeCurrentPage >= totalPages}
               onClick={() => goTo(totalPages)}
             >
               <Icon as={ChevronsRight} size="sm" />
