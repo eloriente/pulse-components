@@ -14,7 +14,7 @@ function closestName(name: string): string | undefined {
 
 const server = new McpServer({
   name: 'pulseui-react-mcp',
-  version: '1.0.2',
+  version: '1.0.3',
 });
 
 server.registerTool(
