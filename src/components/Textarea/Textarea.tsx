@@ -17,6 +17,12 @@ export interface TextareaProps extends TextareaHTMLAttributes<HTMLTextAreaElemen
 
 /**
  * Multi-line text input with variants, sizes, and error state.
+ *
+ * @example
+ * ```tsx
+ * <Textarea placeholder="Write a comment..." />
+ * <Textarea variant="filled" error errorMessage="This field is required" />
+ * ```
  */
 export function Textarea({
   variant = 'outline',

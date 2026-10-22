@@ -31,6 +31,12 @@ const VARIANT_ICON = {
  * A single toast notification. You normally won't render this directly — call
  * `useToast().toast(...)` from inside a {@link ToastProvider}, which manages
  * the stack and renders this component for you.
+ *
+ * @example
+ * ```tsx
+ * const { toast } = useToast();
+ * toast({ variant: 'success', title: 'Saved', description: 'Your changes were saved.' });
+ * ```
  */
 export function Toast({ variant = 'info', title, description, onDismiss }: ToastProps) {
   return (

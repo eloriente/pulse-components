@@ -1,11 +1,12 @@
-import type { ComponentType } from 'react';
+import type { ButtonHTMLAttributes, ComponentType } from 'react';
 import type { LucideProps } from 'lucide-react';
 import { Icon } from '../Icon';
 import styles from './Button.module.css';
 
 export type ButtonVariant = 'primary' | 'secondary';
 
-export interface ButtonProps {
+export interface ButtonProps
+  extends Omit<ButtonHTMLAttributes<HTMLButtonElement>, 'size' | 'onClick'> {
   /** Visual style of the button */
   variant?: ButtonVariant;
   /** How large should the button be? */
@@ -20,19 +21,8 @@ export interface ButtonProps {
   iconOnly?: ComponentType<LucideProps>;
   /** Shows a loading spinner and disables interaction */
   loading?: boolean;
-  /** Disables the button */
-  disabled?: boolean;
-  /** HTML button type */
-  type?: 'button' | 'submit' | 'reset';
   /** Optional click handler */
   onClick?: () => void;
-  /**
-   * Accessible label — required when using `iconOnly` or when label
-   * alone is not descriptive enough.
-   */
-  'aria-label'?: string;
-  /** Additional CSS classes */
-  className?: string;
 }
 
 const ICON_SIZE_MAP = {
@@ -41,7 +31,15 @@ const ICON_SIZE_MAP = {
   large: 'md',
 } as const;
 
-/** Primary UI component for user interaction */
+/**
+ * Primary UI component for user interaction.
+ *
+ * @example
+ * ```tsx
+ * <Button variant="primary" label="Save" onClick={handleSave} />
+ * <Button iconOnly={Trash2} aria-label="Delete item" />
+ * ```
+ */
 export function Button({
   variant = 'secondary',
   size = 'medium',

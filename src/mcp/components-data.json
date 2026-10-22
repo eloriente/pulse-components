@@ -491,7 +491,7 @@
   {
     "name": "Button",
     "category": "Primitives",
-    "description": "Primary UI component for user interaction",
+    "description": "Primary UI component for user interaction.",
     "importPath": "@pulseui/react",
     "props": [
       {
@@ -540,36 +540,10 @@
         "description": "Shows a loading spinner and disables interaction"
       },
       {
-        "name": "disabled",
-        "type": "boolean",
-        "required": false,
-        "defaultValue": "false",
-        "description": "Disables the button"
-      },
-      {
-        "name": "type",
-        "type": "'button' | 'submit' | 'reset'",
-        "required": false,
-        "defaultValue": "'button'",
-        "description": "HTML button type"
-      },
-      {
         "name": "onClick",
         "type": "() => void",
         "required": false,
         "description": "Optional click handler"
-      },
-      {
-        "name": "aria-label",
-        "type": "string",
-        "required": false,
-        "description": "Accessible label — required when using `iconOnly` or when label\nalone is not descriptive enough."
-      },
-      {
-        "name": "className",
-        "type": "string",
-        "required": false,
-        "description": "Additional CSS classes"
       }
     ],
     "variants": [
