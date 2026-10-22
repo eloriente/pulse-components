@@ -49,6 +49,11 @@ export type { SpinnerProps, SpinnerSize, SpinnerVariant } from './Spinner';
 export { Divider } from './Divider';
 export type { DividerProps, DividerOrientation, DividerVariant } from './Divider';
 
+// ─── Layout ──────────────────────────────────────────────────────────────────
+
+export { Card } from './Card';
+export type { CardProps, CardVariant, CardPadding } from './Card';
+
 // ─── Overlay ─────────────────────────────────────────────────────────────────
 
 export { Tooltip } from './Tooltip';

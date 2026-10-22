@@ -1,0 +1,73 @@
+.card {
+  display: flex;
+  flex-direction: column;
+  border-radius: var(--pulse-radius-lg, 12px);
+  background-color: var(--pulse-color-surface, #ffffff);
+  color: var(--pulse-color-text, #111827);
+  transition: box-shadow 0.15s ease, border-color 0.15s ease, transform 0.15s ease;
+}
+
+/* === Variants === */
+.elevated {
+  border: var(--pulse-border-width, 1px) solid transparent;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.outlined {
+  border: var(--pulse-border-width, 1px) solid var(--pulse-color-border, rgba(0, 0, 0, 0.1));
+  box-shadow: none;
+}
+
+.filled {
+  border: var(--pulse-border-width, 1px) solid transparent;
+  background-color: var(--pulse-color-surface-subtle, #f0f0f0);
+  box-shadow: none;
+}
+
+/* === Header / Footer === */
+.header {
+  border-bottom: var(--pulse-border-width, 1px) solid var(--pulse-color-border, rgba(0, 0, 0, 0.1));
+}
+
+.footer {
+  border-top: var(--pulse-border-width, 1px) solid var(--pulse-color-border, rgba(0, 0, 0, 0.1));
+}
+
+/* === Padding scale (shared by header, body, footer) === */
+.padding-none {
+  padding: 0;
+}
+
+.padding-sm {
+  padding: var(--pulse-space-3, 12px);
+}
+
+.padding-md {
+  padding: var(--pulse-space-4, 16px);
+}
+
+.padding-lg {
+  padding: var(--pulse-space-6, 24px);
+}
+
+/* === Interactive === */
+.interactive {
+  cursor: pointer;
+}
+
+.interactive:hover.elevated {
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+}
+
+.interactive:hover.outlined {
+  border-color: var(--pulse-color-primary, #555ab9);
+}
+
+.interactive:hover.filled {
+  background-color: color-mix(in srgb, var(--pulse-color-surface-subtle, #f0f0f0) 80%, black 5%);
+}
+
+.interactive:focus-visible {
+  outline: 2px solid var(--pulse-color-primary, #555ab9);
+  outline-offset: 2px;
+}

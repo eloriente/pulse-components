@@ -56,6 +56,11 @@ export type { SpinnerProps, SpinnerSize, SpinnerVariant } from './components/Spi
 export { Divider } from './components/Divider';
 export type { DividerProps, DividerOrientation, DividerVariant } from './components/Divider';
 
+// ─── Layout ──────────────────────────────────────────────────────────────────
+
+export { Card } from './components/Card';
+export type { CardProps, CardVariant, CardPadding } from './components/Card';
+
 // ─── Overlay ─────────────────────────────────────────────────────────────────
 
 export { Tooltip } from './components/Tooltip';

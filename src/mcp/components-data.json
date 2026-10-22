@@ -627,6 +627,100 @@
     ]
   },
   {
+    "name": "Card",
+    "category": "Layout",
+    "description": "Container for grouping related content, with optional header/footer slots.",
+    "importPath": "@pulseui/react",
+    "props": [
+      {
+        "name": "variant",
+        "type": "CardVariant",
+        "required": false,
+        "defaultValue": "'elevated'",
+        "description": "Visual style of the card"
+      },
+      {
+        "name": "padding",
+        "type": "CardPadding",
+        "required": false,
+        "defaultValue": "'md'",
+        "description": "Padding applied to the body (header/footer use the same scale)"
+      },
+      {
+        "name": "interactive",
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "false",
+        "description": "Makes the card hoverable/focusable, for use as a clickable card"
+      },
+      {
+        "name": "header",
+        "type": "ReactNode",
+        "required": false,
+        "description": "Content rendered above the body, separated by a border"
+      },
+      {
+        "name": "footer",
+        "type": "ReactNode",
+        "required": false,
+        "description": "Content rendered below the body, separated by a border"
+      },
+      {
+        "name": "children",
+        "type": "ReactNode",
+        "required": false,
+        "description": "Main body content"
+      }
+    ],
+    "variants": [
+      "elevated",
+      "outlined",
+      "filled"
+    ],
+    "sizes": [],
+    "accessibility": [
+      "role"
+    ],
+    "examples": [
+      {
+        "name": "Elevated",
+        "args": {
+          "variant": "elevated"
+        }
+      },
+      {
+        "name": "Outlined",
+        "args": {
+          "variant": "outlined"
+        }
+      },
+      {
+        "name": "Filled",
+        "args": {
+          "variant": "filled"
+        }
+      },
+      {
+        "name": "WithHeaderAndFooter",
+        "args": {
+          "header": "<Text weight=\"bold\">Card title</Text>",
+          "footer": "<Button label=\"Confirm\" />"
+        }
+      },
+      {
+        "name": "Interactive",
+        "args": {
+          "interactive": true,
+          "onClick": "fn()"
+        }
+      },
+      {
+        "name": "PaddingVariants",
+        "args": {}
+      }
+    ]
+  },
+  {
     "name": "Checkbox",
     "category": "Form",
     "description": "Checkbox with indeterminate support and accessible label.",
