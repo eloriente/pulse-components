@@ -57,6 +57,9 @@ export type { CardProps, CardVariant, CardPadding } from './Card';
 export { Drawer } from './Drawer';
 export type { DrawerProps, DrawerPlacement, DrawerSize } from './Drawer';
 
+export { Skeleton } from './Skeleton';
+export type { SkeletonProps, SkeletonVariant, SkeletonAnimation } from './Skeleton';
+
 // ─── Overlay ─────────────────────────────────────────────────────────────────
 
 export { Tooltip } from './Tooltip';

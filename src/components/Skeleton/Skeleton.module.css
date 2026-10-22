@@ -1,0 +1,65 @@
+.skeleton {
+  display: block;
+  background-color: var(--pulse-color-neutral-200, #cccccc);
+}
+
+/* === Variants === */
+.text {
+  border-radius: var(--pulse-radius-sm, 3px);
+  transform: scale(1, 0.6);
+  transform-origin: 0 55%;
+}
+
+.circular {
+  border-radius: 50%;
+}
+
+.rectangular {
+  border-radius: var(--pulse-radius-sm, 3px);
+}
+
+/* === Animations === */
+.pulse {
+  animation: pulse 1.5s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.wave {
+  position: relative;
+  overflow: hidden;
+}
+
+.wave::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  transform: translateX(-100%);
+  background: linear-gradient(
+    90deg,
+    transparent,
+    var(--pulse-color-neutral-100, #f0f0f0),
+    transparent
+  );
+  animation: wave 1.6s linear infinite;
+}
+
+@keyframes wave {
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+.none {
+  animation: none;
+}

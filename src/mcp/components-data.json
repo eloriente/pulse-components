@@ -1908,6 +1908,93 @@
     ]
   },
   {
+    "name": "Skeleton",
+    "category": "Layout",
+    "description": "Loading placeholder that mimics the shape of the content it stands in for.\nPurely decorative (`aria-hidden=\"true\"`) — wrap the loading region itself\nin `aria-busy`/`role=\"status\"` so assistive tech announces the loading state.",
+    "importPath": "@pulseui/react",
+    "props": [
+      {
+        "name": "variant",
+        "type": "SkeletonVariant",
+        "required": false,
+        "defaultValue": "'text'",
+        "description": "Shape of the placeholder. Default `'text'`"
+      },
+      {
+        "name": "width",
+        "type": "number | string",
+        "required": false,
+        "description": "Width (CSS length or number of px). Defaults to `'100%'`"
+      },
+      {
+        "name": "height",
+        "type": "number | string",
+        "required": false,
+        "description": "Height (CSS length or number of px). Defaults to `'1em'` for `text`, `40px` for `circular`, `100px` for `rectangular`"
+      },
+      {
+        "name": "animation",
+        "type": "SkeletonAnimation",
+        "required": false,
+        "defaultValue": "'pulse'",
+        "description": "Shimmer effect. Default `'pulse'`"
+      }
+    ],
+    "variants": [
+      "text",
+      "circular",
+      "rectangular"
+    ],
+    "sizes": [],
+    "accessibility": [
+      "aria-hidden"
+    ],
+    "examples": [
+      {
+        "name": "TextLines",
+        "args": {}
+      },
+      {
+        "name": "Circular",
+        "args": {
+          "variant": "circular",
+          "width": 48,
+          "height": 48
+        }
+      },
+      {
+        "name": "Rectangular",
+        "args": {
+          "variant": "rectangular",
+          "width": 240,
+          "height": 120
+        }
+      },
+      {
+        "name": "WaveAnimation",
+        "args": {
+          "variant": "rectangular",
+          "width": 240,
+          "height": 120,
+          "animation": "wave"
+        }
+      },
+      {
+        "name": "NoAnimation",
+        "args": {
+          "variant": "rectangular",
+          "width": 240,
+          "height": 120,
+          "animation": "none"
+        }
+      },
+      {
+        "name": "CardPlaceholder",
+        "args": {}
+      }
+    ]
+  },
+  {
     "name": "Spinner",
     "category": "Display",
     "description": "Loading spinner indicator.",
