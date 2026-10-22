@@ -866,6 +866,115 @@
     ]
   },
   {
+    "name": "Drawer",
+    "category": "Layout",
+    "description": "Accessible slide-in panel docked to a viewport edge: traps focus inside the panel\nwhile open (`FloatingFocusManager`, modal), locks background scroll, and returns\nfocus to the previously focused element on close. Shares Modal's portal/focus-trap\npattern, but the panel is docked to and slides in from a viewport edge instead of\nbeing centered. Like {@link Modal}, it has no trigger — rendering is fully\ncontrolled via the `open`/`onClose` props.",
+    "importPath": "@pulseui/react",
+    "props": [
+      {
+        "name": "open",
+        "type": "boolean",
+        "required": true,
+        "description": "Whether the drawer is open. Drawer has no trigger of its own — rendering is fully controlled"
+      },
+      {
+        "name": "onClose",
+        "type": "() => void",
+        "required": true,
+        "description": "Called to request closing (Escape, backdrop click, or the built-in close button)"
+      },
+      {
+        "name": "title",
+        "type": "ReactNode",
+        "required": false,
+        "description": "Visible heading rendered at the top of the panel; also wired up as the dialog's accessible name"
+      },
+      {
+        "name": "children",
+        "type": "ReactNode",
+        "required": true,
+        "description": "Panel content"
+      },
+      {
+        "name": "aria-label",
+        "type": "string",
+        "required": false,
+        "description": "Accessible name fallback when there's no visible `title` (required in that case for valid ARIA)"
+      },
+      {
+        "name": "placement",
+        "type": "DrawerPlacement",
+        "required": false,
+        "defaultValue": "'right'",
+        "description": "Edge the panel slides in from. Default `'right'`"
+      },
+      {
+        "name": "size",
+        "type": "DrawerSize",
+        "required": false,
+        "defaultValue": "'md'",
+        "description": "Width (for `left`/`right`) or height (for `top`/`bottom`) of the panel. Default `'md'`"
+      },
+      {
+        "name": "closeOnBackdropClick",
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "true",
+        "description": "Closes the drawer when the backdrop is clicked. Default `true`"
+      },
+      {
+        "name": "closeOnEscape",
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "true",
+        "description": "Closes the drawer on `Escape`. Default `true`"
+      },
+      {
+        "name": "className",
+        "type": "string",
+        "required": false,
+        "description": "Additional class applied to the panel"
+      }
+    ],
+    "variants": [],
+    "sizes": [
+      "sm",
+      "md",
+      "lg"
+    ],
+    "accessibility": [
+      "aria-modal",
+      "aria-labelledby",
+      "aria-label"
+    ],
+    "examples": [
+      {
+        "name": "Right",
+        "args": {}
+      },
+      {
+        "name": "AllPlacements",
+        "args": {}
+      },
+      {
+        "name": "Sizes",
+        "args": {}
+      },
+      {
+        "name": "ClosesOnEscapeAndReturnsFocus",
+        "args": {}
+      },
+      {
+        "name": "ClosesOnBackdropClick",
+        "args": {}
+      },
+      {
+        "name": "WithoutTitleRequiresAriaLabel",
+        "args": {}
+      }
+    ]
+  },
+  {
     "name": "DropdownMenu",
     "category": "Overlay",
     "description": "Accessible dropdown menu positioned with Floating UI (flips/shifts to stay in\nthe viewport). Supports arrow-key navigation, typeahead (type a letter to jump\nto a matching item), `Escape` to close with focus returned to the trigger, and\ndisabled items/separators. Supports controlled (`open`/`onOpenChange`) and\nuncontrolled (`defaultOpen`) modes, same as {@link Popover}. The trigger is\nwrapped in a `<span>` rather than cloned onto `children`, so it works with\nany trigger — including this library's own components, none of which use\n`forwardRef`.",

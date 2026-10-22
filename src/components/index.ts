@@ -54,6 +54,9 @@ export type { DividerProps, DividerOrientation, DividerVariant } from './Divider
 export { Card } from './Card';
 export type { CardProps, CardVariant, CardPadding } from './Card';
 
+export { Drawer } from './Drawer';
+export type { DrawerProps, DrawerPlacement, DrawerSize } from './Drawer';
+
 // ─── Overlay ─────────────────────────────────────────────────────────────────
 
 export { Tooltip } from './Tooltip';

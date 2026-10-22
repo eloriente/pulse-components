@@ -1,0 +1,140 @@
+.backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: flex;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.backdrop.left {
+  justify-content: flex-start;
+}
+
+.backdrop.right {
+  justify-content: flex-end;
+}
+
+.backdrop.top {
+  align-items: flex-start;
+}
+
+.backdrop.bottom {
+  align-items: flex-end;
+}
+
+.panel {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+  padding: var(--pulse-space-6, 24px);
+  background-color: var(--pulse-color-background, #ffffff);
+  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.2);
+  font-family: var(--pulse-font-family-base);
+  color: var(--pulse-color-text);
+  animation-duration: 0.2s;
+  animation-timing-function: ease-out;
+}
+
+.panel:focus-visible {
+  outline: none;
+}
+
+.panel.left,
+.panel.right {
+  width: var(--pulse-drawer-size);
+  max-width: 100%;
+  height: 100%;
+}
+
+.panel.top,
+.panel.bottom {
+  height: var(--pulse-drawer-size);
+  max-height: 100%;
+  width: 100%;
+}
+
+.panel.left {
+  animation-name: slideInLeft;
+}
+
+.panel.right {
+  animation-name: slideInRight;
+}
+
+.panel.top {
+  animation-name: slideInTop;
+}
+
+.panel.bottom {
+  animation-name: slideInBottom;
+}
+
+@keyframes slideInLeft {
+  from {
+    transform: translateX(-100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInTop {
+  from {
+    transform: translateY(-100%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideInBottom {
+  from {
+    transform: translateY(100%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
+.closeButton {
+  position: absolute;
+  top: var(--pulse-space-3, 12px);
+  right: var(--pulse-space-3, 12px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border: none;
+  border-radius: var(--pulse-radius-sm, 3px);
+  background: none;
+  color: var(--pulse-color-text-subtle, #666666);
+  cursor: pointer;
+}
+
+.closeButton:hover,
+.closeButton:focus-visible {
+  background-color: var(--pulse-color-neutral-100, #f0f0f0);
+  outline: none;
+}
+
+.title {
+  margin: 0 var(--pulse-space-6, 24px) var(--pulse-space-4, 16px) 0;
+  font-size: var(--pulse-font-size-xl, 20px);
+  font-weight: var(--pulse-font-weight-bold, 700);
+}
+
+.content {
+  font-size: var(--pulse-font-size-md, 14px);
+  line-height: var(--pulse-line-height-normal, 1.5);
+}

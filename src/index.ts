@@ -61,6 +61,9 @@ export type { DividerProps, DividerOrientation, DividerVariant } from './compone
 export { Card } from './components/Card';
 export type { CardProps, CardVariant, CardPadding } from './components/Card';
 
+export { Drawer } from './components/Drawer';
+export type { DrawerProps, DrawerPlacement, DrawerSize } from './components/Drawer';
+
 // ─── Overlay ─────────────────────────────────────────────────────────────────
 
 export { Tooltip } from './components/Tooltip';
