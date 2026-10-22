@@ -5,50 +5,50 @@ tools: Read, Write, Edit, Glob, Grep, Bash
 model: inherit
 ---
 
-Eres el encargado de crear componentes nuevos para PulseUI (`@pulseui/react`) siguiendo exactamente las convenciones documentadas en `CLAUDE.md`. No improvises una estructura distinta aunque parezca "más simple".
+You are responsible for creating new components for PulseUI (`@pulseui/react`) following exactly the conventions documented in `CLAUDE.md`. Don't improvise a different structure even if it seems "simpler".
 
-## Antes de escribir código
+## Before writing code
 
-1. Lee al menos un componente existente comparable (p. ej. `src/components/Input` para campos de formulario, `src/components/Badge` para display) para calcar el estilo real del código, no solo la descripción.
-2. Confirma el nombre en PascalCase y que no exista ya en `src/components/`.
+1. Read at least one comparable existing component (e.g. `src/components/Input` for form fields, `src/components/Badge` for display) to mirror the real code style, not just the description.
+2. Confirm the name is in PascalCase and doesn't already exist in `src/components/`.
 
-## Estructura obligatoria (los 5 archivos, siempre)
+## Mandatory structure (all 5 files, always)
 
 ```
 src/components/ComponentName/
-  ComponentName.tsx          # componente + interfaz de props + JSDoc
-  ComponentName.module.css   # CSS Modules, variables --pulse-*
+  ComponentName.tsx          # component + props interface + JSDoc
+  ComponentName.module.css   # CSS Modules, --pulse-* variables
   ComponentName.stories.tsx  # CSF3, meta satisfies Meta<typeof X>, tags: ['autodocs']
   ComponentName.test.tsx     # Vitest + RTL
-  index.ts                   # barrel: reexporta componente + tipos
+  index.ts                   # barrel: re-exports component + types
 ```
 
-## Convenciones de código (no negociables)
+## Code conventions (non-negotiable)
 
-- `interface ComponentNameProps`, extendiendo `Omit<...HTMLAttributes<...>, 'type' | 'size'>` cuando aplique.
-- Variantes/tamaños como union types exportados aparte (`export type ComponentNameVariant = '...' | '...'`), nunca enums.
-- Function declaration (`export function ComponentName(...)`), nunca `forwardRef` ni `React.FC`.
-- Props desestructuradas con defaults inline.
-- Composición manual de clases: `[styles.base, styles[variant], className].filter(Boolean).join(' ')`. Nunca `clsx`/`cva`.
-- JSDoc sobre la interfaz y el componente, con bloque `@example`, en vez de comentarios inline.
-- Accesibilidad real: `aria-invalid`, `aria-describedby`, `aria-busy`, `role="alert"` en mensajes de error, `aria-label` obligatorio si el componente es icon-only. El build de Storybook falla con `a11y.test: 'error'`, así que esto no es opcional.
-- Si el componente usa iconos, reutiliza `Icon` (wrapper de `lucide-react`), no importes `lucide-react` directo salvo que sea el patrón ya usado por Button/Input/Select.
+- `interface ComponentNameProps`, extending `Omit<...HTMLAttributes<...>, 'type' | 'size'>` when applicable.
+- Variants/sizes as separately exported union types (`export type ComponentNameVariant = '...' | '...'`), never enums.
+- Function declaration (`export function ComponentName(...)`), never `forwardRef` or `React.FC`.
+- Destructured props with inline defaults.
+- Manual class composition: `[styles.base, styles[variant], className].filter(Boolean).join(' ')`. Never `clsx`/`cva`.
+- JSDoc above the interface and the component, with an `@example` block, instead of inline comments.
+- Real accessibility: `aria-invalid`, `aria-describedby`, `aria-busy`, `role="alert"` on error messages, `aria-label` mandatory if the component is icon-only. The Storybook build fails on `a11y.test: 'error'`, so this isn't optional.
+- If the component uses icons, reuse `Icon` (wrapper around `lucide-react`); don't import `lucide-react` directly unless it's the pattern already used by Button/Input/Select.
 
 ## Stories (CSF3)
 
-- `title: 'Components/<Categoría>/ComponentName'` — la categoría es una de Primitives / Form / Display / Overlay / Feedback / Navigation, la misma bajo la que ya está agrupado en `src/components/index.ts`. `tags: ['autodocs']`, `argTypes` tipados por control.
-- Historias con nombres semánticos (`Primary`, `Disabled`, `Loading`, `WithIconLeft`), nunca solo `Default`.
-- Si el componente tiene interacción relevante, añade una `play` function con `within`/`userEvent`/`expect` de `storybook/test`.
+- `title: 'Components/<Category>/ComponentName'` — the category is one of Primitives / Form / Display / Overlay / Feedback / Navigation, the same one it's already grouped under in `src/components/index.ts`. `tags: ['autodocs']`, `argTypes` typed per control.
+- Stories with semantic names (`Primary`, `Disabled`, `Loading`, `WithIconLeft`), never just `Default`.
+- If the component has meaningful interaction, add a `play` function with `within`/`userEvent`/`expect` from `storybook/test`.
 
 ## Tests
 
-- `describe` agrupado por aspecto: Rendering, Variants, Sizes, Disabled/Loading, Interactions, Styling (usa solo los grupos que apliquen).
-- `render` + `screen.getByRole`, `userEvent` para interacción, `it.each` para variantes parametrizadas.
-- Sin snapshot testing.
+- `describe` grouped by aspect: Rendering, Variants, Sizes, Disabled/Loading, Interactions, Styling (use only the groups that apply).
+- `render` + `screen.getByRole`, `userEvent` for interaction, `it.each` for parameterized variants.
+- No snapshot testing.
 
-## Al terminar
+## When finished
 
-1. Añade el export al **barrel correcto**: `src/components/index.ts`, bajo la categoría que corresponda (Primitives / Form / Display / Overlay / Feedback / Navigation) — respeta el bloque de comentarios de sección existente.
-2. Replícalo también en `src/index.ts` (el entry point público) — todo lo que está en `src/components/index.ts` se reexporta ahí, salvo que el usuario pida explícitamente mantenerlo como demo interno de Storybook.
-3. Ejecuta `npm run generate:mcp-data` para regenerar `src/mcp/components-data.json` (si el hook de post-edit no lo hizo ya) y reporta qué cambió.
-4. Corre `npm run lint`, `npm run typecheck` y `npm run test:unit -- --run` sobre el componente nuevo antes de darlo por terminado.
+1. Add the export to the **correct barrel**: `src/components/index.ts`, under the matching category (Primitives / Form / Display / Overlay / Feedback / Navigation) — respect the existing section comment block.
+2. Replicate it in `src/index.ts` (the public entry point) too — everything in `src/components/index.ts` gets re-exported there, unless the user explicitly asks to keep it as an internal Storybook demo.
+3. Run `npm run generate:mcp-data` to regenerate `src/mcp/components-data.json` (if the post-edit hook hasn't already) and report what changed.
+4. Run `npm run lint`, `npm run typecheck` and `npm run test:unit -- --run` on the new component before considering it done.

@@ -1,73 +1,73 @@
 # CLAUDE.md
 
-PulseUI para React (paquete npm `@pulseui/react`) — React 19 + TypeScript + CSS Modules, documentada con Storybook y testeada con Vitest + Testing Library.
+PulseUI for React (npm package `@pulseui/react`) — React 19 + TypeScript + CSS Modules, documented with Storybook and tested with Vitest + Testing Library.
 
-## Stack y arquitectura
+## Stack and architecture
 
-- **Build**: Vite 8 en modo librería. Entry `src/index.ts` → `dist/index.js` (ESM) y `dist/index.cjs` (CJS) + `dist/index.d.ts`. CSS se emite unificado en `dist/style.css`. `react`, `react-dom`, `react/jsx-runtime` y `lucide-react` van externalizados (peer deps).
-- **Exports del package.json**: `.` (componentes), `./tokens` (`dist/tokens/index.css`), `./styles` (`dist/style.css`).
-- **TypeScript**: `tsconfig.json` es solution-style, referencia `tsconfig.app.json` y `tsconfig.node.json`.
-- **Lint**: ESLint 10 flat config (`eslint.config.ts`) con `typescript-eslint` recommended + `js/recommended`.
-- **Estructura de `src/`**:
-  - `components/` — un folder por componente.
-  - `tokens/` — design tokens en CSS (`colors.css`, `spacing.css`, `typography.css`, `index.css`), consumidos como variables `--pulse-*` en los `.module.css` de cada componente.
-  - `docs/`, `Welcome.mdx` — documentación de Storybook.
-  - `test-setup.ts` — setup global de Vitest/RTL.
-- **CI** (`.github/workflows/quality-checks.yml`, en cada push/PR): `lint` → `typecheck` (`tsc --noEmit`) → `mcp-data` (`check:mcp-data`) → `build` (`npm run build`, detecta errores solo-de-build) → `test-unit` (Vitest) → `test-storybook` (Playwright/Chromium) → `coverage` (80% mínimo, sube artifact). Todos los jobs corren en paralelo salvo `coverage`, que depende de `test-unit`+`test-storybook`.
-- `src/index.ts` reexporta todos los componentes de `src/components/index.ts` (mismas categorías: Primitives / Form / Display / Overlay / Feedback / Navigation). Si se agrega un componente nuevo a `src/components/index.ts`, replícalo también en `src/index.ts` para que llegue al entry point público.
+- **Build**: Vite 8 in library mode. Entry `src/index.ts` → `dist/index.js` (ESM) and `dist/index.cjs` (CJS) + `dist/index.d.ts`. CSS is emitted unified into `dist/style.css`. `react`, `react-dom`, `react/jsx-runtime` and `lucide-react` are externalized (peer deps).
+- **package.json exports**: `.` (components), `./tokens` (`dist/tokens/index.css`), `./styles` (`dist/style.css`).
+- **TypeScript**: `tsconfig.json` is solution-style, references `tsconfig.app.json` and `tsconfig.node.json`.
+- **Lint**: ESLint 10 flat config (`eslint.config.ts`) with `typescript-eslint` recommended + `js/recommended`.
+- **`src/` structure**:
+  - `components/` — one folder per component.
+  - `tokens/` — design tokens in CSS (`colors.css`, `spacing.css`, `typography.css`, `index.css`), consumed as `--pulse-*` variables in each component's `.module.css`.
+  - `docs/`, `Welcome.mdx` — Storybook documentation.
+  - `test-setup.ts` — global Vitest/RTL setup.
+- **CI** (`.github/workflows/quality-checks.yml`, on every push/PR): `lint` → `typecheck` (`tsc --noEmit`) → `mcp-data` (`check:mcp-data`) → `build` (`npm run build`, catches build-only errors) → `test-unit` (Vitest) → `test-storybook` (Playwright/Chromium) → `coverage` (80% minimum, uploads artifact). All jobs run in parallel except `coverage`, which depends on `test-unit`+`test-storybook`.
+- `src/index.ts` re-exports every component from `src/components/index.ts` (same categories: Primitives / Form / Display / Overlay / Feedback / Navigation). If a new component is added to `src/components/index.ts`, replicate it in `src/index.ts` too so it reaches the public entry point.
 
-## Componentes (`src/components/`)
+## Components (`src/components/`)
 
-Componentes actuales (25): `Icon, Button, Heading, Text, Label, Input, Textarea, Checkbox, Radio, Select, Switch, Badge, Avatar, Spinner, Divider, Tooltip, Popover, DropdownMenu, Modal, Toast, Alert, Tabs, Accordion, Breadcrumb, Pagination`.
+Current components (25): `Icon, Button, Heading, Text, Label, Input, Textarea, Checkbox, Radio, Select, Switch, Badge, Avatar, Spinner, Divider, Tooltip, Popover, DropdownMenu, Modal, Toast, Alert, Tabs, Accordion, Breadcrumb, Pagination`.
 
-Cada carpeta sigue siempre la misma estructura:
+Every folder always follows the same structure:
 
 ```
 ComponentName/
-  ComponentName.tsx          # componente + interfaz de props + JSDoc
-  ComponentName.module.css   # estilos con CSS Modules
-  ComponentName.stories.tsx  # historias de Storybook (CSF3)
+  ComponentName.tsx          # component + props interface + JSDoc
+  ComponentName.module.css   # CSS Modules styles
+  ComponentName.stories.tsx  # Storybook stories (CSF3)
   ComponentName.test.tsx     # tests (Vitest + RTL)
-  index.ts                   # barrel: reexporta componente y tipos
+  index.ts                   # barrel: re-exports component and types
 ```
 
-Convenciones de código:
+Code conventions:
 
-- **Props**: `interface XProps`, a menudo extendiendo atributos HTML nativos con `Omit<...HTMLAttributes<...>, 'type' | 'size'>`. Variantes/tamaños como union types exportados aparte (`export type InputVariant = 'outline' | 'filled' | 'underline'`).
-- **Componentes**: function declarations (`export function Button(...)`), sin `forwardRef` ni `React.FC`. Props desestructuradas con defaults inline.
-- **Estilos**: CSS Modules; clases compuestas manualmente (`[styles.button, styles[size], ...].filter(Boolean).join(' ')`). No se usa `clsx`/`cva`.
-- **Naming**: componentes y tipos en PascalCase, props/variables en camelCase, clases CSS en camelCase.
-- **Accesibilidad**: siempre se cuida (`aria-invalid`, `aria-describedby`, `aria-busy`, `role="alert"` en mensajes de error).
-- **Compartido**: no hay carpeta `utils/`/`hooks/`; lo único transversal es el componente `Icon` (wrapper de `lucide-react`) usado por Button/Input/Select, y los tokens CSS globales.
-- **Exports**: cada `index.ts` reexporta componente + tipos; `src/components/index.ts` agrupa todo por categorías comentadas (Primitives / Form / Display / Overlay / Feedback / Navigation).
+- **Props**: `interface XProps`, often extending native HTML attributes with `Omit<...HTMLAttributes<...>, 'type' | 'size'>`. Variants/sizes as separately exported union types (`export type InputVariant = 'outline' | 'filled' | 'underline'`).
+- **Components**: function declarations (`export function Button(...)`), never `forwardRef` or `React.FC`. Destructured props with inline defaults.
+- **Styles**: CSS Modules; classes composed manually (`[styles.button, styles[size], ...].filter(Boolean).join(' ')`). No `clsx`/`cva`.
+- **Naming**: components and types in PascalCase, props/variables in camelCase, CSS classes in camelCase.
+- **Accessibility**: always considered (`aria-invalid`, `aria-describedby`, `aria-busy`, `role="alert"` on error messages).
+- **Shared code**: no `utils/`/`hooks/` folder; the only cross-cutting piece is the `Icon` component (wrapper around `lucide-react`) used by Button/Input/Select, and the global CSS tokens.
+- **Exports**: each `index.ts` re-exports component + types; `src/components/index.ts` groups everything under commented categories (Primitives / Form / Display / Overlay / Feedback / Navigation).
 
 ## Storybook
 
-- Config en `.storybook/main.ts` (framework `@storybook/react-vite`, stories en `src/**/*.stories.tsx` y `**/*.mdx`) y `.storybook/preview.tsx` (importa tokens globalmente, `a11y.test: 'error'` — las violaciones de accesibilidad rompen el build).
+- Config in `.storybook/main.ts` (framework `@storybook/react-vite`, stories in `src/**/*.stories.tsx` and `**/*.mdx`) and `.storybook/preview.tsx` (imports tokens globally, `a11y.test: 'error'` — accessibility violations break the build).
 - Addons: `@chromatic-com/storybook`, `@storybook/addon-vitest`, `@storybook/addon-a11y`, `@storybook/addon-docs`.
-- Formato **CSF3**: `meta` con `satisfies Meta<typeof Component>`, `title: 'Components/<Categoría>/X'` (la categoría es una de Primitives / Form / Display / Overlay / Feedback / Navigation, igual que en `src/components/index.ts` — agrupa el sidebar de Storybook), `tags: ['autodocs']`, `argTypes` tipados por control; stories como `StoryObj` nombradas semánticamente (`Primary`, `Disabled`, `Loading`, `WithIconLeft`, no solo `Default`).
-- Los tests de interacción viven en `play` functions dentro de las stories (`within`, `userEvent`, `expect` de `storybook/test`) y se ejecutan como parte del proyecto Vitest `storybook` (Playwright/Chromium).
+- **CSF3** format: `meta` with `satisfies Meta<typeof Component>`, `title: 'Components/<Category>/X'` (the category is one of Primitives / Form / Display / Overlay / Feedback / Navigation, same as in `src/components/index.ts` — groups the Storybook sidebar), `tags: ['autodocs']`, `argTypes` typed per control; stories as `StoryObj` named semantically (`Primary`, `Disabled`, `Loading`, `WithIconLeft`, not just `Default`).
+- Interaction tests live in `play` functions inside the stories (`within`, `userEvent`, `expect` from `storybook/test`) and run as part of the `storybook` Vitest project (Playwright/Chromium).
 
 ## Tests
 
-- Stack: Vitest (2 projects definidos en `vite.config.ts`: `unit` con jsdom, `storybook` con Playwright/Chromium) + React Testing Library + `@testing-library/user-event` + `jest-dom`.
-- Scripts: `test` (todo), `test:unit`, `test:storybook`, `coverage` (v8, umbral 80% en líneas/funciones/branches/statements sobre `src/components/**`).
-- Setup global en `src/test-setup.ts` (matchers de jest-dom + `cleanup()` tras cada test).
-- Patrón habitual en `*.test.tsx`: `describe` agrupado por aspecto (Rendering, Variants, Sizes, Disabled/Loading, Interactions, Styling), `render` + `screen.getByRole`, `userEvent` para interacción, `it.each` para variantes parametrizadas, aserciones sobre className/`aria-*`/`toBeDisabled`. No hay snapshot testing.
+- Stack: Vitest (2 projects defined in `vite.config.ts`: `unit` with jsdom, `storybook` with Playwright/Chromium) + React Testing Library + `@testing-library/user-event` + `jest-dom`.
+- Scripts: `test` (all), `test:unit`, `test:storybook`, `coverage` (v8, 80% threshold on lines/functions/branches/statements over `src/components/**`).
+- Global setup in `src/test-setup.ts` (jest-dom matchers + `cleanup()` after each test).
+- Usual pattern in `*.test.tsx`: `describe` grouped by aspect (Rendering, Variants, Sizes, Disabled/Loading, Interactions, Styling), `render` + `screen.getByRole`, `userEvent` for interaction, `it.each` for parameterized variants, assertions on className/`aria-*`/`toBeDisabled`. No snapshot testing.
 
-## Estilo de código general
+## General code style
 
-- TypeScript estricto con interfaces explícitas para props; tipos de variante como union types exportados junto al componente.
-- Sin librerías de utilidades de clases (no `clsx`/`cva`/`tailwind-merge`); composición manual de clases con CSS Modules.
-- JSDoc encima de props y componente (incluyendo bloque `@example`) en vez de comentarios inline.
-- Convención de nombres consistente: PascalCase para componentes/tipos, camelCase para props/variables/clases CSS.
+- Strict TypeScript with explicit interfaces for props; variant types as union types exported alongside the component.
+- No class-utility libraries (no `clsx`/`cva`/`tailwind-merge`); manual class composition with CSS Modules.
+- JSDoc above props and the component (including an `@example` block) instead of inline comments.
+- Consistent naming convention: PascalCase for components/types, camelCase for props/variables/CSS classes.
 
-## MCP server (consulta de componentes)
+## MCP server (component lookup)
 
-El paquete incluye un servidor MCP de solo consulta (`bin: pulseui-react-mcp`), embebido en el mismo `package.json` — solo es invocable si `@pulseui/react` está instalado como dependencia; no existe como paquete separado.
+The package includes a read-only MCP server (`bin: pulseui-react-mcp`), embedded in the same `package.json` — it's only invokable if `@pulseui/react` is installed as a dependency; it doesn't exist as a separate package.
 
-- **Metadata versionada**: `src/mcp/components-data.json` se genera con `npm run generate:mcp-data` (`scripts/generate-mcp-data.ts`, usa `ts-morph` para parsear props/JSDoc/variantes/tamaños de cada `*.tsx` y ejemplos de cada `*.stories.tsx`). **No se edita a mano.**
-- Tras crear o modificar un componente, regenera el JSON con `npm run generate:mcp-data` (o el skill `/update-mcp-data`) antes de commitear.
-- El job `mcp-data` en `.github/workflows/quality-checks.yml` falla el PR si el JSON versionado no coincide con el que generaría el código actual (`npm run check:mcp-data`).
-- Servidor (`src/mcp/server.ts`, build Node-only vía `tsconfig.mcp.json` → `dist/mcp/`) expone dos tools de solo lectura: `list_components` y `get_component(name)`. No recomienda qué componente usar — esa decisión es del desarrollador.
-- Probar localmente: `npm run build && npx @modelcontextprotocol/inspector node dist/mcp/server.js`.
+- **Versioned metadata**: `src/mcp/components-data.json` is generated with `npm run generate:mcp-data` (`scripts/generate-mcp-data.ts`, uses `ts-morph` to parse props/JSDoc/variants/sizes from each `*.tsx` and examples from each `*.stories.tsx`). **Never edited by hand.**
+- After creating or modifying a component, regenerate the JSON with `npm run generate:mcp-data` (or the `/update-mcp-data` skill) before committing.
+- The `mcp-data` job in `.github/workflows/quality-checks.yml` fails the PR if the versioned JSON doesn't match what the current code would generate (`npm run check:mcp-data`).
+- The server (`src/mcp/server.ts`, Node-only build via `tsconfig.mcp.json` → `dist/mcp/`) exposes two read-only tools: `list_components` and `get_component(name)`. It doesn't recommend which component to use — that decision is the developer's.
+- Test locally: `npm run build && npx @modelcontextprotocol/inspector node dist/mcp/server.js`.

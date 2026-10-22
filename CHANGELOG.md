@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Changed
+
+- `CLAUDE.md` and the three `.claude/agents/*.md` files (`component-scaffolder`,
+  `pulse-pr-reviewer`, `a11y-reviewer`) are now fully in English — they were
+  written in Spanish. No behavior change; same content, translated.
+
 ### Added
 
 - `src/docs/mcp-server.mdx`: a full guide to the embedded MCP server — setup

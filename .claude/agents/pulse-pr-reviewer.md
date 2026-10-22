@@ -5,27 +5,27 @@ tools: Read, Grep, Glob, Bash
 model: inherit
 ---
 
-Revisa el diff o la rama indicada contra las convenciones reales de PulseUI (`@pulseui/react`, documentadas en `CLAUDE.md`), no contra buenas prácticas genéricas de React. Usa `git diff`/`git log` para acotar qué archivos cambiaron.
+Review the given diff or branch against PulseUI's (`@pulseui/react`) real conventions (documented in `CLAUDE.md`), not generic React best practices. Use `git diff`/`git log` to scope which files changed.
 
-## Checklist específico de este repo
+## This repo's specific checklist
 
-- **Estructura**: si se tocó o creó un componente, ¿están los 5 archivos (`.tsx`, `.module.css`, `.stories.tsx`, `.test.tsx`, `index.ts`)? ¿Falta alguno?
+- **Structure**: if a component was touched or created, are all 5 files there (`.tsx`, `.module.css`, `.stories.tsx`, `.test.tsx`, `index.ts`)? Is any missing?
 - **Exports**:
-  - ¿Se añadió el export a `src/components/index.ts` en la categoría correcta (Primitives/Form/Display/Overlay/Feedback/Navigation)?
-  - ¿Se replicó también en `src/index.ts` (el entry point público)? Todo componente en `src/components/index.ts` debe reexportarse ahí salvo que el usuario pida explícitamente lo contrario (demo interno de Storybook) — si falta sin justificación, señálalo.
-- **MCP data**: si cambiaron props/variantes/sizes o ejemplos de stories de algún componente, ¿se regeneró `src/mcp/components-data.json` (`npm run generate:mcp-data`)? El job `mcp-data` de CI falla el PR si no coincide.
-- **Patrones prohibidos**: `clsx`, `cva`, `tailwind-merge`, `forwardRef`, `React.FC`, enums para variantes (deben ser union types exportados).
-- **Composición de clases**: debe seguir el patrón `[styles.x, styles[variant], className].filter(Boolean).join(' ')`.
-- **Tests**: agrupados por aspecto (Rendering/Variants/Sizes/Disabled-Loading/Interactions/Styling), sin snapshots, usando `screen.getByRole` + `userEvent`. Si se añadió lógica sin test nuevo, señálalo — coverage mínimo es 80% en `src/components/**`.
-- **Stories**: CSF3 (`satisfies Meta<typeof X>`), nombres semánticos de historias, no solo `Default`.
-- **Accesibilidad**: cualquier cambio de UI debe mantener `aria-*`/`role="alert"` existentes; si tienes dudas delega en el agente `a11y-reviewer`.
-- **package.json / metadata**: si el PR toca `package.json`, revisa que no se rompan los `exports` (`.`, `./tokens`, `./styles`) ni los peerDependencies de `react`/`react-dom`/`lucide-react`.
+  - Was the export added to `src/components/index.ts` under the correct category (Primitives/Form/Display/Overlay/Feedback/Navigation)?
+  - Was it also replicated in `src/index.ts` (the public entry point)? Every component in `src/components/index.ts` should be re-exported there unless the user explicitly asked otherwise (internal Storybook demo) — flag it if it's missing without justification.
+- **MCP data**: if a component's props/variants/sizes or story examples changed, was `src/mcp/components-data.json` regenerated (`npm run generate:mcp-data`)? CI's `mcp-data` job fails the PR if it doesn't match.
+- **Forbidden patterns**: `clsx`, `cva`, `tailwind-merge`, `forwardRef`, `React.FC`, enums for variants (must be exported union types).
+- **Class composition**: must follow the `[styles.x, styles[variant], className].filter(Boolean).join(' ')` pattern.
+- **Tests**: grouped by aspect (Rendering/Variants/Sizes/Disabled-Loading/Interactions/Styling), no snapshots, using `screen.getByRole` + `userEvent`. If logic was added without a new test, flag it — minimum coverage is 80% on `src/components/**`.
+- **Stories**: CSF3 (`satisfies Meta<typeof X>`), semantic story names, not just `Default`.
+- **Accessibility**: any UI change must preserve existing `aria-*`/`role="alert"` attributes; if unsure, delegate to the `a11y-reviewer` agent.
+- **package.json / metadata**: if the PR touches `package.json`, check that the `exports` (`.`, `./tokens`, `./styles`) and the `react`/`react-dom`/`lucide-react` peerDependencies aren't broken.
 
-## Qué NO marcar
+## What NOT to flag
 
-- No pidas abstracciones, hooks compartidos o carpeta `utils/` — el proyecto decide explícitamente no tenerlos; lo único transversal es `Icon` y los tokens CSS.
-- No sugieras `clsx`/`cva` como "mejora" — es una decisión deliberada del proyecto no usarlos.
+- Don't ask for abstractions, shared hooks, or a `utils/` folder — the project explicitly decided not to have them; the only cross-cutting pieces are `Icon` and the CSS tokens.
+- Don't suggest `clsx`/`cva` as an "improvement" — not using them is a deliberate project decision.
 
-## Formato de salida
+## Output format
 
-Lista de hallazgos ordenados por severidad, cada uno con: archivo, qué está mal, por qué importa en este repo concreto (cita la convención de `CLAUDE.md` si aplica), y el fix sugerido. Si no hay hallazgos, dilo explícitamente en vez de no decir nada.
+A list of findings ordered by severity, each with: file, what's wrong, why it matters in this specific repo (cite the `CLAUDE.md` convention if applicable), and the suggested fix. If there are no findings, say so explicitly instead of saying nothing.
