@@ -121,7 +121,7 @@ The package ships a read-only [Model Context Protocol](https://modelcontextproto
 }
 ```
 
-It exposes two read-only tools, `list_components` and `get_component(name)`. It doesn't recommend which component to use for a given task — that decision stays with the developer. See [CLAUDE.md](./CLAUDE.md) for how its data is generated and kept in sync.
+It exposes two read-only tools, `list_components` and `get_component(name)`. It doesn't recommend which component to use for a given task — that decision stays with the developer. See the [MCP Server guide](https://eloriente.github.io/pulseui-react/?path=/docs/guide-mcp-server--docs) for Claude Code/Claude Desktop/Cursor setup instructions, and [CLAUDE.md](./CLAUDE.md) for how its data is generated and kept in sync.
 
 ## Development
 

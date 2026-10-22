@@ -5,6 +5,15 @@ All notable changes to this project are documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [Unreleased]
+
+### Added
+
+- `src/docs/mcp-server.mdx`: a full guide to the embedded MCP server — setup
+  instructions for Claude Code, Claude Desktop and Cursor, what the two
+  read-only tools return, and how to try it with the MCP Inspector without
+  any client config. Linked from `Welcome.mdx` and the README's MCP section.
+
 ## [1.0.3] - 2026-10-22
 
 ### Changed
