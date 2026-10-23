@@ -1,6 +1,6 @@
 {
   "name": "@pulseui/react",
-  "version": "1.0.3",
+  "version": "1.1.0",
   "description": "PulseUI for React — an open-source React component library built with TypeScript and CSS Modules. Compatible with Tailwind CSS.",
   "keywords": [
     "react",
