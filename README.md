@@ -106,6 +106,19 @@ function Example() {
 }
 ```
 
+## Dependencies
+
+Most components are self-contained (native DOM behavior + CSS Modules), but a few wrap external libraries internally. This isn't part of the public API, but it affects what lands in your `node_modules` and your bundle.
+
+| Dependency | Install type | Used by | Why it matters |
+| --- | --- | --- | --- |
+| [`lucide-react`](https://lucide.dev/) | Peer dependency | `Icon`, and any component that renders an icon: `Button`, `Input`, `Select`, `Pagination`, `Accordion`, `Alert`, `Breadcrumb`, `Combobox`, `DatePicker`, `DropdownMenu`, `Drawer`, `Modal`, `TagInput`, `Table`, `Toast` | You must install it yourself (`npm install lucide-react`) — it's never installed transitively. Several components (`Button`, `Input`, `Select`, `DropdownMenu`) only *type* against `lucide-react` and let you pass in the icon, so you only pay for the icons you actually import; others (e.g. `Alert`, `Toast`, `Pagination`) import specific icons directly. |
+| [`@floating-ui/react`](https://floating-ui.com/) | Regular dependency | `Tooltip`, `Popover`, `DropdownMenu`, `Modal`, `Drawer`, `Combobox` | Installed automatically with the package for positioning, focus management and dismiss behavior. Adds to your install size even if you don't use these components, and its own version is pinned by this package, so you can't choose a different major version. |
+| [`react-day-picker`](https://daypicker.dev/) | Regular dependency | `DatePicker` | Installed automatically. Pulls in its own date-handling logic; if you only need a handful of components and not `DatePicker`, it's still installed (tree-shaking removes it from your bundle if unused, but not from `node_modules`). |
+| [`@modelcontextprotocol/sdk`](https://modelcontextprotocol.io) and [`zod`](https://zod.dev/) | Regular dependencies | The bundled MCP server only (`src/mcp/`) — **no component uses them** | Built separately into `dist/mcp/` (see [MCP server](#mcp-server)) and never imported from `src/index.ts`, so they don't affect the component bundle or runtime behavior of any component. They're only exercised if you actually run `pulseui-react-mcp`. |
+
+See the [Dependencies guide](https://eloriente.github.io/pulseui-react/?path=/docs/guide-dependencies--docs) for the full per-component breakdown.
+
 ## MCP server
 
 The package ships a read-only [Model Context Protocol](https://modelcontextprotocol.io) server so an AI coding assistant can look up component props, variants, sizes and usage examples instead of guessing. It only works when `@pulseui/react` is installed as a project dependency — it isn't published as a separate package.
@@ -121,7 +134,7 @@ The package ships a read-only [Model Context Protocol](https://modelcontextproto
 }
 ```
 
-It exposes two read-only tools, `list_components` and `get_component(name)`. It doesn't recommend which component to use for a given task — that decision stays with the developer. See the [MCP Server guide](https://eloriente.github.io/pulseui-react/?path=/docs/guide-mcp-server--docs) for Claude Code/Claude Desktop/Cursor setup instructions, and [CLAUDE.md](./CLAUDE.md) for how its data is generated and kept in sync.
+It exposes two read-only tools, `list_components` and `get_component(name)`. It doesn't recommend which component to use for a given task — that decision stays with the developer. See the [MCP Server guide](https://eloriente.github.io/pulseui-react/?path=/docs/guide-mcp-server--docs) for Claude Code/Claude Desktop/Cursor/GitHub Copilot setup instructions, and [CLAUDE.md](./CLAUDE.md) for how its data is generated and kept in sync.
 
 ## Development
 

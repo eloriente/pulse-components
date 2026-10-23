@@ -5,20 +5,53 @@ All notable changes to this project are documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [Unreleased]
+## [1.1.0] - 2026-10-23
+
+### Added
+
+- **`DatePicker`**: date field that opens a calendar panel on click, wrapping
+  `react-day-picker` for the calendar grid, keyboard navigation and date math
+  while the trigger field, popover positioning and visual style are this
+  library's own, so it looks and composes like every other component.
+- **`Combobox`**: text input with a filterable listbox, following the ARIA
+  combobox pattern, positioned with Floating UI. Manages its own input text
+  internally; `value`/`defaultValue`/`onChange` track only the committed
+  selection (controlled/uncontrolled).
+- **`ToggleGroup`**: single- or multiple-select group of toggle buttons (e.g.
+  text alignment, view switchers) sharing one `aria-label`/roving-selection
+  pattern.
+- **`TagInput`**: multi-value input — type text and press Enter (or a
+  delimiter key, comma by default) to add a removable tag; Backspace on an
+  empty input removes the last tag. Tags reuse `Badge`'s existing layout with
+  an appended close button.
+- **`Slider`**: single-value range control built on the native
+  `<input type="range">`.
+- **`FieldGroup`**: groups a `Label`, a form control and its helper/error
+  message, wiring up `id`/`aria-invalid`/`aria-describedby` between them so
+  every form field doesn't have to repeat that plumbing by hand.
+- **`Skeleton`**: loading placeholder that mimics the shape of the content it
+  stands in for.
+- **`Drawer`**: accessible slide-in panel docked to a viewport edge. Shares
+  `Modal`'s portal/focus-trap pattern (traps focus, locks background scroll,
+  restores focus on close) but slides in from an edge instead of centering.
+- **`Card`**: container component with header/footer composition and an
+  `interactive` variant (renders as a `<div>` with `role="button"`,
+  `tabIndex={0}` and Enter/Space handling). Added its own `Layout` barrel
+  category.
+- **`Table`**: new component with presentational sortable column headers,
+  plus expandable rows (independent of sorting) for inline row detail. No
+  built-in pagination — compose with `Pagination`.
+- `src/docs/mcp-server.mdx`: a full guide to the embedded MCP server — setup
+  instructions for Claude Code, Claude Desktop and Cursor, what the two
+  read-only tools return, and how to try it with the MCP Inspector without
+  any client config. Linked from `Welcome.mdx` and the README's MCP section.
 
 ### Changed
 
 - `CLAUDE.md` and the three `.claude/agents/*.md` files (`component-scaffolder`,
   `pulse-pr-reviewer`, `a11y-reviewer`) are now fully in English — they were
   written in Spanish. No behavior change; same content, translated.
-
-### Added
-
-- `src/docs/mcp-server.mdx`: a full guide to the embedded MCP server — setup
-  instructions for Claude Code, Claude Desktop and Cursor, what the two
-  read-only tools return, and how to try it with the MCP Inspector without
-  any client config. Linked from `Welcome.mdx` and the README's MCP section.
+- Consolidated tests, conventions and dependency pins across components.
 
 ## [1.0.3] - 2026-10-22
 

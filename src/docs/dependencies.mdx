@@ -1,0 +1,155 @@
+{/* docs/dependencies.mdx */}
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="Guide/Dependencies" />
+
+<style>{`
+  .token-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 2rem;
+    font-size: 0.875rem;
+  }
+  .token-table thead tr {
+    border-bottom: 2px solid #e0e0e0;
+  }
+  .token-table thead th {
+    padding: 0.75rem;
+    text-align: left;
+    font-weight: 600;
+  }
+  .token-table tbody tr {
+    border-bottom: 1px solid #f0f0f0;
+  }
+  .token-table tbody td {
+    padding: 0.75rem;
+  }
+`}</style>
+
+# Dependencies
+
+Most `@pulseui/react` components are self-contained — native DOM behavior, CSS Modules, no
+external library involved. A few wrap an external package internally to implement
+positioning, icons or date logic. This page lists exactly which component uses what, so you
+know what's landing in `node_modules` and your bundle before you hit it in a changelog or a
+`npm audit` report.
+
+---
+
+## `lucide-react` — peer dependency
+
+[`lucide-react`](https://lucide.dev/) is a **peer dependency**: it's never installed
+transitively, so you must add it yourself.
+
+```bash
+npm install lucide-react
+```
+
+`Icon` is the wrapper around it that every other component uses. Two usage patterns show up
+across the library:
+
+<table className="token-table">
+  <thead>
+    <tr>
+      <th>Pattern</th>
+      <th>Components</th>
+      <th>Bundle impact</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Types against <code>LucideProps</code> only — you supply the icon</td>
+      <td><code>Icon</code>, <code>Button</code>, <code>Input</code>, <code>Select</code>, <code>DropdownMenu</code></td>
+      <td>You only pay for the specific icons you import and pass in.</td>
+    </tr>
+    <tr>
+      <td>Imports specific icons directly</td>
+      <td><code>Accordion</code>, <code>Alert</code>, <code>Breadcrumb</code>, <code>Combobox</code>, <code>DatePicker</code>, <code>Drawer</code>, <code>Modal</code>, <code>Pagination</code>, <code>TagInput</code>, <code>Table</code>, <code>Toast</code></td>
+      <td>Those specific icons (e.g. <code>ChevronDown</code>, <code>X</code>) are always bundled when you import the component, regardless of whether you use its icon-related features.</td>
+    </tr>
+  </tbody>
+</table>
+
+If you never import any of these components, `lucide-react` never ends up in your bundle —
+but it still needs to be installed, since TypeScript resolves the peer dependency's types at
+build time.
+
+---
+
+## `@floating-ui/react` — regular dependency
+
+[`@floating-ui/react`](https://floating-ui.com/) is a regular dependency, installed
+automatically with `@pulseui/react`. It handles positioning, focus management and
+dismiss-on-outside-click/Escape behavior for every component that renders content anchored to
+a trigger:
+
+- `Tooltip`
+- `Popover`
+- `DropdownMenu`
+- `Modal`
+- `Drawer`
+- `Combobox`
+
+Because it's a regular (not peer) dependency, its version is pinned by `@pulseui/react` —
+you can't install a different major version yourself. If your project already depends on
+`@floating-ui/react` directly, check for version drift between the two.
+
+---
+
+## `react-day-picker` — regular dependency
+
+[`react-day-picker`](https://daypicker.dev/) is a regular dependency, used only by
+`DatePicker`. It's installed with the package whether or not you import `DatePicker`, though
+a bundler will tree-shake it out of your final bundle if you never reference the component.
+
+---
+
+## `@modelcontextprotocol/sdk` and `zod` — MCP server only
+
+[`@modelcontextprotocol/sdk`](https://modelcontextprotocol.io) and [`zod`](https://zod.dev/)
+are regular dependencies too, but **no component uses them**. They power the
+[bundled MCP server](?path=/docs/guide-mcp-server--docs) (`src/mcp/server.ts`) exclusively,
+which is built as a separate Node-only entry point (`dist/mcp/`) and is never imported from
+`src/index.ts`. They add to your `node_modules` install, but have zero effect on the
+component bundle, runtime behavior, or bundle size of anything you import from
+`@pulseui/react` — they're only exercised if you actually run `pulseui-react-mcp`.
+
+---
+
+## Summary
+
+<table className="token-table">
+  <thead>
+    <tr>
+      <th>Dependency</th>
+      <th>Install type</th>
+      <th>Used by</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>lucide-react</code></td>
+      <td>Peer</td>
+      <td>Icon, and most components that render an icon</td>
+    </tr>
+    <tr>
+      <td><code>@floating-ui/react</code></td>
+      <td>Regular</td>
+      <td>Tooltip, Popover, DropdownMenu, Modal, Drawer, Combobox</td>
+    </tr>
+    <tr>
+      <td><code>react-day-picker</code></td>
+      <td>Regular</td>
+      <td>DatePicker</td>
+    </tr>
+    <tr>
+      <td><code>@modelcontextprotocol/sdk</code>, <code>zod</code></td>
+      <td>Regular</td>
+      <td>MCP server only — no component</td>
+    </tr>
+  </tbody>
+</table>
+
+Everything else — `Button`, `Checkbox`, `Radio`, `Switch`, `Badge`, `Avatar`, `Spinner`,
+`Divider`, `Tabs`, `Textarea`, `Label`, `Heading`, `Text`, `Card`, `Skeleton`, `FieldGroup`,
+`Slider`, `ToggleGroup` — has no external runtime dependency beyond `react`/`react-dom`.

@@ -107,6 +107,27 @@ available in every project):
 }
 ```
 
+### GitHub Copilot
+
+In VS Code, add an `.vscode/mcp.json` file at the root of your project (note the `servers`
+key and `type` field — Copilot's schema differs slightly from the `mcpServers` shape above):
+
+```json
+{
+  "servers": {
+    "pulseui-react": {
+      "type": "stdio",
+      "command": "npx",
+      "args": ["pulseui-react-mcp"]
+    }
+  }
+}
+```
+
+VS Code will prompt you to start the server the first time it reads the file. You can also
+run **MCP: Add Server** from the Command Palette and point it at `npx pulseui-react-mcp`
+instead of creating the file by hand.
+
 ### Any other MCP client
 
 If your client isn't listed above, it almost certainly accepts the same `mcpServers` object —
