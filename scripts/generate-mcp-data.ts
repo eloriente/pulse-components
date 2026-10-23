@@ -218,5 +218,7 @@ function generate(): ComponentMeta[] {
 }
 
 const allMeta = generate();
-fs.writeFileSync(outFile, JSON.stringify(allMeta, null, 2) + '\n');
+// Normalize CRLF from Windows checkouts so the output matches CI (Linux) byte for byte.
+const normalizeEol = (_key: string, value: unknown) => (typeof value === 'string' ? value.replace(/\r\n/g, '\n') : value);
+fs.writeFileSync(outFile, JSON.stringify(allMeta, normalizeEol, 2) + '\n');
 console.log(`Generated metadata for ${allMeta.length} components -> ${path.relative(root, outFile)}`);
