@@ -2139,6 +2139,118 @@
     ]
   },
   {
+    "name": "Table",
+    "category": "Layout",
+    "description": "Presentational data table with optional click-to-sort column headers.\nTable never sorts `data` itself — sortable headers toggle an ascending/\ndescending indicator and call `onSort(key, direction)`; the caller re-sorts\n`data` and passes it back down (controlled), or omits `sortKey`/\n`sortDirection` to let Table track the indicator itself (uncontrolled).\nHas no built-in pagination — compose with {@link Pagination} if needed.",
+    "importPath": "@pulseui/react",
+    "props": [
+      {
+        "name": "columns",
+        "type": "TableColumn<T>[]",
+        "required": true,
+        "description": "Column definitions, in display order"
+      },
+      {
+        "name": "data",
+        "type": "T[]",
+        "required": true,
+        "description": "Rows to render. Table is presentational only — sort the array yourself in response to `onSort`"
+      },
+      {
+        "name": "getRowKey",
+        "type": "(row: T, index: number) => string | number",
+        "required": false,
+        "description": "Derives a stable React key for a row. Defaults to the row's index"
+      },
+      {
+        "name": "sortKey",
+        "type": "string",
+        "required": false,
+        "description": "Controlled: the currently sorted column's key"
+      },
+      {
+        "name": "sortDirection",
+        "type": "SortDirection",
+        "required": false,
+        "description": "Controlled: the currently sorted column's direction"
+      },
+      {
+        "name": "defaultSortKey",
+        "type": "string",
+        "required": false,
+        "description": "Uncontrolled: initial sorted column's key"
+      },
+      {
+        "name": "defaultSortDirection",
+        "type": "SortDirection",
+        "required": false,
+        "defaultValue": "'asc'",
+        "description": "Uncontrolled: initial sorted column's direction. Default `'asc'`"
+      },
+      {
+        "name": "onSort",
+        "type": "(key: string, direction: SortDirection) => void",
+        "required": false,
+        "description": "Called when a sortable header is activated, with the column key and the direction it should now sort by"
+      },
+      {
+        "name": "caption",
+        "type": "ReactNode",
+        "required": false,
+        "description": "Optional caption describing the table, rendered as a native `<caption>`"
+      },
+      {
+        "name": "className",
+        "type": "string",
+        "required": false,
+        "description": "Additional class applied to the `<table>` element"
+      }
+    ],
+    "variants": [],
+    "sizes": [],
+    "accessibility": [
+      "aria-sort"
+    ],
+    "examples": [
+      {
+        "name": "Basic",
+        "args": {
+          "columns": "basicColumns",
+          "data": "PEOPLE",
+          "getRowKey": "(row) => row.id"
+        }
+      },
+      {
+        "name": "WithCaption",
+        "args": {
+          "columns": "basicColumns",
+          "data": "PEOPLE",
+          "getRowKey": "(row) => row.id",
+          "caption": "Team members"
+        }
+      },
+      {
+        "name": "ControlledSorting",
+        "args": {}
+      },
+      {
+        "name": "UncontrolledSorting",
+        "args": {
+          "columns": "basicColumns",
+          "data": "PEOPLE",
+          "getRowKey": "(row) => row.id"
+        }
+      },
+      {
+        "name": "Empty",
+        "args": {
+          "columns": "emptyColumns",
+          "data": "[]"
+        }
+      }
+    ]
+  },
+  {
     "name": "Tabs",
     "category": "Navigation",
     "description": "Accessible tabs following the ARIA APG tabs pattern: roving tabindex, arrow-key\nnavigation (`Home`/`End` jump to the first/last enabled tab), and automatic\nactivation — moving focus with the keyboard selects the tab immediately,\nmatching how native OS tabs behave. Disabled tabs are skipped during\nnavigation. Data-driven (`items`), not a compound component — consistent with\n{@link DropdownMenu}, the only other data-driven list component in this\nlibrary.",

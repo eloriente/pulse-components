@@ -60,6 +60,9 @@ export type { DrawerProps, DrawerPlacement, DrawerSize } from './Drawer';
 export { Skeleton } from './Skeleton';
 export type { SkeletonProps, SkeletonVariant, SkeletonAnimation } from './Skeleton';
 
+export { Table } from './Table';
+export type { TableProps, TableColumn, TableColumnAlign, SortDirection } from './Table';
+
 // ─── Overlay ─────────────────────────────────────────────────────────────────
 
 export { Tooltip } from './Tooltip';

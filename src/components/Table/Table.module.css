@@ -1,0 +1,75 @@
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: var(--pulse-font-family-base);
+  font-size: var(--pulse-font-size-md, 14px);
+  color: var(--pulse-color-text);
+}
+
+.caption {
+  margin-bottom: var(--pulse-space-3, 12px);
+  text-align: left;
+  font-size: var(--pulse-font-size-sm, 12px);
+  color: var(--pulse-color-text-subtle, #666666);
+}
+
+.th {
+  padding: var(--pulse-space-3, 12px) var(--pulse-space-4, 16px);
+  border-bottom: 2px solid var(--pulse-color-border, rgba(0, 0, 0, 0.1));
+  background-color: var(--pulse-color-surface-subtle, #f0f0f0);
+  font-weight: var(--pulse-font-weight-bold, 700);
+  white-space: nowrap;
+}
+
+.td {
+  padding: var(--pulse-space-3, 12px) var(--pulse-space-4, 16px);
+  border-bottom: 1px solid var(--pulse-color-border, rgba(0, 0, 0, 0.1));
+}
+
+.tr:hover .td {
+  background-color: var(--pulse-color-surface-subtle, #f0f0f0);
+}
+
+.left {
+  text-align: left;
+}
+
+.center {
+  text-align: center;
+}
+
+.right {
+  text-align: right;
+}
+
+.sortButton {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--pulse-space-1, 4px);
+  border: none;
+  background: none;
+  padding: 0;
+  margin: 0;
+  font: inherit;
+  font-weight: inherit;
+  color: inherit;
+  cursor: pointer;
+}
+
+.sortButton:hover,
+.sortButton:focus-visible {
+  color: var(--pulse-color-primary, #555ab9);
+}
+
+.sortButton:focus-visible {
+  outline: 2px solid var(--pulse-color-primary, #555ab9);
+  outline-offset: 2px;
+}
+
+.sortIcon {
+  opacity: 0.4;
+}
+
+.sortIconActive {
+  opacity: 1;
+}

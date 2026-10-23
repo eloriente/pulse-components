@@ -67,6 +67,9 @@ export type { DrawerProps, DrawerPlacement, DrawerSize } from './components/Draw
 export { Skeleton } from './components/Skeleton';
 export type { SkeletonProps, SkeletonVariant, SkeletonAnimation } from './components/Skeleton';
 
+export { Table } from './components/Table';
+export type { TableProps, TableColumn, TableColumnAlign, SortDirection } from './components/Table';
+
 // ─── Overlay ─────────────────────────────────────────────────────────────────
 
 export { Tooltip } from './components/Tooltip';
