@@ -56,6 +56,7 @@
     "build:mcp": "tsc -p tsconfig.mcp.json && chmod +x dist/mcp/server.js",
     "build:storybook": "storybook build",
     "generate:mcp-data": "tsx scripts/generate-mcp-data.ts",
+    "generate:design-tokens": "tsx scripts/generate-design-tokens.ts",
     "check:mcp-data": "npm run generate:mcp-data && git diff --exit-code -- src/mcp/components-data.json",
     "lint": "eslint . --ext .ts,.tsx",
     "test": "vitest",

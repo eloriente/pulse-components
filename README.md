@@ -70,6 +70,16 @@ import '@pulseui/react/styles';
 
 > The component ships its own base styles via CSS Modules. Tailwind utilities added through `className` are applied on top, so standard Tailwind specificity rules apply. If you need a utility to override a component style, use the `!` modifier (e.g. `!bg-red-500`).
 
+### Design tokens for Figma
+
+[`design-tokens.json`](./design-tokens.json) exports the same values from `src/tokens/*.css` as a [W3C Design Tokens (DTCG)](https://design-tokens.github.io/community-group/format/) file — generated, not hand-written, so it never drifts from the CSS. Designers can import it into Figma with the [Tokens Studio](https://tokens.studio/) plugin (enable its DTCG-compatible format) to work with the exact same color, spacing and typography values used in code.
+
+Regenerate it after changing a token:
+
+```bash
+npm run generate:design-tokens
+```
+
 ## Components
 
 Full props, variants and live examples for every component are in Storybook — browse the [live preview](https://eloriente.github.io/pulseui-react/) or run `npm run storybook` locally.

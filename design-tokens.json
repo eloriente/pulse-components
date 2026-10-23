@@ -1,0 +1,230 @@
+{
+  "color": {
+    "primary": {
+      "$value": "#555ab9",
+      "$type": "color"
+    },
+    "primary-dark": {
+      "$value": "#3f4490",
+      "$type": "color"
+    },
+    "primary-light": {
+      "$value": "#7a7ece",
+      "$type": "color"
+    },
+    "neutral-900": {
+      "$value": "#1a1a1a",
+      "$type": "color"
+    },
+    "neutral-800": {
+      "$value": "#333333",
+      "$type": "color"
+    },
+    "neutral-600": {
+      "$value": "#666666",
+      "$type": "color"
+    },
+    "neutral-400": {
+      "$value": "#999999",
+      "$type": "color"
+    },
+    "neutral-200": {
+      "$value": "#cccccc",
+      "$type": "color"
+    },
+    "neutral-100": {
+      "$value": "#f0f0f0",
+      "$type": "color"
+    },
+    "neutral-0": {
+      "$value": "#ffffff",
+      "$type": "color"
+    },
+    "text": {
+      "$value": "{color.neutral-800}",
+      "$type": "color"
+    },
+    "text-subtle": {
+      "$value": "{color.neutral-600}",
+      "$type": "color"
+    },
+    "text-muted": {
+      "$value": "#6b7280",
+      "$type": "color"
+    },
+    "background": {
+      "$value": "{color.neutral-0}",
+      "$type": "color"
+    },
+    "surface": {
+      "$value": "{color.neutral-0}",
+      "$type": "color"
+    },
+    "surface-subtle": {
+      "$value": "{color.neutral-100}",
+      "$type": "color"
+    },
+    "border": {
+      "$value": "rgba(0, 0, 0, 0.1)",
+      "$type": "color"
+    },
+    "success": {
+      "$value": "#357a14",
+      "$type": "color"
+    },
+    "success-bg": {
+      "$value": "#e7fdd8",
+      "$type": "color"
+    },
+    "info": {
+      "$value": "#1ea7fd",
+      "$type": "color"
+    },
+    "warning": {
+      "$value": "#92400e",
+      "$type": "color"
+    },
+    "error": {
+      "$value": "#d0312d",
+      "$type": "color"
+    }
+  },
+  "spacing": {
+    "1": {
+      "$value": "4px",
+      "$type": "dimension"
+    },
+    "2": {
+      "$value": "8px",
+      "$type": "dimension"
+    },
+    "3": {
+      "$value": "12px",
+      "$type": "dimension"
+    },
+    "4": {
+      "$value": "16px",
+      "$type": "dimension"
+    },
+    "5": {
+      "$value": "20px",
+      "$type": "dimension"
+    },
+    "6": {
+      "$value": "24px",
+      "$type": "dimension"
+    },
+    "8": {
+      "$value": "32px",
+      "$type": "dimension"
+    },
+    "10": {
+      "$value": "40px",
+      "$type": "dimension"
+    },
+    "12": {
+      "$value": "48px",
+      "$type": "dimension"
+    }
+  },
+  "radius": {
+    "sm": {
+      "$value": "3px",
+      "$type": "dimension"
+    },
+    "md": {
+      "$value": "6px",
+      "$type": "dimension"
+    },
+    "lg": {
+      "$value": "12px",
+      "$type": "dimension"
+    },
+    "full": {
+      "$value": "9999px",
+      "$type": "dimension"
+    }
+  },
+  "borderWidth": {
+    "DEFAULT": {
+      "$value": "1px",
+      "$type": "dimension"
+    }
+  },
+  "fontFamily": {
+    "base": {
+      "$value": [
+        "Nunito Sans",
+        "Helvetica Neue",
+        "Helvetica",
+        "Arial",
+        "sans-serif"
+      ],
+      "$type": "fontFamily"
+    },
+    "mono": {
+      "$value": [
+        "SFMono-Regular",
+        "Consolas",
+        "Liberation Mono",
+        "Menlo",
+        "monospace"
+      ],
+      "$type": "fontFamily"
+    }
+  },
+  "fontSize": {
+    "xs": {
+      "$value": "11px",
+      "$type": "dimension"
+    },
+    "sm": {
+      "$value": "12px",
+      "$type": "dimension"
+    },
+    "md": {
+      "$value": "14px",
+      "$type": "dimension"
+    },
+    "lg": {
+      "$value": "16px",
+      "$type": "dimension"
+    },
+    "xl": {
+      "$value": "20px",
+      "$type": "dimension"
+    },
+    "2xl": {
+      "$value": "24px",
+      "$type": "dimension"
+    },
+    "3xl": {
+      "$value": "32px",
+      "$type": "dimension"
+    }
+  },
+  "fontWeight": {
+    "regular": {
+      "$value": 400,
+      "$type": "fontWeight"
+    },
+    "bold": {
+      "$value": 700,
+      "$type": "fontWeight"
+    }
+  },
+  "lineHeight": {
+    "tight": {
+      "$value": 1,
+      "$type": "number"
+    },
+    "normal": {
+      "$value": 1.5,
+      "$type": "number"
+    },
+    "relaxed": {
+      "$value": 1.75,
+      "$type": "number"
+    }
+  }
+}
