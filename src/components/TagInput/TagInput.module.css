@@ -1,0 +1,79 @@
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: var(--pulse-space-1, 4px);
+}
+
+.field {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--pulse-space-2, 8px);
+  padding: var(--pulse-space-2, 8px);
+  border: 1px solid var(--pulse-color-border, rgba(0, 0, 0, 0.1));
+  border-radius: var(--pulse-radius-md, 6px);
+  background-color: var(--pulse-color-background, #ffffff);
+}
+
+.field:focus-within {
+  outline: 2px solid var(--pulse-color-primary, #555ab9);
+  outline-offset: 1px;
+}
+
+.field.error {
+  border-color: #842029;
+}
+
+.field.disabled {
+  /* No opacity reduction: it would also dim the tag Badges' text below the
+     4.5:1 contrast ratio required (axe: color-contrast) even though they
+     aren't themselves disabled form controls — only the native `<input>`
+     gets `disabled`, which already shows its own `:disabled` styling. */
+  background-color: var(--pulse-color-surface-subtle, #f9fafb);
+  cursor: not-allowed;
+}
+
+.input {
+  flex: 1;
+  min-width: 80px;
+  border: none;
+  outline: none;
+  background: none;
+  font-family: var(--pulse-font-family-base);
+  font-size: var(--pulse-font-size-md, 14px);
+  color: var(--pulse-color-text);
+}
+
+.input:disabled {
+  cursor: not-allowed;
+}
+
+.removeButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  padding: 0;
+  margin: 0;
+  background: none;
+  color: inherit;
+  cursor: pointer;
+  border-radius: 50%;
+}
+
+.removeButton:hover,
+.removeButton:focus-visible {
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
+.removeButton:focus-visible {
+  outline: 2px solid var(--pulse-color-primary, #555ab9);
+  outline-offset: 1px;
+}
+
+.errorMessage {
+  font-size: var(--pulse-font-size-sm, 12px);
+  /* Darker than --pulse-color-error (#d0312d): that token alone is below the
+     4.5:1 contrast ratio required for text, same fix as Alert's error variant. */
+  color: #842029;
+}

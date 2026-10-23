@@ -2729,6 +2729,146 @@
     ]
   },
   {
+    "name": "TagInput",
+    "category": "Form",
+    "description": "Multi-value input: type text and press Enter (or a delimiter key, comma by\ndefault) to add it as a removable tag; Backspace on an empty input removes\nthe last tag. Each tag renders as a {@link Badge} with its own remove\nbutton, so there's no new chip styling to maintain — just a close button\nappended to Badge's existing layout.",
+    "importPath": "@pulseui/react",
+    "props": [
+      {
+        "name": "value",
+        "type": "string[]",
+        "required": false,
+        "description": "Controlled list of tags"
+      },
+      {
+        "name": "defaultValue",
+        "type": "string[]",
+        "required": false,
+        "defaultValue": "[]",
+        "description": "Uncontrolled initial list of tags. Default `[]`"
+      },
+      {
+        "name": "onChange",
+        "type": "(tags: string[]) => void",
+        "required": false,
+        "description": "Called with the full list of tags after an add or remove"
+      },
+      {
+        "name": "placeholder",
+        "type": "string",
+        "required": false
+      },
+      {
+        "name": "disabled",
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "false"
+      },
+      {
+        "name": "error",
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "false"
+      },
+      {
+        "name": "errorMessage",
+        "type": "string",
+        "required": false
+      },
+      {
+        "name": "maxTags",
+        "type": "number",
+        "required": false,
+        "description": "Stops accepting new tags once this many are present"
+      },
+      {
+        "name": "delimiters",
+        "type": "string[]",
+        "required": false,
+        "defaultValue": "[',']",
+        "description": "Keys (in addition to Enter) that commit the current text as a tag. Default `[',']`"
+      },
+      {
+        "name": "preventDuplicates",
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "true",
+        "description": "Rejects a tag that already exists, case-insensitively. Default `true`"
+      },
+      {
+        "name": "id",
+        "type": "string",
+        "required": false
+      },
+      {
+        "name": "aria-label",
+        "type": "string",
+        "required": false,
+        "description": "Accessible name for the text input — required when there's no associated visible `<label htmlFor>`"
+      },
+      {
+        "name": "className",
+        "type": "string",
+        "required": false
+      }
+    ],
+    "variants": [],
+    "sizes": [],
+    "accessibility": [
+      "aria-label",
+      "aria-invalid",
+      "aria-describedby",
+      "role"
+    ],
+    "examples": [
+      {
+        "name": "Default",
+        "args": {}
+      },
+      {
+        "name": "WithInitialTags",
+        "args": {
+          "defaultValue": "['React', 'TypeScript']"
+        }
+      },
+      {
+        "name": "AddAndRemoveTags",
+        "args": {}
+      },
+      {
+        "name": "PreventsDuplicates",
+        "args": {
+          "defaultValue": "['React']"
+        }
+      },
+      {
+        "name": "MaxTags",
+        "args": {
+          "defaultValue": "['React', 'Vue']",
+          "maxTags": 2
+        }
+      },
+      {
+        "name": "WithError",
+        "args": {
+          "errorMessage": "At least one skill is required.",
+          "error": true
+        }
+      },
+      {
+        "name": "Disabled",
+        "args": {
+          "defaultValue": "['React', 'TypeScript']",
+          "disabled": true
+        }
+      },
+      {
+        "name": "ControlledTags",
+        "args": {}
+      }
+    ]
+  },
+  {
     "name": "Text",
     "category": "Primitives",
     "description": "Polymorphic text primitive for body copy, captions, code, and labels.",

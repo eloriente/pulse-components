@@ -44,6 +44,9 @@ export type { ComboboxProps, ComboboxOption } from './Combobox';
 export { Slider } from './Slider';
 export type { SliderProps, SliderSize } from './Slider';
 
+export { TagInput } from './TagInput';
+export type { TagInputProps } from './TagInput';
+
 // ─── Display ─────────────────────────────────────────────────────────────────
 
 export { Badge } from './Badge';

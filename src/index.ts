@@ -51,6 +51,9 @@ export type { ComboboxProps, ComboboxOption } from './components/Combobox';
 export { Slider } from './components/Slider';
 export type { SliderProps, SliderSize } from './components/Slider';
 
+export { TagInput } from './components/TagInput';
+export type { TagInputProps } from './components/TagInput';
+
 // ─── Display ─────────────────────────────────────────────────────────────────
 
 export { Badge } from './components/Badge';
