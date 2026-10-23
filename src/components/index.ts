@@ -35,6 +35,9 @@ export type { SelectProps, SelectSize, SelectVariant } from './Select';
 export { Switch } from './Switch';
 export type { SwitchProps, SwitchSize } from './Switch';
 
+export { FieldGroup } from './FieldGroup';
+export type { FieldGroupProps, FieldControlProps } from './FieldGroup';
+
 // ─── Display ─────────────────────────────────────────────────────────────────
 
 export { Badge } from './Badge';

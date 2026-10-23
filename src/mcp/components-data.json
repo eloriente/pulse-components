@@ -1085,6 +1085,94 @@
     ]
   },
   {
+    "name": "FieldGroup",
+    "category": "Form",
+    "description": "Groups a `Label`, a form control, and its helper/error message, wiring up\nthe id and ARIA attributes (`aria-invalid`, `aria-describedby`) between them\nso every form field doesn't have to repeat that plumbing by hand.",
+    "importPath": "@pulseui/react",
+    "props": [
+      {
+        "name": "label",
+        "type": "ReactNode",
+        "required": true,
+        "description": "Label content for the field"
+      },
+      {
+        "name": "required",
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "false",
+        "description": "Marks the field as required: shows the visual indicator on the label and sets `required` on the control unless it already declares its own"
+      },
+      {
+        "name": "helperText",
+        "type": "ReactNode",
+        "required": false,
+        "description": "Helper text shown below the control. Replaced by `errorMessage` when both are given"
+      },
+      {
+        "name": "errorMessage",
+        "type": "ReactNode",
+        "required": false,
+        "description": "Error message shown below the control; also sets `aria-invalid`/`aria-describedby` on it"
+      },
+      {
+        "name": "children",
+        "type": "ReactElement<FieldControlProps>",
+        "required": true,
+        "description": "The form control — a single element (`Input`, `Textarea`, `Select`…). Receives a generated\n`id`, `aria-invalid` and `aria-describedby` via `cloneElement` (this repo never uses\n`forwardRef`, so prop injection — not ref forwarding — is how the id/aria wiring reaches the\ncontrol). Don't also pass the control's own `error`/`errorMessage` props (on `Input`/`Select`)\n— that would render a second, duplicate message. Not meant for `Checkbox`/`Radio`/`Switch`:\nthose already render their own `<label>` wrapper via their `label` prop, and pairing them with\nFieldGroup's external `Label` would point two `<label>` elements at the same control."
+      },
+      {
+        "name": "id",
+        "type": "string",
+        "required": false,
+        "description": "Explicit id for the control. Auto-generated via `useId` when omitted"
+      },
+      {
+        "name": "className",
+        "type": "string",
+        "required": false,
+        "description": "Additional class applied to the wrapper"
+      }
+    ],
+    "variants": [],
+    "sizes": [],
+    "accessibility": [
+      "aria-describedby",
+      "aria-invalid",
+      "role"
+    ],
+    "examples": [
+      {
+        "name": "Default",
+        "args": {}
+      },
+      {
+        "name": "Required",
+        "args": {}
+      },
+      {
+        "name": "WithHelperText",
+        "args": {}
+      },
+      {
+        "name": "WithErrorMessage",
+        "args": {}
+      },
+      {
+        "name": "InteractiveValidation",
+        "args": {}
+      },
+      {
+        "name": "WithTextarea",
+        "args": {}
+      },
+      {
+        "name": "WithSelect",
+        "args": {}
+      }
+    ]
+  },
+  {
     "name": "Heading",
     "category": "Primitives",
     "description": "Semantic heading (h1–h6) with independent visual sizing.",
