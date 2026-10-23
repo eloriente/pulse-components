@@ -3145,6 +3145,153 @@
     ]
   },
   {
+    "name": "ToggleGroup",
+    "category": "Form",
+    "description": "Segmented control / toggle button group. `type=\"single\"` renders an ARIA\n`radiogroup` (roving tabindex, arrow keys move focus *and* select — same\nautomatic-activation pattern {@link Tabs} uses — `Home`/`End` jump to the\nfirst/last enabled item, and clicking the already-selected item is a no-op,\nmatching native radio buttons: you can't deselect down to nothing by\nclicking). `type=\"multiple\"` renders a plain `group` of independently\ntabbable toggle buttons (`aria-pressed`) with no roving focus, since there's\nno mutual-exclusivity to coordinate with arrow keys.",
+    "importPath": "@pulseui/react",
+    "props": [
+      {
+        "name": "items",
+        "type": "ToggleGroupItem[]",
+        "required": true,
+        "description": "Items, in order"
+      },
+      {
+        "name": "type",
+        "type": "ToggleGroupType",
+        "required": false,
+        "defaultValue": "'single'",
+        "description": "`'single'` behaves like a radio group (exactly zero or one selected, can't\ndeselect by clicking the active item again); `'multiple'` behaves like a\nset of independent toggle buttons. Default `'single'`"
+      },
+      {
+        "name": "orientation",
+        "type": "ToggleGroupOrientation",
+        "required": false,
+        "defaultValue": "'horizontal'",
+        "description": "Layout and, in `'single'` mode, arrow-key direction. Default `'horizontal'`"
+      },
+      {
+        "name": "value",
+        "type": "string[]",
+        "required": false,
+        "description": "Controlled selected values. Always a `string[]` regardless of `type` (in\n`'single'` mode it holds at most one value) — same convention as\n{@link Accordion}, to avoid a type that changes shape with a prop."
+      },
+      {
+        "name": "defaultValue",
+        "type": "string[]",
+        "required": false,
+        "defaultValue": "[]",
+        "description": "Uncontrolled initial selected values. Default `[]` (nothing selected)"
+      },
+      {
+        "name": "onChange",
+        "type": "(value: string[]) => void",
+        "required": false,
+        "description": "Called with the full set of selected values after a click or, in `'single'` mode, arrow-key navigation"
+      },
+      {
+        "name": "size",
+        "type": "ToggleGroupSize",
+        "required": false,
+        "defaultValue": "'md'"
+      },
+      {
+        "name": "disabled",
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "false",
+        "description": "Disables every item"
+      },
+      {
+        "name": "aria-label",
+        "type": "string",
+        "required": false,
+        "description": "Accessible name for the group — required for valid ARIA (there's no visible heading)"
+      },
+      {
+        "name": "className",
+        "type": "string",
+        "required": false,
+        "description": "Additional class applied to the root element"
+      }
+    ],
+    "variants": [],
+    "sizes": [
+      "sm",
+      "md",
+      "lg"
+    ],
+    "accessibility": [
+      "aria-label",
+      "aria-orientation",
+      "aria-checked",
+      "aria-pressed",
+      "role"
+    ],
+    "examples": [
+      {
+        "name": "SingleSelect",
+        "args": {
+          "defaultValue": "['left']"
+        }
+      },
+      {
+        "name": "MultipleSelect",
+        "args": {
+          "type": "multiple",
+          "aria-label": "Text formatting",
+          "items": "[\n      { value: 'bold', label: 'Bold' },\n      { value: 'italic', label: 'Italic' },\n      { value: 'underline', label: 'Underline' },\n    ]",
+          "defaultValue": "['bold']"
+        }
+      },
+      {
+        "name": "KeyboardNavigation",
+        "args": {
+          "defaultValue": "['left']"
+        }
+      },
+      {
+        "name": "CannotDeselectInSingleMode",
+        "args": {
+          "defaultValue": "['center']"
+        }
+      },
+      {
+        "name": "NoneSelectedInitially",
+        "args": {}
+      },
+      {
+        "name": "WithDisabledItem",
+        "args": {
+          "items": "[\n      { value: 'left', label: 'Left' },\n      { value: 'center', label: 'Center', disabled: true },\n      { value: 'right', label: 'Right' },\n    ]",
+          "defaultValue": "['left']"
+        }
+      },
+      {
+        "name": "Vertical",
+        "args": {
+          "orientation": "vertical",
+          "defaultValue": "['left']"
+        }
+      },
+      {
+        "name": "Sizes",
+        "args": {}
+      },
+      {
+        "name": "Disabled",
+        "args": {
+          "disabled": true,
+          "defaultValue": "['left']"
+        }
+      },
+      {
+        "name": "ControlledSelection",
+        "args": {}
+      }
+    ]
+  },
+  {
     "name": "Tooltip",
     "category": "Overlay",
     "description": "Accessible tooltip positioned with Floating UI (flips/shifts to stay in the viewport).\n\nThe trigger is wrapped in a `<span>` rather than cloned onto `children`, so it works\nwith any trigger — including this library's own components, none of which use\n`forwardRef`. The tooltip opens on hover and on keyboard focus, and closes on\n`Escape` or on blur/mouse leave.",

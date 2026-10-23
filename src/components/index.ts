@@ -47,6 +47,15 @@ export type { SliderProps, SliderSize } from './Slider';
 export { TagInput } from './TagInput';
 export type { TagInputProps } from './TagInput';
 
+export { ToggleGroup } from './ToggleGroup';
+export type {
+  ToggleGroupProps,
+  ToggleGroupItem,
+  ToggleGroupType,
+  ToggleGroupOrientation,
+  ToggleGroupSize,
+} from './ToggleGroup';
+
 // ─── Display ─────────────────────────────────────────────────────────────────
 
 export { Badge } from './Badge';
