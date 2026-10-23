@@ -933,6 +933,147 @@
     ]
   },
   {
+    "name": "DatePicker",
+    "category": "Form",
+    "description": "Date field that opens a calendar panel on click. The calendar grid itself\nis {@link https://daypicker.dev react-day-picker} (ARIA grid pattern,\nkeyboard navigation, and date math are genuinely hard to get right — see\nthe roadmap notes for why this one wraps a library instead of being built\nfrom scratch like the rest of this package); everything around it — the\ntrigger field, the popover positioning, the visual style via `classNames`\n— is this library's own, so it looks and composes like every other\ncomponent here. Single-date selection only; wrap `react-day-picker`\ndirectly if you need multi-date or range selection.",
+    "importPath": "@pulseui/react",
+    "props": [
+      {
+        "name": "value",
+        "type": "Date",
+        "required": false,
+        "description": "Controlled selected date"
+      },
+      {
+        "name": "defaultValue",
+        "type": "Date",
+        "required": false,
+        "description": "Uncontrolled initial selected date"
+      },
+      {
+        "name": "onChange",
+        "type": "(date: Date | undefined) => void",
+        "required": false,
+        "description": "Called with the newly selected date, or `undefined` if the user clears the native picker state"
+      },
+      {
+        "name": "placeholder",
+        "type": "string",
+        "required": false,
+        "defaultValue": "'Select a date'"
+      },
+      {
+        "name": "formatDate",
+        "type": "(date: Date) => string",
+        "required": false,
+        "defaultValue": "(date) => date.toLocaleDateString()",
+        "description": "Formats the date shown in the input. Defaults to `date.toLocaleDateString()`"
+      },
+      {
+        "name": "minDate",
+        "type": "Date",
+        "required": false,
+        "description": "Earliest selectable date (inclusive)"
+      },
+      {
+        "name": "maxDate",
+        "type": "Date",
+        "required": false,
+        "description": "Latest selectable date (inclusive)"
+      },
+      {
+        "name": "disabled",
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "false"
+      },
+      {
+        "name": "error",
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "false"
+      },
+      {
+        "name": "errorMessage",
+        "type": "string",
+        "required": false
+      },
+      {
+        "name": "id",
+        "type": "string",
+        "required": false
+      },
+      {
+        "name": "aria-label",
+        "type": "string",
+        "required": false,
+        "description": "Accessible name for the input — required when there's no associated visible `<label htmlFor>`"
+      },
+      {
+        "name": "className",
+        "type": "string",
+        "required": false
+      }
+    ],
+    "variants": [],
+    "sizes": [],
+    "accessibility": [
+      "aria-label",
+      "role"
+    ],
+    "examples": [
+      {
+        "name": "Default",
+        "args": {}
+      },
+      {
+        "name": "WithInitialValue",
+        "args": {
+          "defaultValue": "new Date(2026, 0, 15)"
+        }
+      },
+      {
+        "name": "SelectADate",
+        "args": {
+          "defaultValue": "new Date(2026, 0, 15)"
+        }
+      },
+      {
+        "name": "MinAndMaxDate",
+        "args": {
+          "minDate": "new Date(2026, 0, 10)",
+          "maxDate": "new Date(2026, 0, 20)",
+          "defaultValue": "new Date(2026, 0, 15)"
+        }
+      },
+      {
+        "name": "CustomFormat",
+        "args": {
+          "defaultValue": "new Date(2026, 0, 15)",
+          "formatDate": "(date) =>\n      date.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })"
+        }
+      },
+      {
+        "name": "WithError",
+        "args": {
+          "error": true,
+          "errorMessage": "A date is required."
+        }
+      },
+      {
+        "name": "Disabled",
+        "args": {
+          "disabled": true,
+          "defaultValue": "new Date(2026, 0, 15)"
+        }
+      },
+      {
+        "name": "ControlledValue",
+        "args": {}
+      }
+    ]
+  },
+  {
     "name": "Divider",
     "category": "Display",
     "description": "Visual separator — horizontal or vertical.",

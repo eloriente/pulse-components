@@ -1,0 +1,146 @@
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: var(--pulse-space-1, 4px);
+}
+
+.input {
+  cursor: pointer;
+}
+
+.errorMessage {
+  font-size: var(--pulse-font-size-sm, 12px);
+  /* Darker than --pulse-color-error (#d0312d): that token alone is below the
+     4.5:1 contrast ratio required for text, same fix as Alert's error variant. */
+  color: #842029;
+}
+
+/* === Calendar (react-day-picker, styled entirely via `classNames` — no
+   default react-day-picker stylesheet is imported, so this is the only CSS
+   the calendar gets) === */
+
+.calendar {
+  padding: var(--pulse-space-3, 12px);
+  font-family: var(--pulse-font-family-base);
+  font-size: var(--pulse-font-size-sm, 12px);
+  color: var(--pulse-color-text);
+}
+
+.months {
+  display: flex;
+}
+
+/* Grid instead of a column stack: with `navLayout="around"`, react-day-picker
+   renders the previous button, the caption and the next button as three
+   siblings (in that order) before the month grid — placing them in a
+   three-column row puts the arrows on either side of the month title, and
+   the grid spans all columns on the row below. */
+.month {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: var(--pulse-space-2, 8px) 0;
+}
+
+.monthCaption {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 32px;
+}
+
+.captionLabel {
+  font-weight: var(--pulse-font-weight-bold, 700);
+}
+
+.navButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border: none;
+  border-radius: var(--pulse-radius-sm, 3px);
+  background: none;
+  color: var(--pulse-color-text-subtle, #666666);
+  cursor: pointer;
+}
+
+.navButton:hover {
+  background-color: var(--pulse-color-surface-subtle, #f0f0f0);
+}
+
+/* react-day-picker marks the prev/next button unavailable at a month
+   boundary with aria-disabled, not the native disabled attribute. */
+.navButton[aria-disabled='true'] {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.navButton:focus-visible {
+  outline: 2px solid var(--pulse-color-primary, #555ab9);
+  outline-offset: 1px;
+}
+
+.monthGrid {
+  grid-column: 1 / -1;
+  border-collapse: collapse;
+}
+
+.weekday {
+  width: 32px;
+  height: 28px;
+  text-align: center;
+  font-weight: var(--pulse-font-weight-bold, 700);
+  color: var(--pulse-color-text-subtle, #666666);
+}
+
+.day {
+  width: 32px;
+  height: 32px;
+  text-align: center;
+  padding: 1px;
+}
+
+.dayButton {
+  width: 30px;
+  height: 30px;
+  border: none;
+  border-radius: var(--pulse-radius-full, 9999px);
+  background: none;
+  color: var(--pulse-color-text);
+  cursor: pointer;
+}
+
+.dayButton:hover {
+  background-color: var(--pulse-color-surface-subtle, #f0f0f0);
+}
+
+.dayButton:focus-visible {
+  outline: 2px solid var(--pulse-color-primary, #555ab9);
+  outline-offset: 1px;
+}
+
+.today .dayButton {
+  font-weight: var(--pulse-font-weight-bold, 700);
+}
+
+.selected .dayButton {
+  background-color: var(--pulse-color-primary, #555ab9);
+  color: var(--pulse-color-neutral-0, #ffffff);
+}
+
+.outside .dayButton {
+  color: var(--pulse-color-text-subtle, #666666);
+  opacity: 0.5;
+}
+
+.dayDisabled .dayButton {
+  color: var(--pulse-color-text-subtle, #666666);
+  opacity: 0.35;
+  cursor: not-allowed;
+}
+
+.hidden {
+  visibility: hidden;
+}

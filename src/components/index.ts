@@ -56,6 +56,9 @@ export type {
   ToggleGroupSize,
 } from './ToggleGroup';
 
+export { DatePicker } from './DatePicker';
+export type { DatePickerProps } from './DatePicker';
+
 // ─── Display ─────────────────────────────────────────────────────────────────
 
 export { Badge } from './Badge';
