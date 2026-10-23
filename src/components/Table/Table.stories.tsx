@@ -10,12 +10,35 @@ interface Person {
   name: string;
   role: string;
   status: 'active' | 'inactive';
+  email: string;
+  bio: string;
 }
 
 const PEOPLE: Person[] = [
-  { id: 1, name: 'Ada Lovelace', role: 'Engineer', status: 'active' },
-  { id: 2, name: 'Grace Hopper', role: 'Engineer', status: 'active' },
-  { id: 3, name: 'Alan Turing', role: 'Researcher', status: 'inactive' },
+  {
+    id: 1,
+    name: 'Ada Lovelace',
+    role: 'Engineer',
+    status: 'active',
+    email: 'ada@example.com',
+    bio: 'Wrote the first published algorithm intended for a machine.',
+  },
+  {
+    id: 2,
+    name: 'Grace Hopper',
+    role: 'Engineer',
+    status: 'active',
+    email: 'grace@example.com',
+    bio: 'Pioneered machine-independent programming languages.',
+  },
+  {
+    id: 3,
+    name: 'Alan Turing',
+    role: 'Researcher',
+    status: 'inactive',
+    email: 'alan@example.com',
+    bio: 'Laid the theoretical foundations of computer science.',
+  },
 ];
 
 const meta = {
@@ -129,5 +152,53 @@ export const Empty: Story = {
   args: {
     columns: emptyColumns,
     data: [],
+  },
+};
+
+export const ExpandableRows: Story = {
+  args: {
+    columns: basicColumns,
+    data: PEOPLE,
+    getRowKey: (row) => row.id,
+    renderExpandedRow: (row) => (
+      <div style={{ display: 'flex', flexDirection: 'column', gap: '4px' }}>
+        <span>
+          <strong>Email:</strong> {row.email}
+        </span>
+        <span>{row.bio}</span>
+      </div>
+    ),
+  },
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    const toggles = canvas.getAllByRole('button', { name: 'Expand row' });
+    expect(toggles).toHaveLength(3);
+
+    // Several rows can be expanded at once.
+    await userEvent.click(toggles[0]);
+    await userEvent.click(toggles[1]);
+    expect(canvas.getByText('ada@example.com')).toBeInTheDocument();
+    expect(canvas.getByText('grace@example.com')).toBeInTheDocument();
+    expect(canvas.queryByText('alan@example.com')).not.toBeInTheDocument();
+
+    expect(toggles[0]).toHaveAttribute('aria-expanded', 'true');
+    await userEvent.click(toggles[0]);
+    expect(toggles[0]).toHaveAttribute('aria-expanded', 'false');
+  },
+};
+
+export const ControlledExpandedRows: Story = {
+  render: function Render() {
+    const [expandedRowKeys, setExpandedRowKeys] = useState<Array<string | number>>([1]);
+    return (
+      <Table
+        columns={basicColumns}
+        data={PEOPLE}
+        getRowKey={(row) => row.id}
+        expandedRowKeys={expandedRowKeys}
+        onExpandedRowsChange={setExpandedRowKeys}
+        renderExpandedRow={(row) => <span>{row.bio}</span>}
+      />
+    );
   },
 };

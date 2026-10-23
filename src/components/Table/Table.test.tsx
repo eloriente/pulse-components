@@ -132,6 +132,124 @@ describe('Table', () => {
     });
   });
 
+  describe('Expandable rows', () => {
+    it('renders no toggle column when renderExpandedRow is not provided', () => {
+      render(<Table columns={columns} data={PEOPLE} />);
+      expect(screen.queryByRole('button', { name: /Expand row/ })).not.toBeInTheDocument();
+    });
+
+    it('renders a toggle button per row and no expanded content initially', () => {
+      render(
+        <Table columns={columns} data={PEOPLE} renderExpandedRow={(row) => <span>{row.name} bio</span>} />,
+      );
+      expect(screen.getAllByRole('button', { name: 'Expand row' })).toHaveLength(2);
+      expect(screen.queryByText('Ada bio')).not.toBeInTheDocument();
+    });
+
+    it('expands a row on click and shows its panel content', async () => {
+      const user = userEvent.setup();
+      render(
+        <Table columns={columns} data={PEOPLE} renderExpandedRow={(row) => <span>{row.name} bio</span>} />,
+      );
+      await user.click(screen.getAllByRole('button', { name: 'Expand row' })[0]);
+      expect(screen.getByText('Ada bio')).toBeInTheDocument();
+      expect(screen.queryByText('Grace bio')).not.toBeInTheDocument();
+    });
+
+    it('allows multiple rows expanded at once', async () => {
+      const user = userEvent.setup();
+      render(
+        <Table columns={columns} data={PEOPLE} renderExpandedRow={(row) => <span>{row.name} bio</span>} />,
+      );
+      const toggles = screen.getAllByRole('button', { name: 'Expand row' });
+      await user.click(toggles[0]);
+      await user.click(toggles[1]);
+      expect(screen.getByText('Ada bio')).toBeInTheDocument();
+      expect(screen.getByText('Grace bio')).toBeInTheDocument();
+    });
+
+    it('collapses an expanded row on a second click', async () => {
+      const user = userEvent.setup();
+      render(
+        <Table columns={columns} data={PEOPLE} renderExpandedRow={(row) => <span>{row.name} bio</span>} />,
+      );
+      const toggle = screen.getAllByRole('button', { name: 'Expand row' })[0];
+      await user.click(toggle);
+      await user.click(screen.getByRole('button', { name: 'Collapse row' }));
+      expect(screen.queryByText('Ada bio')).not.toBeInTheDocument();
+    });
+
+    it('sets aria-expanded and aria-controls on the toggle button', async () => {
+      const user = userEvent.setup();
+      render(
+        <Table
+          columns={columns}
+          data={PEOPLE}
+          getRowKey={(row) => row.id}
+          renderExpandedRow={(row) => <span>{row.name} bio</span>}
+        />,
+      );
+      const toggle = screen.getAllByRole('button', { name: 'Expand row' })[0];
+      expect(toggle).toHaveAttribute('aria-expanded', 'false');
+      await user.click(toggle);
+      expect(toggle).toHaveAttribute('aria-expanded', 'true');
+      const panelId = toggle.getAttribute('aria-controls');
+      expect(panelId).toBeTruthy();
+      expect(document.getElementById(panelId as string)).toHaveTextContent('Ada bio');
+    });
+
+    it('calls onExpandedRowsChange with the full set of expanded keys', async () => {
+      const user = userEvent.setup();
+      const onExpandedRowsChange = vi.fn();
+      render(
+        <Table
+          columns={columns}
+          data={PEOPLE}
+          getRowKey={(row) => row.id}
+          renderExpandedRow={(row) => <span>{row.name} bio</span>}
+          onExpandedRowsChange={onExpandedRowsChange}
+        />,
+      );
+      const toggles = screen.getAllByRole('button', { name: 'Expand row' });
+      await user.click(toggles[0]);
+      expect(onExpandedRowsChange).toHaveBeenCalledWith([1]);
+      await user.click(toggles[1]);
+      expect(onExpandedRowsChange).toHaveBeenCalledWith([1, 2]);
+    });
+
+    it('respects a controlled expandedRowKeys prop instead of managing its own state', async () => {
+      const user = userEvent.setup();
+      const onExpandedRowsChange = vi.fn();
+      render(
+        <Table
+          columns={columns}
+          data={PEOPLE}
+          getRowKey={(row) => row.id}
+          renderExpandedRow={(row) => <span>{row.name} bio</span>}
+          expandedRowKeys={[]}
+          onExpandedRowsChange={onExpandedRowsChange}
+        />,
+      );
+      await user.click(screen.getAllByRole('button', { name: 'Expand row' })[0]);
+      expect(onExpandedRowsChange).toHaveBeenCalledWith([1]);
+      // Parent ignored onExpandedRowsChange, so the prop (still []) wins.
+      expect(screen.queryByText('Ada bio')).not.toBeInTheDocument();
+    });
+
+    it('respects defaultExpandedRowKeys', () => {
+      render(
+        <Table
+          columns={columns}
+          data={PEOPLE}
+          getRowKey={(row) => row.id}
+          renderExpandedRow={(row) => <span>{row.name} bio</span>}
+          defaultExpandedRowKeys={[1]}
+        />,
+      );
+      expect(screen.getByText('Ada bio')).toBeInTheDocument();
+    });
+  });
+
   describe('Alignment', () => {
     it('applies the right alignment class to header and cells', () => {
       const alignedColumns: TableColumn<Person>[] = [{ key: 'name', header: 'Name', align: 'right' }];

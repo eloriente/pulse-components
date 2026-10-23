@@ -26,7 +26,7 @@
   border-bottom: 1px solid var(--pulse-color-border, rgba(0, 0, 0, 0.1));
 }
 
-.tr:hover .td {
+.tr.hoverable:hover .td {
   background-color: var(--pulse-color-surface-subtle, #f0f0f0);
 }
 
@@ -72,4 +72,60 @@
 
 .sortIconActive {
   opacity: 1;
+}
+
+.srOnly {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.toggleCell {
+  width: 1px;
+  padding: var(--pulse-space-3, 12px) 0 var(--pulse-space-3, 12px) var(--pulse-space-4, 16px);
+  border-bottom: 1px solid var(--pulse-color-border, rgba(0, 0, 0, 0.1));
+}
+
+.toggleButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  border: none;
+  border-radius: var(--pulse-radius-sm, 3px);
+  background: none;
+  color: var(--pulse-color-text-subtle, #666666);
+  cursor: pointer;
+}
+
+.toggleButton:hover,
+.toggleButton:focus-visible {
+  background-color: var(--pulse-color-surface-subtle, #f0f0f0);
+  color: var(--pulse-color-text);
+}
+
+.toggleButton:focus-visible {
+  outline: 2px solid var(--pulse-color-primary, #555ab9);
+  outline-offset: 2px;
+}
+
+.toggleIcon {
+  transition: transform 0.15s ease;
+}
+
+.toggleIconExpanded {
+  transform: rotate(180deg);
+}
+
+.expandedCell {
+  padding: var(--pulse-space-4, 16px);
+  background-color: var(--pulse-color-surface-subtle, #f0f0f0);
+  border-bottom: 1px solid var(--pulse-color-border, rgba(0, 0, 0, 0.1));
 }
