@@ -804,6 +804,135 @@
     ]
   },
   {
+    "name": "Combobox",
+    "category": "Form",
+    "description": "Accessible combobox: a text input that filters a list of options as you type.\nFollows the ARIA APG \"editable combobox with list autocomplete\" pattern via\nFloating UI's purpose-built support for it — `useRole(context, { role:\n'combobox' })` wires `role=\"combobox\"`/`aria-expanded`/`aria-controls`/\n`aria-autocomplete` on the input and `role=\"listbox\"`/`role=\"option\"` on the\npopup, and `useListNavigation({ virtual: true })` moves `aria-activedescendant`\ninstead of real DOM focus — so, unlike {@link DropdownMenu}, there's no\n`FloatingFocusManager`/focus trap: focus never leaves the input. The trigger\nis the input itself (`refs.setReference`), reusing the span-wrapper-free\napproach this repo already uses wherever a real `<input>` can serve as the\nreference, since no component here uses `forwardRef`.\n\nManages its own input text internally; `value`/`defaultValue`/`onChange`\ntrack only the committed selection (controlled/uncontrolled, same pattern as\n{@link Popover}), not the in-progress search text.",
+    "importPath": "@pulseui/react",
+    "props": [
+      {
+        "name": "options",
+        "type": "ComboboxOption[]",
+        "required": true,
+        "description": "All selectable options; filtered client-side as the user types"
+      },
+      {
+        "name": "value",
+        "type": "string",
+        "required": false,
+        "description": "Controlled: the selected option's `value`"
+      },
+      {
+        "name": "defaultValue",
+        "type": "string",
+        "required": false,
+        "description": "Uncontrolled: initial selected option's `value`"
+      },
+      {
+        "name": "onChange",
+        "type": "(value: string) => void",
+        "required": false,
+        "description": "Called with the selected option's `value` when the user commits a choice"
+      },
+      {
+        "name": "placeholder",
+        "type": "string",
+        "required": false
+      },
+      {
+        "name": "noOptionsMessage",
+        "type": "string",
+        "required": false,
+        "defaultValue": "'No results'",
+        "description": "Message shown when no option matches the current input text. Default `'No results'`"
+      },
+      {
+        "name": "disabled",
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "false"
+      },
+      {
+        "name": "error",
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "false"
+      },
+      {
+        "name": "errorMessage",
+        "type": "string",
+        "required": false
+      },
+      {
+        "name": "id",
+        "type": "string",
+        "required": false
+      },
+      {
+        "name": "aria-label",
+        "type": "string",
+        "required": false,
+        "description": "Accessible name — required when there's no associated visible `<label htmlFor>`"
+      },
+      {
+        "name": "className",
+        "type": "string",
+        "required": false
+      }
+    ],
+    "variants": [],
+    "sizes": [],
+    "accessibility": [
+      "aria-label",
+      "aria-invalid",
+      "aria-describedby",
+      "aria-hidden",
+      "aria-required-children",
+      "aria-disabled",
+      "aria-selected",
+      "role"
+    ],
+    "examples": [
+      {
+        "name": "Default",
+        "args": {}
+      },
+      {
+        "name": "FiltersAsYouType",
+        "args": {}
+      },
+      {
+        "name": "SelectWithKeyboard",
+        "args": {}
+      },
+      {
+        "name": "SelectWithClick",
+        "args": {}
+      },
+      {
+        "name": "NoResults",
+        "args": {}
+      },
+      {
+        "name": "WithError",
+        "args": {
+          "error": true,
+          "errorMessage": "Please select a country."
+        }
+      },
+      {
+        "name": "Disabled",
+        "args": {
+          "disabled": true,
+          "defaultValue": "es"
+        }
+      },
+      {
+        "name": "ControlledSelection",
+        "args": {}
+      }
+    ]
+  },
+  {
     "name": "Divider",
     "category": "Display",
     "description": "Visual separator — horizontal or vertical.",
@@ -2229,7 +2358,7 @@
   {
     "name": "Table",
     "category": "Layout",
-    "description": "Presentational data table with optional click-to-sort column headers.\nTable never sorts `data` itself — sortable headers toggle an ascending/\ndescending indicator and call `onSort(key, direction)`; the caller re-sorts\n`data` and passes it back down (controlled), or omits `sortKey`/\n`sortDirection` to let Table track the indicator itself (uncontrolled).\nHas no built-in pagination — compose with {@link Pagination} if needed.",
+    "description": "Presentational data table with optional click-to-sort column headers and\noptional expandable rows. Table never sorts `data` itself — sortable\nheaders toggle an ascending/descending indicator and call `onSort(key,\ndirection)`; the caller re-sorts `data` and passes it back down\n(controlled), or omits `sortKey`/`sortDirection` to let Table track the\nindicator itself (uncontrolled). Pass `renderExpandedRow` to show arbitrary\ncontent — a detail panel, nested table, anything — below a row when its\ntoggle button is activated (controlled/uncontrolled via `expandedRowKeys`,\nsame pattern as sorting). Any column's cell content is already fully\ncustomizable via `TableColumn.render` (badges, tags, nested components…),\nindependent of expandable rows. Has no built-in pagination — compose with\n{@link Pagination} if needed.",
     "importPath": "@pulseui/react",
     "props": [
       {
@@ -2282,6 +2411,31 @@
         "description": "Called when a sortable header is activated, with the column key and the direction it should now sort by"
       },
       {
+        "name": "renderExpandedRow",
+        "type": "(row: T, rowIndex: number) => ReactNode",
+        "required": false,
+        "description": "Renders the content of a row's expanded panel. Providing this turns on\nexpandable rows: Table prepends its own toggle-button column (no change\nto `columns` needed) and renders the panel in a full-width row right\nbelow the one it belongs to. Several rows can be expanded at once."
+      },
+      {
+        "name": "expandedRowKeys",
+        "type": "Array<string | number>",
+        "required": false,
+        "description": "Controlled: keys (from `getRowKey`) of the currently expanded rows"
+      },
+      {
+        "name": "defaultExpandedRowKeys",
+        "type": "Array<string | number>",
+        "required": false,
+        "defaultValue": "[]",
+        "description": "Uncontrolled: keys of the rows expanded initially. Default `[]`"
+      },
+      {
+        "name": "onExpandedRowsChange",
+        "type": "(keys: Array<string | number>) => void",
+        "required": false,
+        "description": "Called with the full set of expanded row keys after a toggle"
+      },
+      {
         "name": "caption",
         "type": "ReactNode",
         "required": false,
@@ -2297,7 +2451,10 @@
     "variants": [],
     "sizes": [],
     "accessibility": [
-      "aria-sort"
+      "aria-sort",
+      "aria-expanded",
+      "aria-controls",
+      "aria-label"
     ],
     "examples": [
       {
@@ -2335,6 +2492,19 @@
           "columns": "emptyColumns",
           "data": "[]"
         }
+      },
+      {
+        "name": "ExpandableRows",
+        "args": {
+          "columns": "basicColumns",
+          "data": "PEOPLE",
+          "getRowKey": "(row) => row.id",
+          "renderExpandedRow": "(row) => (\n      <div style={{ display: 'flex', flexDirection: 'column', gap: '4px' }}>\n        <span>\n          <strong>Email:</strong> {row.email}\n        </span>\n        <span>{row.bio}</span>\n      </div>\n    )"
+        }
+      },
+      {
+        "name": "ControlledExpandedRows",
+        "args": {}
       }
     ]
   },

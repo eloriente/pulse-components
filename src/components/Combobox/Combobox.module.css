@@ -1,0 +1,81 @@
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: var(--pulse-space-1, 4px);
+}
+
+.inputWrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.input {
+  width: 100%;
+  padding: var(--pulse-space-2, 8px) var(--pulse-space-8, 32px) var(--pulse-space-2, 8px)
+    var(--pulse-space-3, 12px);
+  border: 1px solid var(--pulse-color-border, rgba(0, 0, 0, 0.1));
+  border-radius: var(--pulse-radius-md, 6px);
+  background-color: var(--pulse-color-background, #ffffff);
+  color: var(--pulse-color-text);
+  font-family: var(--pulse-font-family-base);
+  font-size: var(--pulse-font-size-md, 14px);
+}
+
+.input:focus-visible {
+  outline: 2px solid var(--pulse-color-primary, #555ab9);
+  outline-offset: 1px;
+}
+
+.input:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.input.error {
+  border-color: #842029;
+}
+
+.chevron {
+  position: absolute;
+  right: var(--pulse-space-3, 12px);
+  display: flex;
+  color: var(--pulse-color-text-subtle, #666666);
+  pointer-events: none;
+}
+
+.listbox {
+  overflow-y: auto;
+  border: 1px solid var(--pulse-color-border, rgba(0, 0, 0, 0.1));
+  border-radius: var(--pulse-radius-md, 6px);
+  background-color: var(--pulse-color-background, #ffffff);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+  font-family: var(--pulse-font-family-base);
+  font-size: var(--pulse-font-size-md, 14px);
+}
+
+.option {
+  padding: var(--pulse-space-2, 8px) var(--pulse-space-3, 12px);
+  cursor: pointer;
+}
+
+.option.active {
+  background-color: var(--pulse-color-surface-subtle, #f0f0f0);
+}
+
+.option.disabled {
+  color: var(--pulse-color-text-subtle, #666666);
+  cursor: not-allowed;
+}
+
+.noOptions {
+  padding: var(--pulse-space-2, 8px) var(--pulse-space-3, 12px);
+  color: var(--pulse-color-text-subtle, #666666);
+}
+
+.errorMessage {
+  font-size: var(--pulse-font-size-sm, 12px);
+  /* Darker than --pulse-color-error (#d0312d): that token alone is below the
+     4.5:1 contrast ratio required for text, same fix as Alert's error variant. */
+  color: #842029;
+}

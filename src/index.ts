@@ -45,6 +45,9 @@ export type { SwitchProps, SwitchSize } from './components/Switch';
 export { FieldGroup } from './components/FieldGroup';
 export type { FieldGroupProps, FieldControlProps } from './components/FieldGroup';
 
+export { Combobox } from './components/Combobox';
+export type { ComboboxProps, ComboboxOption } from './components/Combobox';
+
 // ─── Display ─────────────────────────────────────────────────────────────────
 
 export { Badge } from './components/Badge';
