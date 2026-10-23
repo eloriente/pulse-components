@@ -8,6 +8,7 @@ const meta = {
   component: Pagination,
   parameters: { layout: 'centered' },
   tags: ['autodocs'],
+  args: { currentPage: 1, totalPages: 10, onPageChange: fn() },
 } satisfies Meta<typeof Pagination>;
 
 export default meta;

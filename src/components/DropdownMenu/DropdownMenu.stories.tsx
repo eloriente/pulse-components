@@ -2,6 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react-vite';
 import { within, userEvent, expect, waitFor, fn } from 'storybook/test';
 import { Pencil, Copy, Trash2 } from 'lucide-react';
 import { DropdownMenu } from './DropdownMenu';
+import type { DropdownMenuAction } from './DropdownMenu';
 import { Button } from '../Button';
 
 const meta = {
@@ -55,7 +56,7 @@ export const SelectingAnItemClosesTheMenu: Story = {
     await userEvent.click(canvas.getByRole('button', { name: 'Options' }));
     await waitFor(() => expect(body.getByRole('menu')).toBeInTheDocument());
     await userEvent.click(body.getByRole('menuitem', { name: 'Rename' }));
-    await expect(args.items[0].onSelect).toHaveBeenCalledOnce();
+    await expect((args.items[0] as DropdownMenuAction).onSelect).toHaveBeenCalledOnce();
     await waitFor(() => expect(body.queryByRole('menu')).not.toBeInTheDocument());
   },
 };

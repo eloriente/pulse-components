@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { within, userEvent, expect, waitFor } from 'storybook/test';
+import { within, userEvent, expect, waitFor, fn } from 'storybook/test';
 import { Modal } from './Modal';
 import { Button } from '../Button';
 
@@ -9,6 +9,7 @@ const meta = {
   component: Modal,
   parameters: { layout: 'centered' },
   tags: ['autodocs'],
+  args: { open: false, onClose: fn(), children: null },
 } satisfies Meta<typeof Modal>;
 
 export default meta;

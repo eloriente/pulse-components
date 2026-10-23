@@ -13,7 +13,7 @@ PulseUI for React (npm package `@pulseui/react`) — React 19 + TypeScript + CSS
   - `tokens/` — design tokens in CSS (`colors.css`, `spacing.css`, `typography.css`, `index.css`), consumed as `--pulse-*` variables in each component's `.module.css`.
   - `docs/`, `Welcome.mdx` — Storybook documentation.
   - `test-setup.ts` — global Vitest/RTL setup.
-- **CI** (`.github/workflows/quality-checks.yml`, on every push/PR): `lint` → `typecheck` (`tsc --noEmit`) → `mcp-data` (`check:mcp-data`) → `build` (`npm run build`, catches build-only errors) → `test-unit` (Vitest) → `test-storybook` (Playwright/Chromium) → `coverage` (80% minimum, uploads artifact). All jobs run in parallel except `coverage`, which depends on `test-unit`+`test-storybook`.
+- **CI** (`.github/workflows/quality-checks.yml`, on every push/PR): `lint` → `typecheck` (`tsc -b`, builds every project referenced by `tsconfig.json`) → `mcp-data` (`check:mcp-data`) → `build` (`npm run build`, catches build-only errors) → `test-unit` (Vitest) → `test-storybook` (Playwright/Chromium) → `coverage` (80% minimum, uploads artifact). All jobs run in parallel except `coverage`, which depends on `test-unit`+`test-storybook`.
 - `src/index.ts` re-exports every component from `src/components/index.ts` (same categories: Primitives / Form / Display / Overlay / Feedback / Navigation). If a new component is added to `src/components/index.ts`, replicate it in `src/index.ts` too so it reaches the public entry point.
 
 ## Components (`src/components/`)

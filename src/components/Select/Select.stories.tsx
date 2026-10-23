@@ -7,6 +7,7 @@ const meta = {
   component: Select,
   parameters: { layout: 'centered' },
   tags: ['autodocs'],
+  args: { children: null },
   decorators: [(Story) => <div style={{ width: '280px' }}><Story /></div>],
 } satisfies Meta<typeof Select>;
 

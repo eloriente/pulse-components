@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { within, userEvent, expect, waitFor } from 'storybook/test';
+import { within, userEvent, expect, waitFor, fn } from 'storybook/test';
 import { Drawer } from './Drawer';
 import type { DrawerPlacement } from './Drawer';
 import { Button } from '../Button';
@@ -10,6 +10,7 @@ const meta = {
   component: Drawer,
   parameters: { layout: 'centered' },
   tags: ['autodocs'],
+  args: { open: false, onClose: fn(), children: null },
   argTypes: {
     placement: {
       control: 'select',

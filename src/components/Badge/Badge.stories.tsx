@@ -7,6 +7,7 @@ const meta = {
   component: Badge,
   parameters: { layout: 'centered' },
   tags: ['autodocs'],
+  args: { children: 'Badge' },
 } satisfies Meta<typeof Badge>;
 
 export default meta;

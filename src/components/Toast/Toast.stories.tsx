@@ -33,6 +33,7 @@ const meta = {
   component: ToastProvider,
   parameters: { layout: 'centered' },
   tags: ['autodocs'],
+  args: { children: null },
   render: () => (
     <ToastProvider>
       <ToastDemo />

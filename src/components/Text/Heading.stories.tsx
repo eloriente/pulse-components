@@ -7,6 +7,7 @@ const meta = {
   component: Heading,
   parameters: { layout: 'padded' },
   tags: ['autodocs'],
+  args: { children: 'Heading' },
 } satisfies Meta<typeof Heading>;
 
 export default meta;

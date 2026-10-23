@@ -7,6 +7,7 @@ const meta = {
   component: Text,
   parameters: { layout: 'padded' },
   tags: ['autodocs'],
+  args: { children: 'Text' },
   argTypes: {
     as: { control: 'select', options: ['p', 'span', 'label', 'div', 'strong', 'em', 'small'] },
     variant: { control: 'select', options: ['body', 'caption', 'overline', 'code'] },

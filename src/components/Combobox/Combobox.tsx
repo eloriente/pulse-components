@@ -1,5 +1,5 @@
 import { useEffect, useId, useMemo, useRef, useState } from 'react';
-import type { KeyboardEvent } from 'react';
+import type { ChangeEvent, KeyboardEvent } from 'react';
 import { ChevronDown } from 'lucide-react';
 import {
   useFloating,
@@ -177,7 +177,7 @@ export function Combobox({
           className={[styles.input, error ? styles.error : ''].filter(Boolean).join(' ')}
           ref={refs.setReference}
           {...getReferenceProps({
-            onChange(event) {
+            onChange(event: ChangeEvent<HTMLInputElement>) {
               setInputValue(event.target.value);
               setActiveIndex(null);
               setOpen(true);

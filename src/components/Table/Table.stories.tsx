@@ -43,9 +43,10 @@ const PEOPLE: Person[] = [
 
 const meta = {
   title: 'Components/Layout/Table',
-  component: Table,
+  component: Table<Person>,
   parameters: { layout: 'padded' },
   tags: ['autodocs'],
+  args: { columns: [], data: [] },
 } satisfies Meta<typeof Table<Person>>;
 
 export default meta;

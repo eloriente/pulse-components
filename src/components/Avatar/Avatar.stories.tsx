@@ -7,6 +7,7 @@ const meta = {
   component: Avatar,
   parameters: { layout: 'centered' },
   tags: ['autodocs'],
+  args: { alt: 'Avatar' },
 } satisfies Meta<typeof Avatar>;
 
 export default meta;

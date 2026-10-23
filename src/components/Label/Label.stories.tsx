@@ -7,6 +7,7 @@ const meta = {
   component: Label,
   parameters: { layout: 'centered' },
   tags: ['autodocs'],
+  args: { children: 'Label' },
 } satisfies Meta<typeof Label>;
 
 export default meta;

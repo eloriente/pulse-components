@@ -37,8 +37,14 @@
       "import": "./dist/index.js",
       "require": "./dist/index.cjs"
     },
-    "./tokens": "./dist/tokens/index.css",
-    "./styles": "./dist/style.css"
+    "./tokens": {
+      "types": "./dist/css.d.ts",
+      "default": "./dist/tokens/index.css"
+    },
+    "./styles": {
+      "types": "./dist/css.d.ts",
+      "default": "./dist/style.css"
+    }
   },
   "bin": {
     "pulseui-react-mcp": "./dist/mcp/server.js"
@@ -52,7 +58,9 @@
   "scripts": {
     "storybook": "storybook dev -p 6006",
     "prebuild": "npm run generate:mcp-data",
-    "build": "vite build && npm run build:mcp",
+    "build": "vite build && npm run build:types && npm run build:tokens && npm run build:mcp",
+    "build:types": "tsc -p tsconfig.types.json && cp types/css.d.ts dist/css.d.ts",
+    "build:tokens": "mkdir -p dist/tokens && cp src/tokens/*.css dist/tokens/",
     "build:mcp": "tsc -p tsconfig.mcp.json && chmod +x dist/mcp/server.js",
     "build:storybook": "storybook build",
     "generate:mcp-data": "tsx scripts/generate-mcp-data.ts",
@@ -63,7 +71,7 @@
     "test:unit": "vitest --project unit",
     "test:storybook": "vitest --project storybook",
     "coverage": "vitest run --coverage",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc -b"
   },
   "peerDependencies": {
     "lucide-react": "^1.21.0",
