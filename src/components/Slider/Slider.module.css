@@ -1,0 +1,107 @@
+.wrapper {
+  display: flex;
+  align-items: center;
+  gap: var(--pulse-space-3, 12px);
+  width: 100%;
+}
+
+.slider {
+  flex: 1;
+  -webkit-appearance: none;
+  appearance: none;
+  height: 4px;
+  border-radius: var(--pulse-radius-sm, 3px);
+  outline: none;
+  cursor: pointer;
+}
+
+.slider:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* === Thumb === */
+.slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  border: 2px solid var(--pulse-color-background, #ffffff);
+  background-color: var(--pulse-color-primary, #555ab9);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+}
+
+.slider::-moz-range-thumb {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  border: 2px solid var(--pulse-color-background, #ffffff);
+  background-color: var(--pulse-color-primary, #555ab9);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+}
+
+.slider:disabled::-webkit-slider-thumb {
+  cursor: not-allowed;
+}
+
+.slider:disabled::-moz-range-thumb {
+  cursor: not-allowed;
+}
+
+.slider:focus-visible::-webkit-slider-thumb {
+  outline: 2px solid var(--pulse-color-primary, #555ab9);
+  outline-offset: 2px;
+}
+
+.slider:focus-visible::-moz-range-thumb {
+  outline: 2px solid var(--pulse-color-primary, #555ab9);
+  outline-offset: 2px;
+}
+
+/* Firefox renders its own track color on top of the inline gradient background
+   unless the native track is made transparent. */
+.slider::-moz-range-track {
+  height: 4px;
+  border-radius: var(--pulse-radius-sm, 3px);
+  background: transparent;
+}
+
+/* === Sizes (thumb + track height) === */
+.sm {
+  height: 3px;
+}
+
+.sm::-webkit-slider-thumb {
+  width: 12px;
+  height: 12px;
+}
+
+.sm::-moz-range-thumb {
+  width: 12px;
+  height: 12px;
+}
+
+.lg {
+  height: 6px;
+}
+
+.lg::-webkit-slider-thumb {
+  width: 20px;
+  height: 20px;
+}
+
+.lg::-moz-range-thumb {
+  width: 20px;
+  height: 20px;
+}
+
+.value {
+  min-width: 2.5ch;
+  text-align: right;
+  font-family: var(--pulse-font-family-base);
+  font-size: var(--pulse-font-size-sm, 12px);
+  color: var(--pulse-color-text-subtle, #666666);
+}

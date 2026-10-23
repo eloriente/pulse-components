@@ -2212,6 +2212,131 @@
     ]
   },
   {
+    "name": "Slider",
+    "category": "Form",
+    "description": "Single-value range slider built on the native `<input type=\"range\">` —\nkeyboard support (arrow keys, Home/End, Page Up/Down) and the `slider` ARIA\nrole/`aria-valuenow` come for free from the browser. Has no label of its\nown, same as {@link Input}/{@link Select}: pair it with an external\n{@link Label} or {@link FieldGroup}, or pass `aria-label` directly.",
+    "importPath": "@pulseui/react",
+    "props": [
+      {
+        "name": "value",
+        "type": "number",
+        "required": false,
+        "description": "Controlled value"
+      },
+      {
+        "name": "defaultValue",
+        "type": "number",
+        "required": false,
+        "description": "Uncontrolled initial value. Default `min`"
+      },
+      {
+        "name": "onChange",
+        "type": "(value: number) => void",
+        "required": false,
+        "description": "Called with the new numeric value as the thumb moves"
+      },
+      {
+        "name": "min",
+        "type": "number",
+        "required": false,
+        "defaultValue": "0",
+        "description": "Default `0`"
+      },
+      {
+        "name": "max",
+        "type": "number",
+        "required": false,
+        "defaultValue": "100",
+        "description": "Default `100`"
+      },
+      {
+        "name": "step",
+        "type": "number",
+        "required": false,
+        "defaultValue": "1",
+        "description": "Default `1`"
+      },
+      {
+        "name": "size",
+        "type": "SliderSize",
+        "required": false,
+        "defaultValue": "'md'"
+      },
+      {
+        "name": "showValue",
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "false",
+        "description": "Shows the current numeric value next to the track. Default `false`"
+      },
+      {
+        "name": "disabled",
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "false"
+      },
+      {
+        "name": "className",
+        "type": "string",
+        "required": false,
+        "description": "Additional CSS classes"
+      }
+    ],
+    "variants": [],
+    "sizes": [
+      "sm",
+      "md",
+      "lg"
+    ],
+    "accessibility": [],
+    "examples": [
+      {
+        "name": "Default",
+        "args": {}
+      },
+      {
+        "name": "WithValue",
+        "args": {
+          "showValue": true,
+          "defaultValue": 40
+        }
+      },
+      {
+        "name": "Sizes",
+        "args": {}
+      },
+      {
+        "name": "CustomRange",
+        "args": {
+          "min": "-50",
+          "max": 50,
+          "defaultValue": 0,
+          "showValue": true
+        }
+      },
+      {
+        "name": "Disabled",
+        "args": {
+          "disabled": true,
+          "defaultValue": 50,
+          "showValue": true
+        }
+      },
+      {
+        "name": "ControlledValue",
+        "args": {}
+      },
+      {
+        "name": "WithLabel",
+        "args": {}
+      },
+      {
+        "name": "WithFieldGroup",
+        "args": {}
+      }
+    ]
+  },
+  {
     "name": "Spinner",
     "category": "Display",
     "description": "Loading spinner indicator.",

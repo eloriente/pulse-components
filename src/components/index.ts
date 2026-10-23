@@ -41,6 +41,9 @@ export type { FieldGroupProps, FieldControlProps } from './FieldGroup';
 export { Combobox } from './Combobox';
 export type { ComboboxProps, ComboboxOption } from './Combobox';
 
+export { Slider } from './Slider';
+export type { SliderProps, SliderSize } from './Slider';
+
 // ─── Display ─────────────────────────────────────────────────────────────────
 
 export { Badge } from './Badge';
